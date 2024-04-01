@@ -1,26 +1,34 @@
 import Header from "../components/Header";
-import '../styles/homepage.css'
+import "../styles/homepage.css";
 
 function HomePage() {
   return (
     <>
       <Header />
       {/* search area*/}
-      <h4>PROJECT LIST</h4>
-      <div class="search-bar">
-        <button class="seacrh" id="seacrh">
-          <img src="" alt="search icon" />
-        </button>
-        <button class="saved" id="saved">
-          <img src="" alt="bookmark icon" />
-          Saved
-        </button>
-        <div class="filter-tags">
-          <button class="filter-tag">#tag 1</button>
-          <button class="filter-tag">#tag 2</button>
-          <button class="filter-tag">#tag 3</button>
+      <div class="search-area">
+        <h4>PROJECT LIST</h4>
+        <div class="search-bar">
+          <div class="search-bar-item">
+            <div class="search" id="search">
+              <img src="" alt="search icon" />
+            </div>
+            <input class="search-field" type="text" />
+          </div>
+          <div class="search-bar-item">
+            <button class="saved capsule" id="saved">
+              <img src="" alt="bookmark icon" />
+              Saved
+            </button>
+          </div>
+          <div class="filter-tags search-bar-item">
+            <button class="filter-tag capsule">All (10)</button>
+            <button class="filter-tag capsule">#tag1</button>
+            <button class="filter-tag capsule">#tag2</button>
+          </div>
         </div>
       </div>
+
       {/* area for display items */}
       <div class="content-container">
         {/* item template */}

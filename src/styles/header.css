@@ -4,13 +4,15 @@
 }
 
 .header {
-    min-height: 40px;
+  min-height: 40px;
   height: 10vh;
   max-height: 80px;
-  background-color: #ddd;
+
   display: flex;
   align-items: center;
   justify-content: space-between;
+    
+  background-color: #ddd;
 }
 
 .logo {
@@ -22,7 +24,7 @@
   height: 32px;
 
   /* debug */
-  background-color: grey;
+  background-color: #3333;
 }
 
 .header-options {
