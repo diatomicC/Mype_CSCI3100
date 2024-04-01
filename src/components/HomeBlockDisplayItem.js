@@ -1,21 +1,22 @@
 import "../styles/homeBlockDisplayItem.css";
+import BookmarkIcon from "../icons/bookmark.svg";
 
 function HomePage() {
   return (
     <>
       <div class="item">
         {/* item header */}
-        <div>
-          <span class="title">title</span>
-          <span class="author">author</span>
+        <div class="item-header">
+          <p class="title">title</p>
+          <p class="author">author</p>
+          {/* click to quick save to shopping cart */}
+          <button class="save-btn">
+            <img src={BookmarkIcon} alt="" />
+          </button>
         </div>
         {/* item content */}
         <div>
-          {/* click to quick save to shopping cart */}
-          <button class="save-btn">
-            <img class="save-icon" src="" alt="bookmark icon" />
-          </button>
-          <img class="product-image" src="" alt="product image" />
+          <div class="product-image"><img src="" alt="" /></div>
           {/* todo */}
           {/* display first x (depends on item frame width?) tags of this product */}
           <div class="item-tags">
@@ -23,10 +24,10 @@ function HomePage() {
             <div class="item-tag">#tag 2</div>
             <div class="item-tag">#tag 3</div>
           </div>
-          <span class="short-description">blablablab</span>
+          <p class="short-description">blablablab</p>
         </div>
         {/* interactives */}
-        <div>
+        <div class="item-footer">
           {/* display number of likes, saved */}
           <div class="ranking">
             <div class="liked">
