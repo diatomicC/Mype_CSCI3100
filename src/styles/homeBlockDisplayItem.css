@@ -9,17 +9,17 @@
   align-items: center;
 }
 
-/* content */
-.content-container {
-  margin: 8px;
-}
-
+/* item */
 .item {
-  width: 240px;
-  min-width: fit-content;
+  min-width: 240px;
+  width: 80%;
+  max-width: 400px;
   position: relative;
   padding-top: 8px;
-  margin: 8px;
+  margin: 5%;
+
+  align-self: center;
+  justify-self: center;
 
   border: solid 1px #3333;
   border-radius: 8px;
@@ -92,6 +92,7 @@
 
 .ranking {
   margin: 8px;
+  margin-right: 0;
   min-width: fit-content;
   display: flex;
   align-items: center;
@@ -114,6 +115,7 @@
 
 .interactives-btn {
   margin: 8px;
+  margin-left: 0;
   display: flex;
   align-items: center;
 }

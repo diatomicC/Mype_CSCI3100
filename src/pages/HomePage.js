@@ -41,6 +41,9 @@ function HomePage() {
       {/* area for display items */}
       <div class="content-container">
         <HomeBlockDisplayItem />
+        <HomeBlockDisplayItem />
+        <HomeBlockDisplayItem />
+        <HomeBlockDisplayItem />
       </div>
     </>
   );

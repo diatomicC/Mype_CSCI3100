@@ -18,7 +18,9 @@ function HomePage() {
         </div>
         {/* item content */}
         <div>
-          <div class="product-image"><img src="" alt="" /></div>
+          <div class="product-image">
+            <img src="" alt="" />
+          </div>
           {/* todo */}
           {/* display first x (depends on item frame width?) tags of this product */}
           <div class="item-tags">
