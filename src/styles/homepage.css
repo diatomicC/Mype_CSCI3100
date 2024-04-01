@@ -33,7 +33,7 @@ button {
 .search-field {
   display: none;
 }
-.search svg {
+.search img {
   width: 18px;
   height: 18px;
 }
@@ -43,7 +43,7 @@ button {
   display: flex;
   align-items: center;
 }
-.saved svg {
+.saved img {
   width: 18px;
   height: 18px;
   margin-right: 2px;
