@@ -1,7 +1,10 @@
-import "../styles/homeBlockDisplayItem.css";
+import { Link } from "react-router-dom";
+
 import BookmarkIcon from "../icons/bookmark.svg";
 import LikeIcon from "../icons/heart.svg";
 import ShareIcon from "../icons/shareIcon.svg";
+
+import "../styles/homeBlockDisplayItem.css";
 
 function HomePage() {
   return (
@@ -9,7 +12,7 @@ function HomePage() {
       <div class="item">
         {/* item header */}
         <div class="item-header">
-          <div class="title">title</div>
+          <Link to="/Product" class="title">title</Link>
           <div class="author">author</div>
           {/* click to quick save to shopping cart */}
           <button class="save-btn">
