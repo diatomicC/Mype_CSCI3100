@@ -66,24 +66,79 @@ function SaleScreen() {
               <div class="price">$10</div>
             </div>
             <div class="lower-saleData">
-              {/* display number of likes, saved */}
-              <div class="ranking">
-                <div class="item-liked">
-                  <img src={LikeIcon} alt="" /> 999
+              <div>
+                {/* display number of likes, saved */}
+                <div class="ranking">
+                  <div class="item-liked">
+                    <img src={LikeIcon} alt="" /> 999
+                  </div>
+                  <div class="item-saved">
+                    <img src={BookmarkIcon} alt="" /> 999
+                  </div>
                 </div>
-                <div class="item-saved">
-                  <img src={BookmarkIcon} alt="" /> 999
+                <div class="starRanking">
+                  {/* todo */}
+                  <span class="star"></span>
+                  <span class="star"></span>
+                  <span class="star"></span>
+                  <span class="star"></span>
+                  <span class="star"></span>
                 </div>
-                <div class="starRanking">{/* todo */}*****</div>
               </div>
               <button className="purchase-btn">Order Now</button>
             </div>
           </div>
           {/* users reviews*/}
           <div class="review-container">
+            {/* todo : grab data here */}
+            {/* review template */}
             <div class="review">
               <p>blablalbalbalblab</p>
-              <div class="starRanking">{/* todo */}*****</div>
+              <div class="starRanking">
+                {/* todo */}
+                <span class="star"></span>
+                <span class="star"></span>
+                <span class="star"></span>
+                <span class="star"></span>
+                <span class="star"></span>
+              </div>
+            </div>
+            {/* review template */}
+            <div class="review">
+              <p>
+                lum laudantium. Doloremque dolores obcaecati harum ipsum illo?
+                Nihil doloremque voluptas harum quae vitae animi debitis
+                adipisci exercitationem quo repudiandae. Exercitationem
+                doloremque, repellendus quibusdam debitis dolorum consequuntur
+                molestiae, repellat voluptas libero reprehenderit sit. Dicta
+                illo quibusdam quas atque, officiis eum optio nostrum
+                perspiciatis provident exercitationem aut ipsum ipsa eligendi
+              </p>
+              <div class="starRanking">
+                {/* todo */}
+                <span class="star"></span>
+                <span class="star"></span>
+                <span class="star"></span>
+                <span class="star"></span>
+                <span class="star"></span>
+              </div>
+            </div>
+            {/* review template */}
+            <div class="review">
+              <p>
+                remque voluptas harum quae vitae animi debitis adipisci
+                exercitationem quo repudiandae. Exercitationem doloremque,
+                repellendus quibusdam debitis dolorum consequuntur molestiae,
+                repellat voluptas libero repre
+              </p>
+              <div class="starRanking">
+                {/* todo */}
+                <span class="star"></span>
+                <span class="star"></span>
+                <span class="star"></span>
+                <span class="star"></span>
+                <span class="star"></span>
+              </div>
             </div>
           </div>
         </div>

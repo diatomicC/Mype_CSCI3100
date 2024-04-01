@@ -4,7 +4,7 @@
 }
 
 .left-content {
-  flex: 2;
+  flex: 1;
   margin: 8px;
   display: flex;
   flex-direction: column;
@@ -19,19 +19,85 @@
 .right-content {
   flex: 1;
   margin: 8px;
-  display: flex;
-  flex-direction: column;
-  align-items: start;
-  justify-content: start;
 }
 .right-content .tag-list {
   display: flex;
   flex-wrap: wrap;
 }
-.right-content .tag-list .item-tag{
-    margin-bottom: 4px;
+.right-content .tag-list .item-tag {
+  margin-bottom: 4px;
 }
 
 .right-content .short-description {
-    display: block;
+  display: block;
+}
+.right-content .saleData {
+  width: 100%;
+}
+.right-content .upper-saleData,
+.right-content .lower-saleData {
+  margin: 8px;
+  display: flex;
+  justify-content: space-between;
+}
+.right-content .upper-saleData {
+  font-weight: bold;
+  color: #8000ff;
+}
+.right-content .lower-saleData .ranking {
+  margin: 0;
+}
+.right-content .purchase-btn {
+  padding: 8px;
+  margin-left: 16px;
+  flex-grow: 1;
+  font-size: 100%;
+  color: #eee;
+  border: none;
+  border-radius: 8px;
+  background-color: #8000ff;
+}
+
+.right-content .review-container {
+  padding: 8px 0;
+  background-color: #8000ff10;
+}
+.right-content .review-container .review {
+  position: relative;
+  padding: 16px;
+  padding-bottom: 40px;
+  margin: 16px;
+  background-color: #fff;
+}
+.right-content .review-container .review .starRanking {
+  position: absolute;
+  bottom: 4px;
+  right: 4px;
+}
+
+/* simulate start (for now) */
+.starRanking {
+  display: inline-block;
+  margin-top: 4px;
+  height: 20px;
+  font-size: 0;
+}
+
+.star {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  background-color: lightgray;
+  margin-right: 4px;
+  position: relative;
+}
+
+.star::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: gold;
 }
