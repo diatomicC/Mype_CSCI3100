@@ -6,8 +6,9 @@ button {
 .capsule {
   border: solid 1px grey;
   border-radius: 30px;
-  padding: 6px 10px;
+  padding: 0px 10px;
   margin-right: 4px;
+  height: 32px;
 }
 
 .search-area {
@@ -74,6 +75,7 @@ button {
   background-color: #3333;
 }
 
+/* content */
 .content-container {
   margin: 8px;
 }
