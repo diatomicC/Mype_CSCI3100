@@ -28,7 +28,12 @@ button {
 .search {
   width: 60px;
   display: flex;
+  align-items: center;
   justify-content: center;
+
+  border: none;
+  background-color: transparent;
+  height: 100%;
 }
 .search-field {
   display: none;
