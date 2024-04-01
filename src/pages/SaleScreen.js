@@ -1,5 +1,7 @@
+import { Link } from "react-router-dom";
 import BookmarkIcon from "../icons/bookmark.svg";
 import LikeIcon from "../icons/heart.svg";
+import BackIcon from "../icons/arrowLeft.svg";
 
 import "../styles/saleScreen.css";
 
@@ -10,6 +12,9 @@ function SaleScreen() {
       <div class="detailed-info-container">
         {/* left section */}
         <div class="left-content">
+          <Link class="back-btn" to="/">
+            <img src={BackIcon} alt="" />
+          </Link>
           <div class="image-viewer">
             <img src="" alt="product image"></img>
           </div>

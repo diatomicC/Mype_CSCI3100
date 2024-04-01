@@ -18,7 +18,7 @@ function HomePage() {
 
         <Routes>
           {/* display items match filtering condition */}
-          <Route path="/" element={<HomeItemContainer/>} />
+          <Route exact path="/" element={<HomeItemContainer/>} />
           
           {/* display detailed information of single item */}
           <Route path="/Product" element={<SaleScreen/>} />
