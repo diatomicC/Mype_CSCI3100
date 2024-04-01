@@ -1,5 +1,7 @@
 import "../styles/homeBlockDisplayItem.css";
 import BookmarkIcon from "../icons/bookmark.svg";
+import LikeIcon from "../icons/heart.svg";
+import ShareIcon from "../icons/shareIcon.svg";
 
 function HomePage() {
   return (
@@ -30,17 +32,17 @@ function HomePage() {
         <div class="item-footer">
           {/* display number of likes, saved */}
           <div class="ranking">
-            <div class="liked">
-              <img src="" alt="like icon" /> #like
+            <div class="item-liked">
+              <img src={LikeIcon} alt="" /> 999
             </div>
-            <div class="saved">
-              <img src="" alt="bookmark icon" /> #save
+            <div class="item-saved">
+              <img src={BookmarkIcon} alt="" /> 999
             </div>
           </div>
           {/* click to share/ purchase this product */}
           <div class="interactives-btn">
             <button class="share">
-              <img src="" alt="share icon" />
+              <img src={ShareIcon} alt="" />
             </button>
             <button class="purchase">Buy now</button>
           </div>
