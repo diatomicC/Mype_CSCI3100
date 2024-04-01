@@ -3,9 +3,35 @@
   display: flex;
 }
 
-.left {
+.left-content {
   flex: 2;
+  margin: 8px;
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  justify-content: start;
 }
-.right {
+.left-content img {
+  width: 90%;
+  margin: 8px 0;
+}
+
+.right-content {
   flex: 1;
+  margin: 8px;
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  justify-content: start;
+}
+.right-content .tag-list {
+  display: flex;
+  flex-wrap: wrap;
+}
+.right-content .tag-list .item-tag{
+    margin-bottom: 4px;
+}
+
+.right-content .short-description {
+    display: block;
 }
