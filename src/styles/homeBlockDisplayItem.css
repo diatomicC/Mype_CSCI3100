@@ -40,12 +40,19 @@
   position: relative;
   margin: 8px;
 }
-.title {
+.title,
+.author {
   font-weight: bold;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.title {
   font-size: 120%;
 }
 .author {
-  font-weight: bold;
+  -webkit-line-clamp: 1;
   color: #8000ff;
 }
 
@@ -82,6 +89,10 @@
 }
 .short-description {
   margin: 8px;
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 
 .item-footer {

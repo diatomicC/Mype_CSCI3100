@@ -43,16 +43,18 @@ function HomePage() {
           </div>
           {/* list of all available tags*/}
           <div class="filter-tags search-bar-item">
-            {/* todo use make tag component*/}
             <button class="filter-tag capsule">All (10)</button>
+            {/* todo : grab data here */}
             <button class="filter-tag capsule">#tag1</button>
             <button class="filter-tag capsule">#tag2</button>
+            <button class="filter-tag capsule">#tag3</button>
           </div>
         </div>
       </div>
 
       {/* area for display items */}
       <div class="content-container">
+        {/* todo : grab data here */}
         <HomeBlockDisplayItem />
         <HomeBlockDisplayItem />
         <HomeBlockDisplayItem />
