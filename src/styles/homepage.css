@@ -1,0 +1,19 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+.header {
+  height: 80px;
+  background-color: #ddd;
+}
+
+.logo {
+  margin-left: 5%;
+}
+
+.logo-image {
+  width: 32px;
+  height: 32px;
+  background-color: grey;
+}
