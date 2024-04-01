@@ -20,9 +20,9 @@ function HomePage() {
           {/* todo */}
           {/* display first x (depends on item frame width?) tags of this product */}
           <div class="item-tags">
-            <div class="item-tag">#tag 1</div>
-            <div class="item-tag">#tag 2</div>
-            <div class="item-tag">#tag 3</div>
+            <div class="capsule item-tag">#tag 1</div>
+            <div class="capsule item-tag">#tag 2</div>
+            <div class="capsule item-tag">#tag 3</div>
           </div>
           <p class="short-description">blablablab</p>
         </div>
