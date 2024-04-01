@@ -1,4 +1,4 @@
-import "../styles/homepage.css";
+import "../styles/SaleScreen.css";
 
 function SaleScreen() {
   return (
