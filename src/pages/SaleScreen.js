@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import BookmarkIcon from "../icons/bookmark.svg";
 import LikeIcon from "../icons/heart.svg";
 import BackIcon from "../icons/arrowLeft.svg";
+import StarIcon from "../icons/star.svg";
 
 import "../styles/saleScreen.css";
 
@@ -83,11 +84,11 @@ function SaleScreen() {
                 </div>
                 <div class="starRanking">
                   {/* todo */}
-                  <span class="star"></span>
-                  <span class="star"></span>
-                  <span class="star"></span>
-                  <span class="star"></span>
-                  <span class="star"></span>
+                  <img class="star" src={StarIcon} alt=""></img>
+                  <img class="star" src={StarIcon} alt=""></img>
+                  <img class="star" src={StarIcon} alt=""></img>
+                  <img class="star" src={StarIcon} alt=""></img>
+                  <img class="star" src={StarIcon} alt=""></img>
                 </div>
               </div>
               <button className="purchase-btn">Order Now</button>
@@ -101,11 +102,11 @@ function SaleScreen() {
               <p>blablalbalbalblab</p>
               <div class="starRanking">
                 {/* todo */}
-                <span class="star"></span>
-                <span class="star"></span>
-                <span class="star"></span>
-                <span class="star"></span>
-                <span class="star"></span>
+                <img class="star" src={StarIcon} alt=""></img>
+                  <img class="star" src={StarIcon} alt=""></img>
+                  <img class="star" src={StarIcon} alt=""></img>
+                  <img class="star" src={StarIcon} alt=""></img>
+                  <img class="star" src={StarIcon} alt=""></img>
               </div>
             </div>
             {/* review template */}
@@ -121,11 +122,11 @@ function SaleScreen() {
               </p>
               <div class="starRanking">
                 {/* todo */}
-                <span class="star"></span>
-                <span class="star"></span>
-                <span class="star"></span>
-                <span class="star"></span>
-                <span class="star"></span>
+                <img class="star" src={StarIcon} alt=""></img>
+                <img class="star" src={StarIcon} alt=""></img>
+                <img class="star" src={StarIcon} alt=""></img>
+                <img class="star" src={StarIcon} alt=""></img>
+                <img class="star" src={StarIcon} alt=""></img>
               </div>
             </div>
             {/* review template */}
@@ -138,11 +139,11 @@ function SaleScreen() {
               </p>
               <div class="starRanking">
                 {/* todo */}
-                <span class="star"></span>
-                <span class="star"></span>
-                <span class="star"></span>
-                <span class="star"></span>
-                <span class="star"></span>
+                <img class="star" src={StarIcon} alt=""></img>
+                <img class="star" src={StarIcon} alt=""></img>
+                <img class="star" src={StarIcon} alt=""></img>
+                <img class="star" src={StarIcon} alt=""></img>
+                <img class="star" src={StarIcon} alt=""></img>
               </div>
             </div>
           </div>

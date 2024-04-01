@@ -89,20 +89,7 @@
 }
 
 .star {
-  display: inline-block;
   width: 20px;
   height: 20px;
-  background-color: lightgray;
   margin-right: 4px;
-  position: relative;
-}
-
-.star::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: gold;
 }
