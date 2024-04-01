@@ -6,6 +6,9 @@
 .header {
   height: 80px;
   background-color: #ddd;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
 .logo {
@@ -16,4 +19,34 @@
   width: 32px;
   height: 32px;
   background-color: grey;
+}
+
+.header-options {
+  margin-right: 5%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.user-profile,
+.lang-setting {
+  display: flex;
+  margin-left: 8px;
+  padding: 4px;
+
+  border: solid 2px #8000ff;
+  border-radius: 4px;
+}
+
+.user-profile {
+  background-color: #8000ff;
+  color: #eee;
+}
+
+.globe-icon,
+.extend-arrow {
+  margin-left: 4px;
+  width: 16px;
+  height: 16px;
+  align-self: center;
 }
