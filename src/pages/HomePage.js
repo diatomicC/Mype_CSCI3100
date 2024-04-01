@@ -1,25 +1,20 @@
 import Header from "../components/Header";
-import HomeBlockDisplayItem from "../components/HomeBlockDisplayItem";
-
-import MainSearchBar from "../components/MainSearchBar";
+import HomeItemContainer from "../components/HomeItemContainer";
+import MainSearchBar from "../components/HomeSearchBar";
 
 import "../styles/homepage.css";
 
 function HomePage() {
   return (
     <>
+      {/* Header */}
       <Header />
+
       {/* search area*/}
       <MainSearchBar />
 
       {/* area for display items */}
-      <div class="content-container">
-        {/* todo : grab data here */}
-        <HomeBlockDisplayItem />
-        <HomeBlockDisplayItem />
-        <HomeBlockDisplayItem />
-        <HomeBlockDisplayItem />
-      </div>
+      <HomeItemContainer />
     </>
   );
 }
