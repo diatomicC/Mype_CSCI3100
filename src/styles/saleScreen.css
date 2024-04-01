@@ -4,7 +4,7 @@
 }
 
 .left-content {
-  flex: 1;
+  flex: 2;
   margin: 8px;
   display: flex;
   flex-direction: column;
