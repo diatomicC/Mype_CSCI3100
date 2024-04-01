@@ -33,11 +33,20 @@ button {
 .search-field {
   display: none;
 }
+.search svg {
+  width: 18px;
+  height: 18px;
+}
 
 .saved {
   margin-right: 0;
   display: flex;
   align-items: center;
+}
+.saved svg {
+  width: 18px;
+  height: 18px;
+  margin-right: 2px;
 }
 
 /* stroke between items  */
