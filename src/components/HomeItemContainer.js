@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import HomeBlockDisplayItem from "../components/HomeBlockDisplayItem";
 import ContainerStyle from "../styles/homeItemContainer.css";
 
-function HomeItemContainer({ collectionRef }) {
+function HomeItemContainer({ collectionRef, setTagList }) {
   // save all the items' ID searched
   const [itemList, setItemList] = useState([]);
 
@@ -18,6 +18,7 @@ function HomeItemContainer({ collectionRef }) {
   //     })
   //     .then(() => {
   //       setItemList(items);
+  //       getTags(items);
   //     });
   // }, [collectionRef]);
 
@@ -58,7 +59,22 @@ function HomeItemContainer({ collectionRef }) {
       },
     ];
     setItemList(items);
+
+    getTags(items);
   }, []);
+
+  // return all the tags exist in the item list, sort by ascending order
+  const getTags = (items) => {
+    let tagList = [
+      ...new Set(
+        items
+          .map((item) => item.tags)
+          .flat()
+          .filter(Boolean)
+      ),
+    ].sort();
+    setTagList(tagList);
+  };
 
   return (
     <>

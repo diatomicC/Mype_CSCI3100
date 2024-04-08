@@ -2,7 +2,7 @@ import { useState } from "react";
 import SearchIcon from "../icons/searchIcon.svg";
 import BookmarkIcon from "../icons/bookmark.svg";
 
-function MainSearchBar() {
+function MainSearchBar({tagList}) {
   // bool to store if search bar is toggled on
   const [showInput, setShowInput] = useState(false);
 
@@ -37,11 +37,14 @@ function MainSearchBar() {
           </div>
           {/* list of all available tags*/}
           <div class="filter-tags search-bar-item">
-            <button class="filter-tag capsule">All (10)</button>
+            <button class="filter-tag capsule">All ({tagList.length})</button>
             {/* todo : grab data here */}
-            <button class="filter-tag capsule">#tag1</button>
+            {tagList.map((tag, index)=>{
+              return <button class="filter-tag capsule" key={index}>#{tag}</button>
+            })}
+            {/* <button class="filter-tag capsule">#tag1</button>
             <button class="filter-tag capsule">#tag2</button>
-            <button class="filter-tag capsule">#tag3</button>
+            <button class="filter-tag capsule">#tag3</button> */}
           </div>
         </div>
       </div>
