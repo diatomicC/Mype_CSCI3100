@@ -46,8 +46,10 @@ function SaleScreen({ db }) {
               })}
             </div>
           </div>
-          {/* title */}
-          <div class="title">{item?.title}</div>
+          {/* title, item id */}
+          <div class="title">
+            {item?.title} (@{item && item["public ID"]})
+          </div>
           {/* author */}
           <div class="author">{item?.author}</div>
           {/* short description (same as one in home page?) */}
@@ -78,7 +80,18 @@ function SaleScreen({ db }) {
                   <img class="star" src={StarIcon} alt=""></img>
                 </div>
               </div>
-              <button className="purchase-btn">Order Now</button>
+              <div className="interact">
+                {/* todo */}
+                {/* to shopping cart */}
+                <button className="purchase-btn" style={{ flex: "1" }}>
+                  Save to Cart
+                </button>
+                {/* todo */}
+                {/* to payment directly */}
+                <button className="purchase-btn" style={{ flex: "2" }}>
+                  Order Now
+                </button>
+              </div>
             </div>
           </div>
           {/* users reviews*/}
