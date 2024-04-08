@@ -6,14 +6,30 @@ import ShareIcon from "../icons/shareIcon.svg";
 
 import "../styles/homeBlockDisplayItem.css";
 
-function HomePage() {
+function HomePage({
+  item,
+  title,
+  author,
+  tags,
+  description,
+  liked,
+  saved,
+  setSelectedItem,
+}) {
   return (
     <>
       <div class="item">
         {/* item header */}
         <div class="item-header">
-          <Link to="/Product" class="title">title</Link>
-          <div class="author">author</div>
+          <Link
+            to="/Product"
+            class="title"
+            onClick={() => {
+              setSelectedItem(item);
+            }}>
+            {title}
+          </Link>
+          <div class="author">{author}</div>
           {/* click to quick save to shopping cart */}
           <button class="save-btn">
             <img src={BookmarkIcon} alt="" />
@@ -24,24 +40,25 @@ function HomePage() {
           <div class="product-image">
             <img src="" alt="" />
           </div>
-          {/* todo */}
-          {/* display first x (depends on item frame width?) tags of this product */}
+          {/* display all tags of this product */}
           <div class="item-tags">
-            <div class="capsule item-tag">#tag 1</div>
-            <div class="capsule item-tag">#tag 2</div>
-            <div class="capsule item-tag">#tag 3</div>
+            <div class="item-tag">
+              {tags.map((tag, index) => {
+                return " #" + tag;
+              })}
+            </div>
           </div>
-          <div class="short-description">blablablab</div>
+          <div class="short-description">{description}</div>
         </div>
         {/* interactives */}
         <div class="item-footer">
           {/* display number of likes, saved */}
           <div class="ranking">
             <div class="item-liked">
-              <img src={LikeIcon} alt="" /> 999
+              <img src={LikeIcon} alt="" /> {liked}
             </div>
             <div class="item-saved">
-              <img src={BookmarkIcon} alt="" /> 999
+              <img src={BookmarkIcon} alt="" /> {saved}
             </div>
           </div>
           {/* click to share/ purchase this product */}

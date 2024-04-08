@@ -1,8 +1,7 @@
 /* item */
 .item {
   min-width: 240px;
-  width: 80%;
-  max-width: 400px;
+  max-width: 320px;
   position: relative;
   padding-top: 8px;
   margin: 5%;
@@ -70,12 +69,22 @@
 }
 
 .item-tags {
-  height: 90%;
   margin: 8px;
+  max-height: 2.5em;
   display: flex;
-  align-items: center;
-  justify-content: left;
+  row-gap: 4px;
+  
+  overflow: scroll;
 }
+.item-tags::-webkit-scrollbar {
+  height: 0;
+  background-color: transparent;
+}
+.item-tag {
+  min-height: 1em;
+  margin-right: 4px;
+}
+
 .short-description {
   margin: 8px;
   display: -webkit-box;

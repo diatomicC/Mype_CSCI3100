@@ -34,8 +34,7 @@
   justify-content: space-between;
 }
 
-.user-profile,
-.lang-setting {
+.user-profile {
   display: flex;
   margin-left: 8px;
   padding: 4px;
@@ -47,11 +46,4 @@
 .user-profile {
     background-color: #8000ff;
     color: #eee;
-}
-
-.lang-setting img {
-  margin-left: 4px;
-  width: 16px;
-  height: 16px;
-  align-self: center;
 }

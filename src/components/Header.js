@@ -1,8 +1,8 @@
-import "../styles/header.css"
-import GlobeIcon from "../icons/globe.svg"
-import ArrowDownIcon from "../icons/arrowDown.svg"
+import { Link } from "react-router-dom";
 
-function Header() {
+import "../styles/header.css"
+
+function Header({user, setCurrentUser}) {
   return (
     <>
       <div class="header">
@@ -13,17 +13,13 @@ function Header() {
         </div>
         <div class="header-options">
           {/* login/ signup/ profile */}
-          <button class="user-profile">
-            <span>User Profile</span>
-          </button>
-          {/* language option */}
-          <button class="lang-setting">
-            <span>Language</span>
-            {/* globe icon */}
-            <img src={GlobeIcon} alt=""/>
-            {/* arrow icon */}
-            <img src={ArrowDownIcon} alt=""/>
-          </button>
+          {/* todo */}
+          {/* link to login/ user profile page */}
+          <Link>
+            <button class="user-profile">
+              <span>{user === "" ? "Login / Sign up" : "User Profile"}</span>
+            </button>
+          </Link>
         </div>
       </div>
     </>

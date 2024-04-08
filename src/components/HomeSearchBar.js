@@ -1,8 +1,8 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import SearchIcon from "../icons/searchIcon.svg";
 import BookmarkIcon from "../icons/bookmark.svg";
 
-function MainSearchBar() {
+function MainSearchBar({ itemCount, tagList }) {
   // bool to store if search bar is toggled on
   const [showInput, setShowInput] = useState(false);
 
@@ -11,13 +11,22 @@ function MainSearchBar() {
     setShowInput(!showInput);
   }
 
+  useEffect(() => {
+    const tagListEle = document.getElementById("tags-scroll");
+    tagListEle.addEventListener("wheel", (e) => {
+      e.preventDefault();
+      tagListEle.scrollLeft += e.deltaY/30;
+    });
+  });
+
   return (
     <>
       <div class="search-area">
         <h4>PROJECT LIST</h4>
         <div class="search-bar">
           <div class="search-bar-item">
-            {/* toggle to show search field (todo) */}
+            {/* todo */}
+            {/* toggle to show search field */}
             <button class="search" id="search" onClick={toggleInputField}>
               <img src={SearchIcon} alt="" />
             </button>
@@ -35,13 +44,20 @@ function MainSearchBar() {
               Saved
             </button>
           </div>
+          <div class="search-bar-item" style={{ minWidth: "fit-content" }}>
+            <button class="capsule" style={{ marginRight: "0" }}>
+              All ({itemCount})
+            </button>
+          </div>
           {/* list of all available tags*/}
-          <div class="filter-tags search-bar-item">
-            <button class="filter-tag capsule">All (10)</button>
-            {/* todo : grab data here */}
-            <button class="filter-tag capsule">#tag1</button>
-            <button class="filter-tag capsule">#tag2</button>
-            <button class="filter-tag capsule">#tag3</button>
+          <div class="search-bar-item search-tags-list" id="tags-scroll">
+            {tagList.map((tag, index) => {
+              return (
+                <button class="capsule" key={index}>
+                  #{tag}
+                </button>
+              );
+            })}
           </div>
         </div>
       </div>
