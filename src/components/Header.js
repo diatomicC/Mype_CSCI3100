@@ -1,6 +1,4 @@
 import "../styles/header.css"
-import GlobeIcon from "../icons/globe.svg"
-import ArrowDownIcon from "../icons/arrowDown.svg"
 
 function Header() {
   return (
@@ -15,14 +13,6 @@ function Header() {
           {/* login/ signup/ profile */}
           <button class="user-profile">
             <span>User Profile</span>
-          </button>
-          {/* language option */}
-          <button class="lang-setting">
-            <span>Language</span>
-            {/* globe icon */}
-            <img src={GlobeIcon} alt=""/>
-            {/* arrow icon */}
-            <img src={ArrowDownIcon} alt=""/>
           </button>
         </div>
       </div>
