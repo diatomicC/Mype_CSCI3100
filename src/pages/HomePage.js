@@ -15,6 +15,8 @@ function HomePage() {
   const [itemList, setItemList] = useState([]);
   // tagList, set in item container after retreiving data from database
   const [tagList, setTagList] = useState([]);
+  // currently selected item id
+  const [selectedItem, setSelectedItem] = useState("");
 
   // grab all products data
   // useEffect(() => {
@@ -115,11 +117,16 @@ function HomePage() {
           <Route
             exact
             path="/"
-            element={<HomeItemContainer itemList={itemList} />}
+            element={
+              <HomeItemContainer
+                itemList={itemList}
+                setSelectedItem={setSelectedItem}
+              />
+            }
           />
 
           {/* display detailed information of single item */}
-          <Route path="/Product" element={<SaleScreen />} />
+          <Route path="/Product" element={<SaleScreen item={selectedItem} {...selectedItem} />} />
         </Routes>
       </Router>
     </>

@@ -6,13 +6,27 @@ import ShareIcon from "../icons/shareIcon.svg";
 
 import "../styles/homeBlockDisplayItem.css";
 
-function HomePage({ title, author, tags, description, liked, saved }) {
+function HomePage({
+  item,
+  title,
+  author,
+  tags,
+  description,
+  liked,
+  saved,
+  setSelectedItem,
+}) {
   return (
     <>
       <div class="item">
         {/* item header */}
         <div class="item-header">
-          <Link to="/Product" class="title">
+          <Link
+            to="/Product"
+            class="title"
+            onClick={() => {
+              setSelectedItem(item);
+            }}>
             {title}
           </Link>
           <div class="author">{author}</div>

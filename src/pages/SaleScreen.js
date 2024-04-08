@@ -6,7 +6,7 @@ import StarIcon from "../icons/star.svg";
 
 import "../styles/saleScreen.css";
 
-function SaleScreen() {
+function SaleScreen({ item, title, author, tags, description, liked, saved }) {
   return (
     <>
       {/* detailed information of single selected product */}
@@ -17,7 +17,7 @@ function SaleScreen() {
             <img src={BackIcon} alt="" />
           </Link>
           <div class="image-viewer">
-            <img src="" alt="product image"></img>
+            <img src="" alt="product img"></img>
           </div>
           <div class="long-description">
             template text <br />
@@ -103,10 +103,10 @@ function SaleScreen() {
               <div class="starRanking">
                 {/* todo */}
                 <img class="star" src={StarIcon} alt=""></img>
-                  <img class="star" src={StarIcon} alt=""></img>
-                  <img class="star" src={StarIcon} alt=""></img>
-                  <img class="star" src={StarIcon} alt=""></img>
-                  <img class="star" src={StarIcon} alt=""></img>
+                <img class="star" src={StarIcon} alt=""></img>
+                <img class="star" src={StarIcon} alt=""></img>
+                <img class="star" src={StarIcon} alt=""></img>
+                <img class="star" src={StarIcon} alt=""></img>
               </div>
             </div>
             {/* review template */}
