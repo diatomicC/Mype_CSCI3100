@@ -1,6 +1,6 @@
+import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
-import { useState } from "react";
-import { getDoc } from "firebase/firestore";
+import { doc, getDoc } from "firebase/firestore";
 
 import BookmarkIcon from "../icons/bookmark.svg";
 import LikeIcon from "../icons/heart.svg";
@@ -13,10 +13,14 @@ function SaleScreen({ db }) {
   const { itemID } = useParams();
   const [item, setItem] = useState();
 
-  getDoc(db, "Products", itemID).then((doc) => {
-    console.log(doc.data());
-    setItem(doc.data());
-  });
+  // fetch single data of this product
+  const docRef = doc(db, "Products", itemID);
+  useEffect(() => {
+    getDoc(docRef).then((doc) => {
+      setItem(doc.data());
+    });
+  }, []);
+
   return (
     <>
       {/* detailed information of single selected product */}
@@ -29,7 +33,7 @@ function SaleScreen({ db }) {
           <div class="image-viewer">
             <img src="" alt="product img"></img>
           </div>
-          <div class="long-description">{item.description}</div>
+          <div class="long-description">{item?.description}</div>
         </div>
 
         {/* right section */}
@@ -37,32 +41,32 @@ function SaleScreen({ db }) {
           {/* display all tags of this product */}
           <div class="tag-list">
             <div class="item-tag">
-              {item.tags.map((tag, index) => {
+              {item?.tags.map((tag, index) => {
                 return " #" + tag;
               })}
             </div>
           </div>
           {/* title */}
-          <div class="title">{item.title}</div>
+          <div class="title">{item?.title}</div>
           {/* author */}
-          <div class="author">{item.author}</div>
+          <div class="author">{item?.author}</div>
           {/* short description (same as one in home page?) */}
-          <div class="short-description">{item.description}</div>
+          <div class="short-description">{item?.description}</div>
           {/* sales info */}
           <div class="saleData">
             <div class="upper-saleData">
-              <div class="purchasedCount">{item.ordered} People ordered</div>
-              <div class="price">${item.price}</div>
+              <div class="purchasedCount">{item?.ordered} People ordered</div>
+              <div class="price">${item?.price}</div>
             </div>
             <div class="lower-saleData">
               <div>
                 {/* display number of likes, saved */}
                 <div class="ranking">
                   <div class="item-liked">
-                    <img src={LikeIcon} alt="" /> {item.liked}
+                    <img src={LikeIcon} alt="" /> {item?.liked}
                   </div>
                   <div class="item-saved">
-                    <img src={BookmarkIcon} alt="" /> {item.saved}
+                    <img src={BookmarkIcon} alt="" /> {item?.saved}
                   </div>
                 </div>
                 <div class="starRanking">
