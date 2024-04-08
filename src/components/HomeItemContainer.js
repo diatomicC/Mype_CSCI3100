@@ -27,20 +27,34 @@ function HomeItemContainer({ collectionRef }) {
       {
         title: "title 1",
         author: "author 1",
-        tag: ["tag1"],
+        tags: ["tag1"],
         description: "bruh",
+        liked: 1,
+        saved: 1,
       },
       {
         title: "title 2",
         author: "author 2",
-        tag: ["tag2"],
+        tags: ["tag2"],
         description: "blabla",
+        liked: 10,
+        saved: 10,
       },
       {
         title: "title 3",
         author: "author 3",
-        tag: ["tag1", "tag2"],
+        tags: ["tag1", "tag2"],
         description: "bonk",
+        liked: 100,
+        saved: 100,
+      },
+      {
+        title: "title 4",
+        author: "author 4",
+        tags: ["tag1", "tag2", "tag3", "tag4", "tag5"],
+        description: "ahhhhhhh",
+        liked: 0,
+        saved: 0,
       },
     ];
     setItemList(items);
@@ -50,13 +64,9 @@ function HomeItemContainer({ collectionRef }) {
     <>
       <div class="display-item-container" style={ContainerStyle}>
         {/* list of display items */}
-        {/* todo : grab data here */}
         {itemList.map((item, index) => {
-          return <HomeBlockDisplayItem {...item} key={index}/>
+          return <HomeBlockDisplayItem {...item} key={index} />;
         })}
-        <HomeBlockDisplayItem />
-        <HomeBlockDisplayItem />
-        <HomeBlockDisplayItem />
       </div>
     </>
   );
