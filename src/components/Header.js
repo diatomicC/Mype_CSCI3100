@@ -1,6 +1,6 @@
 import "../styles/header.css"
 
-function Header() {
+function Header({user, setCurrentUser}) {
   return (
     <>
       <div class="header">
@@ -12,7 +12,7 @@ function Header() {
         <div class="header-options">
           {/* login/ signup/ profile */}
           <button class="user-profile">
-            <span>User Profile</span>
+            <span>{user === "" ? "Login / Sign up" : "User Profile"}</span>
           </button>
         </div>
       </div>
