@@ -52,7 +52,7 @@ function HomeItemContainer({ collectionRef, setTagList }) {
       {
         title: "title 4",
         author: "author 4",
-        tags: ["tag1", "tag2", "tag3", "tag4", "tag5"],
+        tags: ["tag1", "tag2", "tag3", "tag4", "tag5", "tag6", "tag7", "tag8", "tag9", "tag10", "tag11", "tag12", "tag13", "tag14", "tag15"],
         description: "ahhhhhhh",
         liked: 0,
         saved: 0,

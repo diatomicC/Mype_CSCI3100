@@ -1,8 +1,8 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import SearchIcon from "../icons/searchIcon.svg";
 import BookmarkIcon from "../icons/bookmark.svg";
 
-function MainSearchBar({tagList}) {
+function MainSearchBar({ tagList }) {
   // bool to store if search bar is toggled on
   const [showInput, setShowInput] = useState(false);
 
@@ -10,6 +10,14 @@ function MainSearchBar({tagList}) {
   function toggleInputField() {
     setShowInput(!showInput);
   }
+
+  useEffect(() => {
+    const tagListEle = document.getElementById("tags-scroll");
+    tagListEle.addEventListener("wheel", (e) => {
+      e.preventDefault();
+      tagListEle.scrollLeft += e.deltaY/30;
+    });
+  });
 
   return (
     <>
@@ -35,16 +43,20 @@ function MainSearchBar({tagList}) {
               Saved
             </button>
           </div>
+          <div class="search-bar-item" style={{ minWidth: "fit-content" }}>
+            <button class="capsule" style={{ marginRight: "0" }}>
+              All ({tagList.length})
+            </button>
+          </div>
           {/* list of all available tags*/}
-          <div class="filter-tags search-bar-item">
-            <button class="filter-tag capsule">All ({tagList.length})</button>
-            {/* todo : grab data here */}
-            {tagList.map((tag, index)=>{
-              return <button class="filter-tag capsule" key={index}>#{tag}</button>
+          <div class="search-bar-item search-tags-list" id="tags-scroll">
+            {tagList.map((tag, index) => {
+              return (
+                <button class="capsule" key={index}>
+                  #{tag}
+                </button>
+              );
             })}
-            {/* <button class="filter-tag capsule">#tag1</button>
-            <button class="filter-tag capsule">#tag2</button>
-            <button class="filter-tag capsule">#tag3</button> */}
           </div>
         </div>
       </div>
