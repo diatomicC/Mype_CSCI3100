@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 import "../styles/header.css"
 
 function Header({user, setCurrentUser}) {
@@ -11,9 +13,13 @@ function Header({user, setCurrentUser}) {
         </div>
         <div class="header-options">
           {/* login/ signup/ profile */}
-          <button class="user-profile">
-            <span>{user === "" ? "Login / Sign up" : "User Profile"}</span>
-          </button>
+          {/* todo */}
+          {/* link to login/ user profile page */}
+          <Link>
+            <button class="user-profile">
+              <span>{user === "" ? "Login / Sign up" : "User Profile"}</span>
+            </button>
+          </Link>
         </div>
       </div>
     </>
