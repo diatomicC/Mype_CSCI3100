@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import SearchIcon from "../icons/searchIcon.svg";
 import BookmarkIcon from "../icons/bookmark.svg";
 
-function MainSearchBar({ tagList }) {
+function MainSearchBar({ itemCount, tagList }) {
   // bool to store if search bar is toggled on
   const [showInput, setShowInput] = useState(false);
 
@@ -25,7 +25,8 @@ function MainSearchBar({ tagList }) {
         <h4>PROJECT LIST</h4>
         <div class="search-bar">
           <div class="search-bar-item">
-            {/* toggle to show search field (todo) */}
+            {/* todo */}
+            {/* toggle to show search field */}
             <button class="search" id="search" onClick={toggleInputField}>
               <img src={SearchIcon} alt="" />
             </button>
@@ -45,7 +46,7 @@ function MainSearchBar({ tagList }) {
           </div>
           <div class="search-bar-item" style={{ minWidth: "fit-content" }}>
             <button class="capsule" style={{ marginRight: "0" }}>
-              All ({tagList.length})
+              All ({itemCount})
             </button>
           </div>
           {/* list of all available tags*/}

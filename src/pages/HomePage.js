@@ -11,6 +11,8 @@ import "../styles/homepage.css";
 function HomePage() {
   // store the user ID who has logged in, "" mean not yet logged in
   const [currentUser, setCurrentUser] = useState("");
+  // 
+  const [queryItemCount, setQueryItemCount] = useState("");
   // tagList, set in item container after retreiving data from database
   const [tagList, setTagList] = useState([]);
 
@@ -20,11 +22,11 @@ function HomePage() {
         {/* Header */}
         <Header user={currentUser} setCurrentUser={setCurrentUser}/>
         {/* search area*/}
-        <MainSearchBar tagList={tagList}/>
+        <MainSearchBar itemCount={queryItemCount} tagList={tagList}/>
 
         <Routes>
           {/* display items match filtering condition */}
-          <Route exact path="/" element={<HomeItemContainer collectionRef={""} setTagList={setTagList}/>} />
+          <Route exact path="/" element={<HomeItemContainer collectionRef={""} setTagList={setTagList} setQueryItemCount={setQueryItemCount}/>} />
 
           {/* display detailed information of single item */}
           <Route path="/Product" element={<SaleScreen />} />

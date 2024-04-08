@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import HomeBlockDisplayItem from "../components/HomeBlockDisplayItem";
 import ContainerStyle from "../styles/homeItemContainer.css";
 
-function HomeItemContainer({ collectionRef, setTagList }) {
+function HomeItemContainer({ collectionRef, setTagList, setQueryItemCount }) {
   // save all the items' ID searched
   const [itemList, setItemList] = useState([]);
 
@@ -52,7 +52,23 @@ function HomeItemContainer({ collectionRef, setTagList }) {
       {
         title: "title 4",
         author: "author 4",
-        tags: ["tag1", "tag2", "tag3", "tag4", "tag5", "tag6", "tag7", "tag8", "tag9", "tag10", "tag11", "tag12", "tag13", "tag14", "tag15"],
+        tags: [
+          "tag1",
+          "tag2",
+          "tag3",
+          "tag4",
+          "tag5",
+          "tag6",
+          "tag7",
+          "tag8",
+          "tag9",
+          "tag10",
+          "tag11",
+          "tag12",
+          "tag13",
+          "tag14",
+          "tag15",
+        ],
         description: "ahhhhhhh",
         liked: 0,
         saved: 0,
@@ -62,6 +78,11 @@ function HomeItemContainer({ collectionRef, setTagList }) {
 
     getTags(items);
   }, []);
+
+  // pass number of searched result back to search bar
+  useEffect(() => {
+    setQueryItemCount(itemList.length);
+  }, [itemList]);
 
   // return all the tags exist in the item list, sort by ascending order
   const getTags = (items) => {
