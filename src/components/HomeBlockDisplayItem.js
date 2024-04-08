@@ -26,12 +26,13 @@ function HomePage({ title, author, tags, description, liked, saved }) {
           <div class="product-image">
             <img src="" alt="" />
           </div>
-          {/* todo */}
-          {/* display first x (depends on item frame width?) tags of this product */}
+          {/* display all tags of this product */}
           <div class="item-tags">
-            {tags.map((tag, index) => {
-              return <div class="capsule item-tag" key={index}>#{tag}</div>;
-            })}
+            <div class="item-tag">
+              {tags.map((tag, index) => {
+                return " #" + tag;
+              })}
+            </div>
           </div>
           <div class="short-description">{description}</div>
         </div>
