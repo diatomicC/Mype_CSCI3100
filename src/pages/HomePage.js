@@ -7,6 +7,7 @@ import MainSearchBar from "../components/HomeSearchBar";
 import SaleScreen from "./SaleScreen";
 
 import "../styles/homepage.css";
+import { getFirestore } from "firebase/firestore";
 
 function HomePage() {
   // store the user ID who has logged in, "" mean not yet logged in
@@ -15,8 +16,8 @@ function HomePage() {
   const [itemList, setItemList] = useState([]);
   // tagList, set in item container after retreiving data from database
   const [tagList, setTagList] = useState([]);
-  // currently selected item id
-  const [selectedItem, setSelectedItem] = useState("");
+  // get link to database
+  const db = getFirestore();
 
   // grab all products data
   // useEffect(() => {
@@ -38,30 +39,40 @@ function HomePage() {
   useEffect(() => {
     let items = [
       {
+        id: "id1",
         title: "title 1",
         author: "author 1",
         tags: ["tag1"],
         description: "bruh",
         liked: 1,
         saved: 1,
+        ordered: 1,
+        price: 1,
       },
       {
+        id: "id2",
         title: "title 2",
         author: "author 2",
         tags: ["tag2"],
         description: "blabla",
         liked: 10,
         saved: 10,
+        ordered: 10,
+        price: 10,
       },
       {
+        id: "id3",
         title: "title 3",
         author: "author 3",
         tags: ["tag1", "tag2"],
         description: "bonk",
         liked: 100,
         saved: 100,
+        ordered: 100,
+        price: 100,
       },
       {
+        id: "id4",
         title: "title 4",
         author: "author 4",
         tags: [
@@ -84,6 +95,8 @@ function HomePage() {
         description: "ahhhhhhh",
         liked: 0,
         saved: 0,
+        ordered: 0,
+        price: 0,
       },
     ];
     setItemList(items);
@@ -120,13 +133,12 @@ function HomePage() {
             element={
               <HomeItemContainer
                 itemList={itemList}
-                setSelectedItem={setSelectedItem}
               />
             }
           />
 
           {/* display detailed information of single item */}
-          <Route path="/Product" element={<SaleScreen item={selectedItem} {...selectedItem} />} />
+          <Route path="/Product/:itemID" element={<SaleScreen db={db}/>} />
         </Routes>
       </Router>
     </>

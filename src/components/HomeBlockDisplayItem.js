@@ -7,26 +7,21 @@ import ShareIcon from "../icons/shareIcon.svg";
 import "../styles/homeBlockDisplayItem.css";
 
 function HomePage({
-  item,
+  id,
   title,
   author,
   tags,
   description,
   liked,
   saved,
-  setSelectedItem,
 }) {
+  const url = `/Product/${id}`;
   return (
     <>
       <div class="item">
         {/* item header */}
         <div class="item-header">
-          <Link
-            to="/Product"
-            class="title"
-            onClick={() => {
-              setSelectedItem(item);
-            }}>
+          <Link to={url} class="title">
             {title}
           </Link>
           <div class="author">{author}</div>
