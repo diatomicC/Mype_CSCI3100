@@ -22,7 +22,7 @@ function HomePage() {
 
         <Routes>
           {/* display items match filtering condition */}
-          <Route exact path="/" element={<HomeItemContainer />} />
+          <Route exact path="/" element={<HomeItemContainer collectionRef={""}/>} />
 
           {/* display detailed information of single item */}
           <Route path="/Product" element={<SaleScreen />} />
