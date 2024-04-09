@@ -4,14 +4,13 @@ import { Link } from "react-router-dom";
 import BookmarkIcon from "../icons/bookmark.svg";
 import LikeIcon from "../icons/heart.svg";
 import BackIcon from "../icons/arrowLeft.svg";
-import StarIcon from "../icons/star.svg";
-
-import "../styles/saleScreen.css";
-
 import CommentForm from '../components/CommentForm';
 import CommentDisplay from '../components/CommentDisplay';
 
-function SaleScreen() {
+import "../styles/saleScreen.css";
+
+
+function SaleScreen({ item, title, author, tags, description, liked, saved }) {
   const [comments, setComments] = useState([]);
   const [averageStars, setAverageStars] = useState(0);
 
@@ -41,7 +40,7 @@ function SaleScreen() {
             <img src={BackIcon} alt="" />
           </Link>
           <div class="image-viewer">
-            <img src="" alt="product image"></img>
+            <img src="" alt="product img"></img>
           </div>
           <div class="long-description">
             template text <br />
@@ -50,7 +49,6 @@ function SaleScreen() {
             suscipit eaque illum laudantium. Doloremque dolores obcaecati harum
             ipsum illo? Nihil doloremque voluptas harum quae vitae animi debitis
             adipisci exercitationem quo repudiandae. Exercitationem doloremque,
-            repellendus quum perferendis
             nemo rerum, aliquid totam inventore doloribus in cum, cupiditate
             corporis aliquam? Ratione corrupti suscipit laudantium tempore nisi
             voluptates deserunt, sapiente labore, at atque quos eligendi vero
@@ -99,6 +97,7 @@ function SaleScreen() {
                     <img src={BookmarkIcon} alt="" /> 999
                   </div>
                 </div>
+
                 {/* TODO: Make into graphics */}
                 <h2>Average Stars: {averageStars}</h2>
               </div>

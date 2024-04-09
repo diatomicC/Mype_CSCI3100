@@ -77,3 +77,14 @@ button {
   z-index: 2;
   background-color: #3333;
 }
+
+.search-tags-list {
+  margin: 0 4px;
+  padding: 0 4px;
+  display: flex;
+  overflow: scroll;
+}
+.search-tags-list::-webkit-scrollbar {
+  height: 0;
+  background-color: transparent;
+}
