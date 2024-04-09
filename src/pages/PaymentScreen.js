@@ -1,12 +1,11 @@
 import Header from "../components/Header";
-import SummaryBlock from "../components/payment/SummaryBlock";
-
+import PaymentContainer from "../components/payment/PaymentContainer";
 function PaymentScreen() {
   return (
     <>
       {/* Header */}
       <Header />
-      <SummaryBlock></SummaryBlock>
+      <PaymentContainer />
     </>
   );
 }
