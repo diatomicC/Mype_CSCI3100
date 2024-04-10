@@ -88,3 +88,13 @@ button {
   height: 0;
   background-color: transparent;
 }
+
+.search-tags-list input {
+  display: none;
+}
+.search-tags-list label {
+  cursor: pointer;
+}
+.checked-label {
+  border: solid 2px #8000ff;
+}
