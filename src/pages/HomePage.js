@@ -36,75 +36,6 @@ function HomePage({ db }) {
       });
   }, []);
 
-  // simulated data
-  // useEffect(() => {
-  //   let items = [
-  //     {
-  //       id: "id1",
-  //       title: "title 1",
-  //       author: "author 1",
-  //       tags: ["tag1"],
-  //       description: "bruh",
-  //       liked: 1,
-  //       saved: 1,
-  //       ordered: 1,
-  //       price: 1,
-  //     },
-  //     {
-  //       id: "id2",
-  //       title: "title 2",
-  //       author: "author 2",
-  //       tags: ["tag2"],
-  //       description: "blabla",
-  //       liked: 10,
-  //       saved: 10,
-  //       ordered: 10,
-  //       price: 10,
-  //     },
-  //     {
-  //       id: "id3",
-  //       title: "title 3",
-  //       author: "author 3",
-  //       tags: ["tag1", "tag2"],
-  //       description: "bonk",
-  //       liked: 100,
-  //       saved: 100,
-  //       ordered: 100,
-  //       price: 100,
-  //     },
-  //     {
-  //       id: "id4",
-  //       title: "title 4",
-  //       author: "author 4",
-  //       tags: [
-  //         "tag1",
-  //         "tag2",
-  //         "tag3",
-  //         "tag4",
-  //         "tag5",
-  //         "tag6",
-  //         "tag7",
-  //         "tag8",
-  //         "tag9",
-  //         "tag10",
-  //         "tag11",
-  //         "tag12",
-  //         "tag13",
-  //         "tag14",
-  //         "tag15",
-  //       ],
-  //       description: "ahhhhhhh",
-  //       liked: 0,
-  //       saved: 0,
-  //       ordered: 0,
-  //       price: 0,
-  //     },
-  //   ];
-  //   setItemList(items);
-
-  //   getTags(items);
-  // }, []);
-
   // return all the tags exist in the item list, sort by ascending order
   const getTags = (items) => {
     let tagList = [
@@ -136,8 +67,6 @@ function HomePage({ db }) {
 
           {/* display detailed information of single item */}
           <Route path="/Product/:itemID" element={<SaleScreen db={db} />} />
-          {/* <Route path="/Product" element={<SaleScreen item={selectedItem} {...selectedItem} />} />
-          <Route path="/Product" element={<SaleScreen/>} /> */}
           <Route path="/ProductUpload" element={<ProductUploadPage/>} />
         </Routes>
       </Router>
