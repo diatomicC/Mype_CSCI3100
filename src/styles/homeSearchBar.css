@@ -40,7 +40,7 @@ button {
   height: 100%;
 }
 .search-field {
-  display: none;
+  height: 70%;
 }
 .search img {
   width: 18px;
@@ -78,13 +78,24 @@ button {
   background-color: #3333;
 }
 
-.search-tags-list {
+.filter-list {
   margin: 0 4px;
+  margin-top: 8px;
   padding: 0 4px;
   display: flex;
   overflow: scroll;
 }
-.search-tags-list::-webkit-scrollbar {
+.filter-list::-webkit-scrollbar {
   height: 0;
   background-color: transparent;
+}
+
+.filter-list input {
+  display: none;
+}
+.filter-list label {
+  cursor: pointer;
+}
+.checked-label {
+  border: solid 2px #8000ff;
 }

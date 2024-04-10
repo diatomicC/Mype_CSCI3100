@@ -1,4 +1,3 @@
-
 import { useEffect, useState } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { getDocs, collection } from "firebase/firestore";
@@ -9,12 +8,11 @@ import MainSearchBar from "../components/HomeSearchBar";
 import SaleScreen from "./SaleScreen";
 import ProductUploadPage from "./ProductUploadPage";
 
-
-import "../styles/homepage.css";
-
 function HomePage({ db }) {
   // store the user ID who has logged in, "" mean not yet logged in
   const [currentUser, setCurrentUser] = useState("");
+  // database items
+  const [database, setDatabase] = useState([]);
   // save all the items' ID searched
   const [itemList, setItemList] = useState([]);
   // tagList, set in item container after retreiving data from database
@@ -31,6 +29,7 @@ function HomePage({ db }) {
         });
       })
       .then(() => {
+        setDatabase(items);
         setItemList(items);
         getTags(items);
       });
@@ -49,13 +48,60 @@ function HomePage({ db }) {
     setTagList(tagList);
   };
 
+  // update display items according to filters
+  // keyword: string, 
+  // selectedTags: string[], 
+  // priceRange: [lower, upper] (-1 = no limit)
+  const updateItemList = (keyword, selectedTags, priceRange) => {
+    let items = [...database];
+    // handle selectedTags
+    if (selectedTags.length !== 0) {
+      items = [];
+      database.forEach((item) => {
+        item.tags.forEach((tag) => {
+          if (selectedTags.includes(tag) && !items.includes(item))
+            items.push(item);
+        });
+      });
+    }
+    // handle search keyword
+    if (keyword.length !== 0) {
+      // search id
+      if (keyword[0] === "@") {
+        items = items.filter((item) => {
+          return item.public_ID
+            .toLowerCase()
+            .includes(keyword.slice(1).toLowerCase());
+        });
+      }
+      // search title
+      else {
+        items = items.filter((item) => {
+          return item.title.toLowerCase().includes(keyword.toLowerCase());
+        });
+      }
+    }
+    // handle price range
+    items = items.filter((item) => {
+      if (priceRange[0] === -1 && priceRange[1] === -1) return true;
+      else if (priceRange[0] === -1) return item.price <= priceRange[1];
+      else if (priceRange[1] === -1) return priceRange[0] <= item.price;
+      else return priceRange[0] <= item.price && item.price <= priceRange[1];
+    });
+    setItemList(items);
+  };
+
   return (
     <>
       <Router>
         {/* Header */}
         <Header user={currentUser} setCurrentUser={setCurrentUser} />
         {/* search area*/}
-        <MainSearchBar itemCount={itemList.length} tagList={tagList} />
+        <MainSearchBar
+          itemCount={itemList.length}
+          tagList={tagList}
+          updateItemList={updateItemList}
+        />
 
         <Routes>
           {/* display items match filtering condition */}
@@ -67,7 +113,7 @@ function HomePage({ db }) {
 
           {/* display detailed information of single item */}
           <Route path="/Product/:itemID" element={<SaleScreen db={db} />} />
-          <Route path="/ProductUpload" element={<ProductUploadPage/>} />
+          <Route path="/ProductUpload" element={<ProductUploadPage />} />
         </Routes>
       </Router>
     </>
