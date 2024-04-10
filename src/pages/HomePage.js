@@ -48,8 +48,11 @@ function HomePage({ db }) {
     setTagList(tagList);
   };
 
-  // update display items according to filters(, sort?)
-  const updateItemList = (keyword, selectedTags) => {
+  // update display items according to filters
+  // keyword: string, 
+  // selectedTags: string[], 
+  // priceRange: [lower, upper] (-1 = no limit)
+  const updateItemList = (keyword, selectedTags, priceRange) => {
     let items = [...database];
     // handle selectedTags
     if (selectedTags.length !== 0) {
@@ -66,7 +69,9 @@ function HomePage({ db }) {
       // search id
       if (keyword[0] === "@") {
         items = items.filter((item) => {
-          return item.public_ID.toLowerCase().includes(keyword.slice(1).toLowerCase());
+          return item.public_ID
+            .toLowerCase()
+            .includes(keyword.slice(1).toLowerCase());
         });
       }
       // search title
@@ -76,6 +81,13 @@ function HomePage({ db }) {
         });
       }
     }
+    // handle price range
+    items = items.filter((item) => {
+      if (priceRange[0] === -1 && priceRange[1] === -1) return true;
+      else if (priceRange[0] === -1) return item.price <= priceRange[1];
+      else if (priceRange[1] === -1) return priceRange[0] <= item.price;
+      else return priceRange[0] <= item.price && item.price <= priceRange[1];
+    });
     setItemList(items);
   };
 

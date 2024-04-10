@@ -78,21 +78,22 @@ button {
   background-color: #3333;
 }
 
-.search-tags-list {
+.filter-list {
   margin: 0 4px;
+  margin-top: 8px;
   padding: 0 4px;
   display: flex;
   overflow: scroll;
 }
-.search-tags-list::-webkit-scrollbar {
+.filter-list::-webkit-scrollbar {
   height: 0;
   background-color: transparent;
 }
 
-.search-tags-list input {
+.filter-list input {
   display: none;
 }
-.search-tags-list label {
+.filter-list label {
   cursor: pointer;
 }
 .checked-label {
