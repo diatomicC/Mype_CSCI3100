@@ -1,18 +1,10 @@
 import { Link } from "react-router-dom";
 import BookmarkIcon from "../icons/bookmark.svg";
-import LikeIcon from "../icons/heart.svg";
+import StarIcon from "../icons/star.svg";
 import ShareIcon from "../icons/shareIcon.svg";
 import "../styles/homeBlockDisplayItem.css";
 
-function HomePage({
-  id,
-  title,
-  author,
-  tags,
-  description,
-  liked,
-  saved,
-}) {
+function HomePage({ id, title, author, tags, description, stars, saved }) {
   const url = `/Product/${id}`;
   return (
     <>
@@ -47,12 +39,11 @@ function HomePage({
         <div class="item-footer">
           {/* display number of likes, saved */}
           <div class="ranking">
-            <div class="item-liked">
-              <img src={LikeIcon} alt="" /> {liked}
+            <div class="item-stars">
+              <img src={StarIcon} alt="" /> {stars}
             </div>
             <div class="item-saved">
               <img src={BookmarkIcon} alt="" /> {saved}
-
             </div>
           </div>
           {/* click to share/ purchase this product */}

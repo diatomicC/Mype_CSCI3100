@@ -3,10 +3,10 @@ import { Link, useParams } from "react-router-dom";
 import { doc, getDoc } from "firebase/firestore";
 
 import BookmarkIcon from "../icons/bookmark.svg";
-import LikeIcon from "../icons/heart.svg";
+import StarIcon from "../icons/star.svg";
 import BackIcon from "../icons/arrowLeft.svg";
-import CommentForm from '../components/CommentForm';
-import CommentDisplay from '../components/CommentDisplay';
+import CommentForm from "../components/CommentForm";
+import CommentDisplay from "../components/CommentDisplay";
 
 import "../styles/saleScreen.css";
 
@@ -29,17 +29,21 @@ function SaleScreen({ db }) {
     setComments([...comments, newComment]);
   };
 
-//Calculate Average Stars
+  //Calculate Average Stars
   useEffect(() => {
     if (comments.length > 0) {
-      const totalStars = comments.reduce((acc, comment) => acc + parseInt(comment.stars, 10), 0);
+      const totalStars = comments.reduce(
+        (acc, comment) => acc + parseInt(comment.stars, 10),
+        0
+      );
       const average = totalStars / comments.length;
       setAverageStars(average.toFixed(1)); // Keep one decimal for the average
     } else {
       setAverageStars(0); // No comments means no average
     }
+    // todo
+    // save to database
   }, [comments]);
-
 
   return (
     <>
@@ -72,7 +76,7 @@ function SaleScreen({ db }) {
           </div>
           {/* title, item id */}
           <div class="title">
-            {item?.title} (@{item && item["public ID"]})
+            {item?.title} (@{item?.public_ID})
           </div>
           {/* author */}
           <div class="author">{item?.author}</div>
@@ -86,18 +90,15 @@ function SaleScreen({ db }) {
             </div>
             <div class="lower-saleData">
               <div>
-                {/* display number of likes, saved */}
+                {/* display number of stars, saved */}
                 <div class="ranking">
-                  <div class="item-liked">
-                    <img src={LikeIcon} alt="" /> {item?.liked}
+                  <div class="item-stars">
+                    <img src={StarIcon} alt="" /> {item?.stars}
                   </div>
                   <div class="item-saved">
                     <img src={BookmarkIcon} alt="" /> {item?.saved}
                   </div>
                 </div>
-
-                {/* TODO: Make into graphics */}
-                <h2>Average Stars: {averageStars}</h2>
               </div>
               <div className="interact">
                 {/* todo */}

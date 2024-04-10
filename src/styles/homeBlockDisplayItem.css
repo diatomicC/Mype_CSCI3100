@@ -74,7 +74,7 @@
   max-height: 2.5em;
   display: flex;
   row-gap: 4px;
-  
+
   overflow: scroll;
 }
 .item-tags::-webkit-scrollbar {
@@ -107,7 +107,7 @@
   display: flex;
   align-items: center;
 }
-.item-liked,
+.item-stars,
 .item-saved {
   margin-right: 4px;
   padding: 4px;
@@ -116,7 +116,7 @@
   display: flex;
   align-items: center;
 }
-.item-liked img,
+.item-stars img,
 .item-saved img {
   width: 16px;
   height: 16px;
