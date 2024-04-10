@@ -1,5 +1,7 @@
 import React from 'react';
-import Header from "./Header";
+import Header from "../components/Header";
+import {Profile} from "../components/userinfo/profile.js"
+
 
 export const Userinfo = () => {
   return(
@@ -10,10 +12,13 @@ export const Userinfo = () => {
           <div class="col-2">
             <ul class="nav flex-column">
               <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="userinfo/profile">Profile</a>
+              </li>
+              <li class="nav-item">
                 <a class="nav-link active" aria-current="page" href="product">Product</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="shoppingcart">Shopping Cart</a>
+                <a class="nav-link active" aria-current="page" href="userinfo/shoppingcart">Shopping Cart</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link active" aria-current="page" href="ordertracking">Order tracking</a>
@@ -26,8 +31,9 @@ export const Userinfo = () => {
               </li>
             </ul>
           </div>
+          <Profile/>
+          </div>
         </div>
-      </div>
     </>
   );
 }
