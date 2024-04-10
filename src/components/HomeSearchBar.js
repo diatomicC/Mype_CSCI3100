@@ -21,13 +21,13 @@ function MainSearchBar({ itemCount, tagList, updateItemList }) {
   const [extendFilter, setExtendFilter] = useState();
 
   // allow scroll of overflow tags list
-  // useEffect(() => {
-  //   const tagListEle = document.getElementById("filter-scroll");
-  //   tagListEle.addEventListener("wheel", (e) => {
-  //     e.preventDefault();
-  //     tagListEle.scrollLeft += e.deltaY / 30;
-  //   });
-  // });
+  useEffect(() => {
+    const tagListEle = document.getElementById("filter-scroll");
+    tagListEle.addEventListener("wheel", (e) => {
+      e.preventDefault();
+      tagListEle.scrollLeft += e.deltaY / 30;
+    });
+  });
 
   // reset all selected tag
   const resetTags = () => {
@@ -82,7 +82,11 @@ function MainSearchBar({ itemCount, tagList, updateItemList }) {
     );
 
     setPriceRang(selectedPriceValue);
-    updateItemList(searchKeyword, selectedTags, priceListValue[selectedPriceValue]);
+    updateItemList(
+      searchKeyword,
+      selectedTags,
+      priceListValue[selectedPriceValue]
+    );
     // change display of tags capsule
     clearCheckboxDisplay();
     priceLabel.classList.add("checked-label");
