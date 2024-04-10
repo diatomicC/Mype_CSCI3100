@@ -2,8 +2,7 @@ import React from 'react';
 
 import "../styles/ProductListPage.css";
 
-
-const ProductListPage = ({ products }) => {
+const ProductListPage = ({ products, onDeleteProduct }) => {
   return (
     <div className="product-list-container">
       <h2 className="product-list-header">Uploaded Products</h2>
@@ -16,7 +15,6 @@ const ProductListPage = ({ products }) => {
             <p className="product-description"><strong>Detailed Description:</strong> {product.detailedDescription}</p>
             <p className="product-description"><strong>Short Description:</strong> {product.shortDescription}</p>
             
-            {/* Display the cover image if available */}
             {product.coverImage && (
               <div>
                 <strong>Cover Image:</strong><br />
@@ -28,7 +26,6 @@ const ProductListPage = ({ products }) => {
               </div>
             )}
             
-            {/* Display the description file if available */}
             {product.descriptionFile && (
               <div className="product-description-file">
                 <strong>Description File:</strong><br />
@@ -41,6 +38,12 @@ const ProductListPage = ({ products }) => {
                 </a>
               </div>
             )}
+            <button 
+              onClick={() => onDeleteProduct(product.id)} 
+              className="delete-button"
+            >
+              Delete Product
+            </button>
           </div>
         ))}
       </div>
@@ -48,4 +51,4 @@ const ProductListPage = ({ products }) => {
   );
 };
 
-export default ProductListPage
+export default ProductListPage;
