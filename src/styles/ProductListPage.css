@@ -45,4 +45,20 @@
   .product-description-file:hover {
     text-decoration: underline;
   }
+
+/* Add this to your ProductListPage.css */
+.delete-button {
+  padding: 10px 15px;
+  background-color: #f44336;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+.delete-button:hover {
+  background-color: #d32f2f;
+}
+
   
