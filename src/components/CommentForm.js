@@ -1,5 +1,6 @@
 // CommentForm.js
 import React, { useState } from 'react';
+import "../styles/comment.css";
 
 function CommentForm({ onSubmit }) {
   const [username, setUsername] = useState('');
@@ -17,7 +18,7 @@ function CommentForm({ onSubmit }) {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit} className="comment-form">
       <div>
         <label>
           Username:
