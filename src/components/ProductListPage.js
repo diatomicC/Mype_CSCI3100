@@ -1,33 +1,44 @@
 import React from 'react';
 
+import "../styles/ProductListPage.css";
+
+
 const ProductListPage = ({ products }) => {
   return (
-    <div>
-      <h2>Uploaded Products</h2>
+    <div className="product-list-container">
+      <h2 className="product-list-header">Uploaded Products</h2>
       <div>
         {products.map((product) => (
-          <div key={product.id} style={{ marginBottom: '20px', borderBottom: '1px solid #ccc', paddingBottom: '10px' }}>
-            <h3>{product.title}</h3>
-            <p><strong>Price:</strong> {product.price}</p>
-            <p><strong>Hash Tag:</strong> {product.hashTag}</p>
-            <p><strong>Detailed Description:</strong> {product.detailedDescription}</p>
-            <p><strong>Short Description:</strong> {product.shortDescription}</p>
+          <div key={product.id} className="product-item">
+            <h3 className="product-title">{product.title}</h3>
+            <p className="product-price"><strong>Price:</strong> {product.price}</p>
+            <p className="product-hashtag"><strong>Hash Tag:</strong> {product.hashTag}</p>
+            <p className="product-description"><strong>Detailed Description:</strong> {product.detailedDescription}</p>
+            <p className="product-description"><strong>Short Description:</strong> {product.shortDescription}</p>
             
             {/* Display the cover image if available */}
             {product.coverImage && (
               <div>
                 <strong>Cover Image:</strong><br />
-                {/* Displaying as a block for demonstration; you might need to adjust the display logic based on how you're handling files */}
-                <img src={URL.createObjectURL(product.coverImage)} alt="Cover" style={{ maxWidth: '200px', maxHeight: '200px' }} />
+                <img 
+                  src={URL.createObjectURL(product.coverImage)} 
+                  alt="Cover" 
+                  className="product-cover-image" 
+                />
               </div>
             )}
             
             {/* Display the description file if available */}
             {product.descriptionFile && (
-              <div>
+              <div className="product-description-file">
                 <strong>Description File:</strong><br />
-                {/* text file */}
-                <a href={URL.createObjectURL(product.descriptionFile)} target="_blank" rel="noopener noreferrer">Open Description File</a>
+                <a 
+                  href={URL.createObjectURL(product.descriptionFile)} 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                >
+                  Open Description File
+                </a>
               </div>
             )}
           </div>
@@ -37,4 +48,4 @@ const ProductListPage = ({ products }) => {
   );
 };
 
-export default ProductListPage;
+export default ProductListPage
