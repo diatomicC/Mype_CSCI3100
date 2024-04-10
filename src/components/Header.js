@@ -1,29 +1,31 @@
-import "../styles/header.css"
-import GlobeIcon from "../icons/globe.svg"
-import ArrowDownIcon from "../icons/arrowDown.svg"
+import React from 'react';
+import "../styles/header.css";
+import { Link } from 'react-router-dom';
 
-function Header() {
+function Header({user, setCurrentUser}) {
   return (
     <>
       <div class="header">
         {/* logo */}
-        <div class="logo">
+        <Link to="/" class="logo">
           <img class="logo-image" src="" alt="icon" />
           <span class="logo-text">Mype</span>
-        </div>
+        </Link>
+        {/* Upload product button */}
+        <Link to="/ProductUpload">
+            <button className="upload-product">
+              Upload Product
+            </button>
+          </Link>
         <div class="header-options">
           {/* login/ signup/ profile */}
-          <button class="user-profile">
-            <span>User Profile</span>
-          </button>
-          {/* language option */}
-          <button class="lang-setting">
-            <span>Language</span>
-            {/* globe icon */}
-            <img src={GlobeIcon} alt=""/>
-            {/* arrow icon */}
-            <img src={ArrowDownIcon} alt=""/>
-          </button>
+          {/* todo */}
+          {/* link to login/ user profile page */}
+          <Link>
+            <button class="user-profile">
+              <span>{user === "" ? "Login / Sign up" : "User Profile"}</span>
+            </button>
+          </Link>
         </div>
       </div>
     </>
