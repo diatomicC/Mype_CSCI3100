@@ -45,6 +45,12 @@ const ProductUploadPage = () => {
       hashTag: ''
     });
   };
+  
+  const handleDeleteProduct = (productId) => {
+    // Filter out the product with the given id
+    const updatedProducts = products.filter(product => product.id !== productId);
+    setProducts(updatedProducts);
+  };
 
   return (
     <div>
@@ -59,7 +65,7 @@ const ProductUploadPage = () => {
         <input type="text" name="hashTag" placeholder="Hash Tag" onChange={handleChange} />
         <button type="submit" className='upload'>Upload Product</button>
       </form>
-      <ProductListPage products={products}/> {/* Pass the products as props */}
+      <ProductListPage products={products} onDeleteProduct={handleDeleteProduct} />
     </div>
   );
 };
