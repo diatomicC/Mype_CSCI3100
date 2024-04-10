@@ -1,5 +1,8 @@
 import React, { useState } from 'react';
 import ProductListPage from '../components/ProductListPage';
+import '../styles/ProductUploadPage.css';
+
+import Header from "../components/Header";
 
 const ProductUploadPage = () => {
   const [productInfo, setProductInfo] = useState({
@@ -45,6 +48,7 @@ const ProductUploadPage = () => {
 
   return (
     <div>
+      <Header />
       <form onSubmit={handleSubmit}>
         <input type="text" name="title" placeholder="Product Title" onChange={handleChange} />
         <input type="text" name="price" placeholder="Price" onChange={handleChange} />
@@ -53,7 +57,7 @@ const ProductUploadPage = () => {
         <textarea name="shortDescription" placeholder="Short Description" onChange={handleChange}></textarea>
         <input type="file" name="descriptionFile" onChange={handleChange} />
         <input type="text" name="hashTag" placeholder="Hash Tag" onChange={handleChange} />
-        <button type="submit">Upload Product</button>
+        <button type="submit" className='upload'>Upload Product</button>
       </form>
       <ProductListPage products={products}/> {/* Pass the products as props */}
     </div>
