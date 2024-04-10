@@ -9,6 +9,7 @@ import CommentForm from "../components/CommentForm";
 import CommentDisplay from "../components/CommentDisplay";
 
 import "../styles/saleScreen.css";
+import Header from "../components/Header";
 
 function SaleScreen({ db }) {
   const { itemID } = useParams();
@@ -47,6 +48,7 @@ function SaleScreen({ db }) {
 
   return (
     <>
+      <Header />
       {/* detailed information of single selected product */}
       <div class="detailed-info-container">
         {/* left section */}

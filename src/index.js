@@ -1,13 +1,16 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import './index.css';
-import HomePage from './pages/HomePage';
-import reportWebVitals from './reportWebVitals';
+import React from "react";
+import ReactDOM from "react-dom/client";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import "./index.css";
+import HomePage from "./pages/HomePage";
+import SaleScreen from "./pages/SaleScreen";
+import ProductUploadPage from "./pages/ProductUploadPage";
+import reportWebVitals from "./reportWebVitals";
 
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
-import { getFirestore } from 'firebase/firestore';
+import { getFirestore } from "firebase/firestore";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -20,7 +23,7 @@ const firebaseConfig = {
   storageBucket: "mype-3100.appspot.com",
   messagingSenderId: "3907761328",
   appId: "1:3907761328:web:32c20feff1a1756b1e3775",
-  measurementId: "G-W662MEQ7YG"
+  measurementId: "G-W662MEQ7YG",
 };
 
 // Initialize Firebase
@@ -28,10 +31,18 @@ const app = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app);
 const db = getFirestore();
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
+const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
-    <HomePage db={db}/>
+    <Router>
+      <Routes>
+        {/* display items match filtering condition */}
+        <Route exact path="/" element={<HomePage db={db} />} />
+        {/* display detailed information of single item */}
+        <Route path="/Product/:itemID" element={<SaleScreen db={db} />} />
+        <Route path="/ProductUpload" element={<ProductUploadPage />} />
+      </Routes>
+    </Router>
   </React.StrictMode>
 );
 

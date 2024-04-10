@@ -7,10 +7,10 @@ function Header({user, setCurrentUser}) {
     <>
       <div class="header">
         {/* logo */}
-        <div class="logo">
+        <Link to="/" class="logo">
           <img class="logo-image" src="" alt="icon" />
           <span class="logo-text">Mype</span>
-        </div>
+        </Link>
         {/* Upload product button */}
         <Link to="/ProductUpload">
             <button className="upload-product">

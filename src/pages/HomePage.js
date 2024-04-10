@@ -1,16 +1,14 @@
 import { useEffect, useState } from "react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { getDocs, collection } from "firebase/firestore";
 
 import Header from "../components/Header";
 import HomeItemContainer from "../components/HomeItemContainer";
 import MainSearchBar from "../components/HomeSearchBar";
-import SaleScreen from "./SaleScreen";
-import ProductUploadPage from "./ProductUploadPage";
 
 function HomePage({ db }) {
   // store the user ID who has logged in, "" mean not yet logged in
-  const [currentUser, setCurrentUser] = useState("");
+  // todo
+  // const [currentUser, setCurrentUser] = useState("");
   // database items
   const [database, setDatabase] = useState([]);
   // save all the items' ID searched
@@ -49,8 +47,8 @@ function HomePage({ db }) {
   };
 
   // update display items according to filters
-  // keyword: string, 
-  // selectedTags: string[], 
+  // keyword: string,
+  // selectedTags: string[],
   // priceRange: [lower, upper] (-1 = no limit)
   const updateItemList = (keyword, selectedTags, priceRange) => {
     let items = [...database];
@@ -93,29 +91,18 @@ function HomePage({ db }) {
 
   return (
     <>
-      <Router>
-        {/* Header */}
-        <Header user={currentUser} setCurrentUser={setCurrentUser} />
-        {/* search area*/}
-        <MainSearchBar
-          itemCount={itemList.length}
-          tagList={tagList}
-          updateItemList={updateItemList}
-        />
+      {/* Header */}
+      <Header />
 
-        <Routes>
-          {/* display items match filtering condition */}
-          <Route
-            exact
-            path="/"
-            element={<HomeItemContainer itemList={itemList} />}
-          />
+      {/* search area*/}
+      <MainSearchBar
+        itemCount={itemList.length}
+        tagList={tagList}
+        updateItemList={updateItemList}
+      />
 
-          {/* display detailed information of single item */}
-          <Route path="/Product/:itemID" element={<SaleScreen db={db} />} />
-          <Route path="/ProductUpload" element={<ProductUploadPage />} />
-        </Routes>
-      </Router>
+      {/* display items match filtering condition */}
+      <HomeItemContainer itemList={itemList} />
     </>
   );
 }
