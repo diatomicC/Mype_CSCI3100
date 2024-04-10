@@ -5,14 +5,11 @@ import BookmarkIcon from "../icons/bookmark.svg";
 import "../styles/homeSearchBar.css";
 
 function MainSearchBar({ itemCount, tagList, updateItemList }) {
-  // bool to store if search bar is toggled on
-  const [showInput, setShowInput] = useState(false);
+  // save searching key word
+  const [searchKeyword, setSearchKeyword] = useState("");
+  // save selected tags
   const [selectedTags, setSelectedTags] = useState([]);
 
-  // call this when search icon is clicked to toggle the state
-  function toggleInputField() {
-    setShowInput(!showInput);
-  }
   // allow scroll of overflow tags list
   useEffect(() => {
     const tagListEle = document.getElementById("tags-scroll");
@@ -25,7 +22,7 @@ function MainSearchBar({ itemCount, tagList, updateItemList }) {
   // reset all selected tag
   const resetTags = () => {
     setSelectedTags([]);
-    updateItemList([]);
+    updateItemList(searchKeyword, []);
 
     // clear all selected display
     const container = document.getElementById("tags-scroll");
@@ -49,22 +46,25 @@ function MainSearchBar({ itemCount, tagList, updateItemList }) {
       const updatedTags = selectedTags.filter(
         (tag) => tag !== selectedTagValue
       );
-      console.log(updatedTags);
       setSelectedTags(updatedTags);
-      updateItemList(updatedTags);
+      updateItemList(searchKeyword, updatedTags);
       // change display of tags capsule
       tagLabel.classList.remove("checked-label");
     }
     // add tag if not yet selected
     else {
       let newTags = [...selectedTags, selectedTagValue];
-      console.log(newTags);
       setSelectedTags(newTags);
-      updateItemList(newTags);
+      updateItemList(searchKeyword, newTags);
       // change display of tags capsule
       tagLabel.classList.add("checked-label");
     }
   };
+
+  // handle search key word
+  const onSearchSubmit = (keyword) => {
+    updateItemList(keyword, selectedTags);
+  }
 
   return (
     <>
@@ -74,14 +74,18 @@ function MainSearchBar({ itemCount, tagList, updateItemList }) {
           <div class="search-bar-item">
             {/* todo */}
             {/* toggle to show search field */}
-            <button class="search" id="search" onClick={toggleInputField}>
+            <button class="search" id="search" onClick={() => {onSearchSubmit(searchKeyword)}}>
               <img src={SearchIcon} alt="" />
             </button>
             {/* toggle to filter only/ also(?) saved item */}
             <input
               class="search-field"
               type="text"
-              style={showInput ? { display: "block" } : { display: "none" }}
+              value={searchKeyword}
+              placeholder="Enter keyword/ id: @xxx"
+              onChange={(e) => {
+                setSearchKeyword(e.target.value);
+              }}
             />
           </div>
           {/* toggle to filter only/ also(?) saved item */}

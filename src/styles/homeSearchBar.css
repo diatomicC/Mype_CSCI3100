@@ -40,7 +40,7 @@ button {
   height: 100%;
 }
 .search-field {
-  display: none;
+  height: 70%;
 }
 .search img {
   width: 18px;

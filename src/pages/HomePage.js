@@ -49,20 +49,34 @@ function HomePage({ db }) {
   };
 
   // update display items according to filters(, sort?)
-  const updateItemList = (selectedTags) => {
-    setItemList(() => {
-      let items = [...database];
-      // handle selectedTags
-      if (selectedTags.length !== 0) {
-        items = [];
-        database.forEach((item) => {
-          item.tags.forEach((tag) => {
-            if (selectedTags.includes(tag) && !items.includes(item)) items.push(item);
-          });
+  const updateItemList = (keyword, selectedTags) => {
+    let items = [...database];
+    // handle selectedTags
+    if (selectedTags.length !== 0) {
+      items = [];
+      database.forEach((item) => {
+        item.tags.forEach((tag) => {
+          if (selectedTags.includes(tag) && !items.includes(item))
+            items.push(item);
+        });
+      });
+    }
+    // handle search keyword
+    if (keyword.length !== 0) {
+      // search id
+      if (keyword[0] === "@") {
+        items = items.filter((item) => {
+          return item.public_ID.toLowerCase().includes(keyword.slice(1).toLowerCase());
         });
       }
-      return items;
-    });
+      // search title
+      else {
+        items = items.filter((item) => {
+          return item.title.toLowerCase().includes(keyword.toLowerCase());
+        });
+      }
+    }
+    setItemList(items);
   };
 
   return (
