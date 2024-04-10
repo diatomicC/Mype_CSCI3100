@@ -1,9 +1,7 @@
 import { Link } from "react-router-dom";
-
 import BookmarkIcon from "../icons/bookmark.svg";
 import LikeIcon from "../icons/heart.svg";
 import ShareIcon from "../icons/shareIcon.svg";
-
 import "../styles/homeBlockDisplayItem.css";
 
 function HomePage({
@@ -54,6 +52,7 @@ function HomePage({
             </div>
             <div class="item-saved">
               <img src={BookmarkIcon} alt="" /> {saved}
+
             </div>
           </div>
           {/* click to share/ purchase this product */}

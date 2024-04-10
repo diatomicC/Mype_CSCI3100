@@ -3,6 +3,7 @@ import SearchIcon from "../icons/searchIcon.svg";
 import BookmarkIcon from "../icons/bookmark.svg";
 
 function MainSearchBar({ itemCount, tagList }) {
+
   // bool to store if search bar is toggled on
   const [showInput, setShowInput] = useState(false);
 
@@ -19,12 +20,14 @@ function MainSearchBar({ itemCount, tagList }) {
     });
   });
 
+
   return (
     <>
       <div class="search-area">
         <h4>PROJECT LIST</h4>
         <div class="search-bar">
           <div class="search-bar-item">
+
             {/* todo */}
             {/* toggle to show search field */}
             <button class="search" id="search" onClick={toggleInputField}>

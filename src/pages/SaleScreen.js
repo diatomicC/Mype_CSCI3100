@@ -5,7 +5,8 @@ import { doc, getDoc } from "firebase/firestore";
 import BookmarkIcon from "../icons/bookmark.svg";
 import LikeIcon from "../icons/heart.svg";
 import BackIcon from "../icons/arrowLeft.svg";
-import StarIcon from "../icons/star.svg";
+import CommentForm from '../components/CommentForm';
+import CommentDisplay from '../components/CommentDisplay';
 
 import "../styles/saleScreen.css";
 
@@ -21,6 +22,25 @@ function SaleScreen({ db }) {
     });
   }, []);
 
+  const [comments, setComments] = useState([]);
+  const [averageStars, setAverageStars] = useState(0);
+
+  const addComment = (newComment) => {
+    setComments([...comments, newComment]);
+  };
+
+//Calculate Average Stars
+  useEffect(() => {
+    if (comments.length > 0) {
+      const totalStars = comments.reduce((acc, comment) => acc + parseInt(comment.stars, 10), 0);
+      const average = totalStars / comments.length;
+      setAverageStars(average.toFixed(1)); // Keep one decimal for the average
+    } else {
+      setAverageStars(0); // No comments means no average
+    }
+  }, [comments]);
+
+
   return (
     <>
       {/* detailed information of single selected product */}
@@ -34,6 +54,10 @@ function SaleScreen({ db }) {
             <img src="" alt="product img"></img>
           </div>
           <div class="long-description">{item?.description}</div>
+          <div>
+            <h2>Leave a Comment</h2>
+            <CommentForm onSubmit={addComment} />
+          </div>
         </div>
 
         {/* right section */}
@@ -71,14 +95,9 @@ function SaleScreen({ db }) {
                     <img src={BookmarkIcon} alt="" /> {item?.saved}
                   </div>
                 </div>
-                <div class="starRanking">
-                  {/* todo */}
-                  <img class="star" src={StarIcon} alt=""></img>
-                  <img class="star" src={StarIcon} alt=""></img>
-                  <img class="star" src={StarIcon} alt=""></img>
-                  <img class="star" src={StarIcon} alt=""></img>
-                  <img class="star" src={StarIcon} alt=""></img>
-                </div>
+
+                {/* TODO: Make into graphics */}
+                <h2>Average Stars: {averageStars}</h2>
               </div>
               <div className="interact">
                 {/* todo */}
@@ -96,56 +115,7 @@ function SaleScreen({ db }) {
           </div>
           {/* users reviews*/}
           <div class="review-container">
-            {/* todo : grab data here */}
-            {/* review template */}
-            <div class="review">
-              <p>blablalbalbalblab</p>
-              <div class="starRanking">
-                {/* todo */}
-                <img class="star" src={StarIcon} alt=""></img>
-                <img class="star" src={StarIcon} alt=""></img>
-                <img class="star" src={StarIcon} alt=""></img>
-                <img class="star" src={StarIcon} alt=""></img>
-                <img class="star" src={StarIcon} alt=""></img>
-              </div>
-            </div>
-            {/* review template */}
-            <div class="review">
-              <p>
-                lum laudantium. Doloremque dolores obcaecati harum ipsum illo?
-                Nihil doloremque voluptas harum quae vitae animi debitis
-                adipisci exercitationem quo repudiandae. Exercitationem
-                doloremque, repellendus quibusdam debitis dolorum consequuntur
-                molestiae, repellat voluptas libero reprehenderit sit. Dicta
-                illo quibusdam quas atque, officiis eum optio nostrum
-                perspiciatis provident exercitationem aut ipsum ipsa eligendi
-              </p>
-              <div class="starRanking">
-                {/* todo */}
-                <img class="star" src={StarIcon} alt=""></img>
-                <img class="star" src={StarIcon} alt=""></img>
-                <img class="star" src={StarIcon} alt=""></img>
-                <img class="star" src={StarIcon} alt=""></img>
-                <img class="star" src={StarIcon} alt=""></img>
-              </div>
-            </div>
-            {/* review template */}
-            <div class="review">
-              <p>
-                remque voluptas harum quae vitae animi debitis adipisci
-                exercitationem quo repudiandae. Exercitationem doloremque,
-                repellendus quibusdam debitis dolorum consequuntur molestiae,
-                repellat voluptas libero repre
-              </p>
-              <div class="starRanking">
-                {/* todo */}
-                <img class="star" src={StarIcon} alt=""></img>
-                <img class="star" src={StarIcon} alt=""></img>
-                <img class="star" src={StarIcon} alt=""></img>
-                <img class="star" src={StarIcon} alt=""></img>
-                <img class="star" src={StarIcon} alt=""></img>
-              </div>
-            </div>
+            <CommentDisplay comments={comments} />
           </div>
         </div>
       </div>

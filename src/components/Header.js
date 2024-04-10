@@ -1,6 +1,6 @@
-import { Link } from "react-router-dom";
-
-import "../styles/header.css"
+import React from 'react';
+import "../styles/header.css";
+import { Link } from 'react-router-dom';
 
 function Header({user, setCurrentUser}) {
   return (
@@ -11,6 +11,12 @@ function Header({user, setCurrentUser}) {
           <img class="logo-image" src="" alt="icon" />
           <span class="logo-text">Mype</span>
         </div>
+        {/* Upload product button */}
+        <Link to="/ProductUpload">
+            <button className="upload-product">
+              Upload Product
+            </button>
+          </Link>
         <div class="header-options">
           {/* login/ signup/ profile */}
           {/* todo */}

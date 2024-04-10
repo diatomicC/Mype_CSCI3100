@@ -1,3 +1,4 @@
+
 import { useEffect, useState } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { getDocs, collection } from "firebase/firestore";
@@ -6,6 +7,8 @@ import Header from "../components/Header";
 import HomeItemContainer from "../components/HomeItemContainer";
 import MainSearchBar from "../components/HomeSearchBar";
 import SaleScreen from "./SaleScreen";
+import ProductUploadPage from "./ProductUploadPage";
+
 
 import "../styles/homepage.css";
 
@@ -133,6 +136,9 @@ function HomePage({ db }) {
 
           {/* display detailed information of single item */}
           <Route path="/Product/:itemID" element={<SaleScreen db={db} />} />
+          {/* <Route path="/Product" element={<SaleScreen item={selectedItem} {...selectedItem} />} />
+          <Route path="/Product" element={<SaleScreen/>} /> */}
+          <Route path="/ProductUpload" element={<ProductUploadPage/>} />
         </Routes>
       </Router>
     </>
