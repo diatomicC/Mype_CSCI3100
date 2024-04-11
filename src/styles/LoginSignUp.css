@@ -1,0 +1,63 @@
+.Body {
+    text-align: center;
+    padding-left: 20px;
+  }
+  
+  .navBar {
+    background: white;
+    width: 100%;
+    display: flex;
+    color: black;
+    padding: 20px;
+    font-weight: 600;
+    font-size: 20px;
+  }
+  
+  .main {
+    padding-left: 20px;
+  }
+  
+  .App-link {
+    color: #61dafb;
+  }
+  
+  #info {
+    border-radius: 5px;
+    border: 1px solid grey;
+    width: 500px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    padding: 8px;
+  
+  }
+  
+  #LoginSignUp {
+    border-radius: 20px;
+    border: 1px solid purple;
+    background-color: purple;
+    color: #FFFFFF;
+    font-size: 15px;
+    padding: 12px 30px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    letter-spacing: 1px;
+  }
+  
+  #LoginSignUp:hover {
+    font-weight: bold;
+    cursor: pointer;
+  }
+  
+  a {
+    text-decoration: none;
+    color: purple;
+  }
+  
+  a:hover {
+    font-weight: bold;
+  }
+  
+  a:visited {
+    color: purple;
+  }
+  
