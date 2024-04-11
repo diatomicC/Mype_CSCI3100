@@ -41,6 +41,7 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app);
 const db = getFirestore();
+export const auth = getAuth(app);
 //const userID = "iamadmin"
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
