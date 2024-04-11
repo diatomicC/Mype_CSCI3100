@@ -1,8 +1,8 @@
 import { Link } from "react-router-dom";
-import BookmarkIcon from "../icons/bookmark.svg";
-import StarIcon from "../icons/star.svg";
-import ShareIcon from "../icons/shareIcon.svg";
-import "../styles/homeBlockDisplayItem.css";
+import BookmarkIcon from "../../icons/bookmark.svg";
+import StarIcon from "../../icons/star.svg";
+import ShareIcon from "../../icons/shareIcon.svg";
+import "../../styles/homeBlockDisplayItem.css";
 
 function HomePage({ id, title, author, tags, description, stars, saved }) {
   const url = `/Product/${id}`;

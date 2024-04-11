@@ -2,8 +2,8 @@ import { useEffect, useState } from "react";
 import { getDocs, collection } from "firebase/firestore";
 
 import Header from "../components/Header";
-import HomeItemContainer from "../components/HomeItemContainer";
-import MainSearchBar from "../components/HomeSearchBar";
+import HomeItemContainer from "../components/home/HomeItemContainer";
+import MainSearchBar from "../components/home/HomeSearchBar";
 
 function HomePage({ db }) {
   // store the user ID who has logged in, "" mean not yet logged in

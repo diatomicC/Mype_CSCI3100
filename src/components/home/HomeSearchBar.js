@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
-import SearchIcon from "../icons/searchIcon.svg";
-import BookmarkIcon from "../icons/bookmark.svg";
 import { Link } from "react-router-dom";
-import "../styles/homeSearchBar.css";
+import SearchIcon from "../../icons/searchIcon.svg";
+import BookmarkIcon from "../../icons/bookmark.svg";
+import "../../styles/homeSearchBar.css";
 
 function MainSearchBar({ itemCount, tagList, updateItemList }) {
   // save searching key word
@@ -18,12 +18,18 @@ function MainSearchBar({ itemCount, tagList, updateItemList }) {
   const [priceRange, setPriceRang] = useState(0);
   // save selected tags
   const [selectedTags, setSelectedTags] = useState([]);
-  //
-  const [extendFilter, setExtendFilter] = useState();
+  // save state of filter enable
+  const [showPrice, setShowPrice] = useState(false);
+  const [showTag, setShowTag] = useState(false);
 
   // allow scroll of overflow tags list
   useEffect(() => {
-    const tagListEle = document.getElementById("filter-scroll");
+    const priceListEle = document.getElementById("filter-scroll-price");
+    const tagListEle = document.getElementById("filter-scroll-tag");
+    priceListEle.addEventListener("wheel", (e) => {
+      e.preventDefault();
+      tagListEle.scrollLeft += e.deltaY / 30;
+    });
     tagListEle.addEventListener("wheel", (e) => {
       e.preventDefault();
       tagListEle.scrollLeft += e.deltaY / 30;
@@ -32,7 +38,7 @@ function MainSearchBar({ itemCount, tagList, updateItemList }) {
 
   // reset all selected tag
   const resetTags = () => {
-    setExtendFilter();
+    setPriceRang(0);
     setSelectedTags([]);
     updateItemList(searchKeyword, [], [-1, -1]);
 
@@ -41,13 +47,16 @@ function MainSearchBar({ itemCount, tagList, updateItemList }) {
 
   // clear all selected display
   const clearCheckboxDisplay = () => {
-    const container = document.getElementById("filter-scroll");
-    const inputs = container.getElementsByTagName("input");
-    const labels = container.getElementsByTagName("label");
+    const scroll = ["price", "tag"];
+    for (var i = 0; i < 2; i++) {
+      const container = document.getElementById("filter-scroll-" + scroll[i]);
+      const inputs = container.getElementsByTagName("input");
+      const labels = container.getElementsByTagName("label");
 
-    for (var i = 0; i < inputs.length; i++) {
-      inputs[i].checked = false;
-      labels[i].classList.remove("checked-label");
+      for (var j = 0; j < inputs.length; j++) {
+        inputs[j].checked = false;
+        labels[j].classList.remove("checked-label");
+      }
     }
   };
 
@@ -75,10 +84,6 @@ function MainSearchBar({ itemCount, tagList, updateItemList }) {
     }
   };
 
-  useEffect(() => {
-    console.log("change: ", selectedTags);
-  }, [selectedTags]);
-
   // filter price list
   const handlePriceChange = (event) => {
     const selectedPriceValue = event.target.value;
@@ -93,7 +98,14 @@ function MainSearchBar({ itemCount, tagList, updateItemList }) {
       priceListValue[selectedPriceValue]
     );
     // change display of tags capsule
-    clearCheckboxDisplay();
+    const container = document.getElementById("filter-scroll-price");
+    const inputs = container.getElementsByTagName("input");
+    const labels = container.getElementsByTagName("label");
+
+    for (var j = 0; j < inputs.length; j++) {
+      inputs[j].checked = false;
+      labels[j].classList.remove("checked-label");
+    }
     priceLabel.classList.add("checked-label");
   };
 
@@ -105,57 +117,20 @@ function MainSearchBar({ itemCount, tagList, updateItemList }) {
   const showExtendFilter = (section) => {
     switch (section) {
       case "price":
-        setExtendFilter(() => {
-          return priceListText.map((price, index) => {
-            return (
-              <>
-                <input
-                  type="checkbox"
-                  value={index}
-                  id={"price-select-" + index}
-                  key={index}
-                  onChange={(e) => handlePriceChange(e)}
-                />
-                <label
-                  htmlFor={"price-select-" + index}
-                  id={"price-label-" + index}
-                  className="capsule"
-                  key={index + 1000}>
-                  {price}
-                </label>
-              </>
-            );
-          });
-        });
+        const priceSelect = document.querySelector(".prices-selectable");
+        setShowPrice(!showPrice);
+        if (!showPrice) priceSelect.classList.remove("hide");
+        else priceSelect.classList.add("hide");
         break;
 
       case "tags":
-        setExtendFilter(() => {
-          return tagList.map((tag, index) => {
-            return (
-              <>
-                <input
-                  type="checkbox"
-                  value={tag}
-                  id={"tag-select-" + index}
-                  key={index}
-                  onChange={(e) => handleTagChange(e)}
-                />
-                <label
-                  htmlFor={"tag-select-" + index}
-                  id={"tag-label-" + tag}
-                  className="capsule"
-                  key={index + 1000}>
-                  #{tag}
-                </label>
-              </>
-            );
-          });
-        });
+        const tagSelect = document.querySelector(".tags-selectable");
+        setShowTag(!showTag);
+        if (!showTag) tagSelect.classList.remove("hide");
+        else tagSelect.classList.add("hide");
         break;
 
       default:
-        setExtendFilter();
         break;
     }
   };
@@ -221,9 +196,51 @@ function MainSearchBar({ itemCount, tagList, updateItemList }) {
             </button>
           </div>
         </div>
-        {/* list of all available tags*/}
-        <div className="filter-list" id="filter-scroll">
-          {extendFilter}
+        {/* list selectable prices */}
+        <div
+          className="filter-list prices-selectable hide"
+          id="filter-scroll-price">
+          {priceListText.map((price, index) => {
+            return (
+              <div key={"prices-selectable-" + index}>
+                <input
+                  type="checkbox"
+                  value={index}
+                  id={"price-select-" + index}
+                  onChange={(e) => handlePriceChange(e)}
+                />
+                <label
+                  htmlFor={"price-select-" + index}
+                  id={"price-label-" + index}
+                  className="capsule">
+                  {price}
+                </label>
+              </div>
+            );
+          })}
+        </div>
+        {/* list selectable tags */}
+        <div
+          className="filter-list tags-selectable hide"
+          id="filter-scroll-tag">
+          {tagList.map((tag, index) => {
+            return (
+              <div key={"tags-selectable-" + index}>
+                <input
+                  type="checkbox"
+                  value={tag}
+                  id={"tag-select-" + index}
+                  onChange={(e) => handleTagChange(e)}
+                />
+                <label
+                  htmlFor={"tag-select-" + index}
+                  id={"tag-label-" + tag}
+                  className="capsule">
+                  #{tag}
+                </label>
+              </div>
+            );
+          })}
         </div>
       </div>
     </>

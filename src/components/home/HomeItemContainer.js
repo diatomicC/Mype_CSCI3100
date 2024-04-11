@@ -1,5 +1,5 @@
-import HomeBlockDisplayItem from "../components/HomeBlockDisplayItem";
-import ContainerStyle from "../styles/homeItemContainer.css";
+import HomeBlockDisplayItem from "./HomeBlockDisplayItem";
+import ContainerStyle from "../../styles/homeItemContainer.css";
 
 function HomeItemContainer({ itemList }) {
   return (
@@ -8,7 +8,7 @@ function HomeItemContainer({ itemList }) {
         {/* list of display items */}
 
         {itemList.map((item, index) => {
-          return <HomeBlockDisplayItem {...item} key={index} />;
+          return <HomeBlockDisplayItem {...item} key={"displayItem-" + index} />;
         })}
       </div>
     </>

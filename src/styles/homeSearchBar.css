@@ -100,3 +100,7 @@ button {
 .checked-label {
   border: solid 2px #8000ff;
 }
+
+.hide {
+  display: none;
+}
