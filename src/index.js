@@ -15,11 +15,14 @@ import {AdminManagement} from "./pages/adminManagement";
 import AdminHomePage from "./pages/AdminHomePage";
 import {UserManagement} from "./components/UserManagement";
 import PaymentScreen from "./pages/PaymentScreen";
+import SignIn from './components/auth/SignIn';
+import SignUp from './components/auth/SignUp';
 
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
 import { getFirestore } from "firebase/firestore";
+import { getAuth } from "firebase/auth";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -56,6 +59,8 @@ root.render(
             <Route path="/Management" element={<AdminManagement/>} />
         <Route path="/admin" element={<AdminHomePage db={db} />} >
           <Route path="/admin/Management" element={<AdminManagement/>} />
+      <Route path='/signup' element = {<SignUp/>}></Route>
+      <Route path='/signin' element = {<SignIn/>}></Route>
       <Route
         path="/shopping-cart"
         element={
