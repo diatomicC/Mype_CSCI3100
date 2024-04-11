@@ -9,11 +9,14 @@ import ShoppingCartContainer from "./components/shoppingCart/ShoppingCartContain
 import reportWebVitals from "./reportWebVitals";
 import ShoppingCartContainer from "./components/shoppingCart/ShoppingCartContainer";
 import PaymentScreen from "./pages/PaymentScreen";
+import SignIn from './components/auth/SignIn';
+import SignUp from './components/auth/SignUp';
 
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
 import { getFirestore } from "firebase/firestore";
+import { getAuth } from "firebase/auth";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -44,6 +47,8 @@ root.render(
       {/* display detailed information of single item */}
       <Route path="/Product/:itemID" element={<SaleScreen db={db} />} />
       <Route path="/ProductUpload" element={<ProductUploadPage />} />
+      <Route path='/signup' element = {<SignUp/>}></Route>
+      <Route path='/signin' element = {<SignIn/>}></Route>
 
       <Route
         path="/shopping-cart"
