@@ -7,14 +7,15 @@ import "../styles/homeSearchBar.css";
 function MainSearchBar({ itemCount, tagList, updateItemList }) {
   // save searching key word
   const [searchKeyword, setSearchKeyword] = useState("");
-  const priceListText = ["$0", "less than $10", "more than $10"];
+  const priceListText = ["All", "$0", "less than $10", "more than $10"];
   const priceListValue = [
+    [-1, -1],
     [0, 0],
     [-1, 10],
     [10, -1],
   ];
   // save price range
-  const [priceRange, setPriceRang] = useState("");
+  const [priceRange, setPriceRang] = useState(0);
   // save selected tags
   const [selectedTags, setSelectedTags] = useState([]);
   //
@@ -73,6 +74,10 @@ function MainSearchBar({ itemCount, tagList, updateItemList }) {
       tagLabel.classList.add("checked-label");
     }
   };
+
+  useEffect(() => {
+    console.log("change: ", selectedTags);
+  }, [selectedTags]);
 
   // filter price list
   const handlePriceChange = (event) => {
