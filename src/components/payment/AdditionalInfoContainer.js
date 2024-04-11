@@ -4,12 +4,13 @@ import AcceptanceOfTerms from "./AcceptanceOfTermsBlock";
 
 import "../../styles/payment/paymentContainer.css";
 
-function AdditionalInfoContainer() {
+function AdditionalInfoContainer({ props }) {
+  console.log(props);
   return (
     <>
       <div className="detail-payment-container">
         <div className="detail-payment-row">
-          <SummaryBlock />
+          <SummaryBlock props={props} />
         </div>
         <div className="detail-payment-row">
           <NeedHelpBlock />

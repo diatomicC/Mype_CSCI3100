@@ -2,15 +2,16 @@ import SelectPaymentContainer from "./SelectPaymentContainer";
 import AdditionalInfoContainer from "./AdditionalInfoContainer";
 import "../../styles/payment/paymentContainer.css";
 
-function PaymentContainer() {
+function PaymentContainer({ props, db }) {
+  console.log(props);
   return (
     <>
       <div className="payment-container">
         <div className="payment-column">
-          <SelectPaymentContainer />
+          <SelectPaymentContainer props={props} db={db} />
         </div>
         <div className="payment-column">
-          <AdditionalInfoContainer />
+          <AdditionalInfoContainer props={props} />
         </div>
       </div>
     </>
