@@ -1,9 +1,15 @@
 import React from "react";
 
-function SummaryBlock() {
+function SummaryBlock({ props }) {
   const getAmmountToPay = () => {
-    /* TODO */
-    return 200;
+    let total = 0;
+    let i = 0;
+    do {
+      console.log(props[i].price);
+      total += props[i].price;
+      i++;
+    } while (i < props.length);
+    return total;
   };
   return (
     <>

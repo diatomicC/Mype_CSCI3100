@@ -1,13 +1,24 @@
 import Header from "../components/Header";
 import PaymentContainer from "../components/payment/PaymentContainer";
-function PaymentScreen() {
+import ShoppingCartContainer from "../components/shoppingCart/ShoppingCartContainer";
+import { Link, useLocation } from "react-router-dom";
+
+function PaymentScreen({ db }) {
+  const location = useLocation();
+  const state = location.state;
+  console.log(state);
   return (
     <>
-      {/* Header */}
       <Header />
-      <PaymentContainer />
+      {state === null ? (
+        <>
+          <h3>No item is in the cart</h3>
+          <Link to="/shopping-cart">Go to shopping cart</Link>
+        </>
+      ) : (
+        <PaymentContainer props={state} db={db} />
+      )}
     </>
   );
 }
-
 export default PaymentScreen;
