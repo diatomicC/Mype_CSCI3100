@@ -12,17 +12,15 @@ function AdminHeader({user, setCurrentUser}) {
           <span class="logo-text">Mype Admin</span>
         </h>
         <div class="adminheader-options">
-        <Link to="AdminManagement">
+        <Link to="Management">
             <button class="AdminManagement">
               <span>Management</span>
             </button>
           </Link>
-          {/* login/ signup/ profile */}
-          {/* todo */}
-          {/* link to login/ user profile page */}
-          <Link to="Userinfo">
+          {/* Log-out */}
+          <Link to="../../">
             <button class="user-profile">
-              <span>{user === "" ? "Log out" : "User Profile"}</span>
+              <span>Log out</span>
             </button>
           </Link>
         </div>

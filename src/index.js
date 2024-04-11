@@ -1,11 +1,17 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { Switch } from "react-router";
 import "./index.css";
 import HomePage from "./pages/HomePage";
 import SaleScreen from "./pages/SaleScreen";
 import ProductUploadPage from "./pages/ProductUploadPage";
 import reportWebVitals from "./reportWebVitals";
+import {Userinfo} from "./pages/Userinfo";
+import {Profile} from "./components/userinfo/profile";
+import {AdminManagement} from "./pages/adminManagement";
+import AdminHomePage from "./pages/AdminHomePage";
+//import {ShoppingCartContainer} from "./components/shoppingCart/ShoppingCartContainer"
 
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
@@ -30,6 +36,7 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app);
 const db = getFirestore();
+//const userID = "iamadmin"
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -38,7 +45,14 @@ root.render(
       <Routes>
         {/* display items match filtering condition */}
         <Route exact path="/" element={<HomePage db={db} />} />
+        <Route path="/Userinfo" element={<Userinfo />} >
+          <Route path="/Userinfo/profile" element={<Profile/>} />
+        </Route>
         {/* display detailed information of single item */}
+        <Route path="/Management" element={<AdminManagement/>} />
+        <Route path="/admin" element={<AdminHomePage db={db} />} >
+          <Route path="/admin/Management" element={<AdminManagement/>} />
+        </Route>
         <Route path="/Product/:itemID" element={<SaleScreen db={db} />} />
         <Route path="/ProductUpload" element={<ProductUploadPage />} />
       </Routes>

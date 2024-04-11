@@ -21,7 +21,7 @@ function Header({user, setCurrentUser}) {
           {/* login/ signup/ profile */}
           {/* todo */}
           {/* link to login/ user profile page */}
-          <Link>
+          <Link to="Userinfo">
             <button class="user-profile">
               <span>{user === "" ? "Login / Sign up" : "User Profile"}</span>
             </button>
