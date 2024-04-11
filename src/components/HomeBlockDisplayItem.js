@@ -8,50 +8,50 @@ function HomePage({ id, title, author, tags, description, stars, saved }) {
   const url = `/Product/${id}`;
   return (
     <>
-      <div class="item">
+      <div className="item">
         {/* item header */}
-        <div class="item-header">
-          <Link to={url} class="title">
+        <div className="item-header">
+          <Link to={url} className="title">
             {title}
           </Link>
-          <div class="author">{author}</div>
+          <div className="author">{author}</div>
           {/* click to quick save to shopping cart */}
-          <button class="save-btn">
+          <button className="save-btn">
             <img src={BookmarkIcon} alt="" />
           </button>
         </div>
         {/* item content */}
         <div>
-          <div class="product-image">
+          <div className="product-image">
             <img src="" alt="" />
           </div>
           {/* display all tags of this product */}
-          <div class="item-tags">
-            <div class="item-tag">
+          <div className="item-tags">
+            <div className="item-tag">
               {tags.map((tag, index) => {
                 return " #" + tag;
               })}
             </div>
           </div>
-          <div class="short-description">{description}</div>
+          <div className="short-description">{description}</div>
         </div>
         {/* interactives */}
-        <div class="item-footer">
+        <div className="item-footer">
           {/* display number of likes, saved */}
-          <div class="ranking">
-            <div class="item-stars">
+          <div className="ranking">
+            <div className="item-stars">
               <img src={StarIcon} alt="" /> {stars}
             </div>
-            <div class="item-saved">
+            <div className="item-saved">
               <img src={BookmarkIcon} alt="" /> {saved}
             </div>
           </div>
           {/* click to share/ purchase this product */}
-          <div class="interactives-btn">
-            <button class="share">
+          <div className="interactives-btn">
+            <button className="share">
               <img src={ShareIcon} alt="" />
             </button>
-            <button class="purchase">Buy now</button>
+            <button className="purchase">Buy now</button>
           </div>
         </div>
       </div>

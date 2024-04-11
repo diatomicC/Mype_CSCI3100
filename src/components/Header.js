@@ -18,11 +18,11 @@ function Header({ user, setCurrentUser }) {
               Upload Product
             </button>
           </Link>
-        <div class="header-options">
+        <div className="header-options">
           {/* login/ signup/ profile */}
           {/* link to login/ user profile page */}
           <Link to="Userinfo">
-            <button class="user-profile">
+            <button className="user-profile">
               <span>{user === "" ? "Login / Sign up" : "User Profile"}</span>
             </button>
           </Link>

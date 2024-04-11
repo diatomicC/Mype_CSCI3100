@@ -119,7 +119,7 @@ function MainSearchBar({ itemCount, tagList, updateItemList }) {
                 <label
                   htmlFor={"price-select-" + index}
                   id={"price-label-" + index}
-                  class="capsule"
+                  className="capsule"
                   key={index + 1000}>
                   {price}
                 </label>
@@ -144,7 +144,7 @@ function MainSearchBar({ itemCount, tagList, updateItemList }) {
                 <label
                   htmlFor={"tag-select-" + index}
                   id={"tag-label-" + tag}
-                  class="capsule"
+                  className="capsule"
                   key={index + 1000}>
                   #{tag}
                 </label>
@@ -162,13 +162,13 @@ function MainSearchBar({ itemCount, tagList, updateItemList }) {
 
   return (
     <>
-      <div class="search-area">
+      <div className="search-area">
         <h4>PROJECT LIST</h4>
-        <div class="search-bar">
-          <div class="search-bar-item">
+        <div className="search-bar">
+          <div className="search-bar-item">
             {/* search button */}
             <button
-              class="search"
+              className="search"
               id="search"
               onClick={() => {
                 onSearchSubmit(searchKeyword);
@@ -177,7 +177,7 @@ function MainSearchBar({ itemCount, tagList, updateItemList }) {
             </button>
             {/* search field */}
             <input
-              class="search-field"
+              className="search-field"
               type="text"
               value={searchKeyword}
               placeholder="Enter keyword/ id: @xxx"
@@ -187,34 +187,34 @@ function MainSearchBar({ itemCount, tagList, updateItemList }) {
             />
           </div>
           {/* go to shopping cart */}
-          <div class="search-bar-item">
-            <Link to="/ShoppingCart" class="saved capsule" id="saved">
+          <div className="search-bar-item">
+            <Link to="/ShoppingCart" className="saved capsule" id="saved">
               <img src={BookmarkIcon} alt="" />
               Saved
             </Link>
           </div>
-          <div class="search-bar-item" style={{ minWidth: "fit-content" }}>
+          <div className="search-bar-item" style={{ minWidth: "fit-content" }}>
             {/* reset selected filter */}
             <button
-              class="capsule"
+              className="capsule"
               style={{ marginRight: "0" }}
               onClick={() => resetTags()}>
               All ({itemCount})
             </button>
           </div>
-          <div class="search-bar-item" style={{ minWidth: "fit-content" }}>
+          <div className="search-bar-item" style={{ minWidth: "fit-content" }}>
             {/* show price filter */}
             <button
-              class="capsule"
+              className="capsule"
               style={{ marginRight: "0" }}
               onClick={() => showExtendFilter("price")}>
               Price ({priceListText[priceRange]})
             </button>
           </div>
-          <div class="search-bar-item" style={{ minWidth: "fit-content" }}>
+          <div className="search-bar-item" style={{ minWidth: "fit-content" }}>
             {/* show tags filter */}
             <button
-              class="capsule"
+              className="capsule"
               style={{ marginRight: "0" }}
               onClick={() => showExtendFilter("tags")}>
               Tags ({selectedTags.length})
@@ -222,7 +222,7 @@ function MainSearchBar({ itemCount, tagList, updateItemList }) {
           </div>
         </div>
         {/* list of all available tags*/}
-        <div class="filter-list" id="filter-scroll">
+        <div className="filter-list" id="filter-scroll">
           {extendFilter}
         </div>
       </div>

@@ -50,16 +50,16 @@ function SaleScreen({ db }) {
     <>
       <Header />
       {/* detailed information of single selected product */}
-      <div class="detailed-info-container">
+      <div className="detailed-info-container">
         {/* left section */}
-        <div class="left-content">
-          <Link class="back-btn" to="/">
+        <div className="left-content">
+          <Link className="back-btn" to="/">
             <img src={BackIcon} alt="" />
           </Link>
-          <div class="image-viewer">
+          <div className="image-viewer">
             <img src="" alt="product img"></img>
           </div>
-          <div class="long-description">{item?.description}</div>
+          <div className="long-description">{item?.description}</div>
           <div>
             <h2>Leave a Comment</h2>
             <CommentForm onSubmit={addComment} />
@@ -67,37 +67,37 @@ function SaleScreen({ db }) {
         </div>
 
         {/* right section */}
-        <div class="right-content">
+        <div className="right-content">
           {/* display all tags of this product */}
-          <div class="tag-list">
-            <div class="item-tag">
+          <div className="tag-list">
+            <div className="item-tag">
               {item?.tags.map((tag, index) => {
                 return " #" + tag;
               })}
             </div>
           </div>
           {/* title, item id */}
-          <div class="title">
+          <div className="title">
             {item?.title} (@{item?.public_ID})
           </div>
           {/* author */}
-          <div class="author">{item?.author}</div>
+          <div className="author">{item?.author}</div>
           {/* short description (same as one in home page?) */}
-          <div class="short-description">{item?.description}</div>
+          <div className="short-description">{item?.description}</div>
           {/* sales info */}
-          <div class="saleData">
-            <div class="upper-saleData">
-              <div class="purchasedCount">{item?.ordered} People ordered</div>
-              <div class="price">${item?.price}</div>
+          <div className="saleData">
+            <div className="upper-saleData">
+              <div className="purchasedCount">{item?.ordered} People ordered</div>
+              <div className="price">${item?.price}</div>
             </div>
-            <div class="lower-saleData">
+            <div className="lower-saleData">
               <div>
                 {/* display number of stars, saved */}
-                <div class="ranking">
-                  <div class="item-stars">
+                <div className="ranking">
+                  <div className="item-stars">
                     <img src={StarIcon} alt="" /> {item?.stars}
                   </div>
-                  <div class="item-saved">
+                  <div className="item-saved">
                     <img src={BookmarkIcon} alt="" /> {item?.saved}
                   </div>
                 </div>
