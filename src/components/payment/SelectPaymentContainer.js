@@ -4,7 +4,7 @@ import PaymentDetailBlock from "./PaymentDetailBlock";
 import PayButton from "./PayButton";
 import "../../styles/payment/paymentContainer.css";
 
-function SelectPaymentContainer() {
+function SelectPaymentContainer({ props, db }) {
   return (
     <>
       <div className="select-payment-container">
@@ -20,11 +20,11 @@ function SelectPaymentContainer() {
         </div>
 
         <div className="select-payment-row">
-          <PaymentDetailBlock />
+          <PaymentDetailBlock props={props} />
         </div>
 
         <div className="select-payment-row" style={{ padding: "0px" }}>
-          <PayButton />
+          <PayButton props={props} db={db} />
         </div>
       </div>
     </>

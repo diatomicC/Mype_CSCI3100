@@ -1,0 +1,64 @@
+/* ProductListPage.css */
+.product-list-container {
+    margin-top:50px;
+    margin-left: 50px;
+    padding: 0;
+    font-family: 'Arial', sans-serif;
+  }
+  
+  .product-list-header {
+    color: #333;
+    margin-bottom: 30px;
+  }
+  
+  .product-item {
+    margin-bottom: 20px;
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 10px;
+  }
+  
+  .product-title {
+    font-size: 1.5em;
+    color: #333;
+  }
+  
+  .product-price,
+  .product-hashtag,
+  .product-description {
+    color: #666;
+    margin: 5px 0;
+  }
+  
+  .product-cover-image {
+    max-width: 200px;
+    max-height: 200px;
+    display: block;
+    margin-top: 10px;
+  }
+  
+  .product-description-file {
+    margin-top: 10px;
+    text-decoration: none;
+    color: #1a0dab;
+  }
+  
+  .product-description-file:hover {
+    text-decoration: underline;
+  }
+
+/* Add this to your ProductListPage.css */
+.delete-button {
+  padding: 10px 15px;
+  background-color: #f44336;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+.delete-button:hover {
+  background-color: #d32f2f;
+}
+
+  

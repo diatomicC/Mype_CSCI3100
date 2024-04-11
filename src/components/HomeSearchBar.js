@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import SearchIcon from "../icons/searchIcon.svg";
 import BookmarkIcon from "../icons/bookmark.svg";
-
+import { Link } from "react-router-dom";
 import "../styles/homeSearchBar.css";
 
 function MainSearchBar({ itemCount, tagList, updateItemList }) {
@@ -161,8 +161,7 @@ function MainSearchBar({ itemCount, tagList, updateItemList }) {
         <h4>PROJECT LIST</h4>
         <div class="search-bar">
           <div class="search-bar-item">
-            {/* todo */}
-            {/* toggle to show search field */}
+            {/* search button */}
             <button
               class="search"
               id="search"
@@ -171,7 +170,7 @@ function MainSearchBar({ itemCount, tagList, updateItemList }) {
               }}>
               <img src={SearchIcon} alt="" />
             </button>
-            {/* toggle to filter only/ also(?) saved item */}
+            {/* search field */}
             <input
               class="search-field"
               type="text"
@@ -184,11 +183,10 @@ function MainSearchBar({ itemCount, tagList, updateItemList }) {
           </div>
           {/* go to shopping cart */}
           <div class="search-bar-item">
-            {/* todo */}
-            <button class="saved capsule" id="saved">
+            <Link to="/ShoppingCart" class="saved capsule" id="saved">
               <img src={BookmarkIcon} alt="" />
               Saved
-            </button>
+            </Link>
           </div>
           <div class="search-bar-item" style={{ minWidth: "fit-content" }}>
             {/* reset selected filter */}
