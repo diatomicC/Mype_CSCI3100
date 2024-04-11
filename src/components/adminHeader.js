@@ -12,7 +12,7 @@ function AdminHeader({user, setCurrentUser}) {
           <span class="logo-text">Mype Admin</span>
         </h>
         <div class="adminheader-options">
-        <Link to="Management">
+          <Link to="/Management">
             <button class="AdminManagement">
               <span>Management</span>
             </button>

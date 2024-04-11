@@ -12,6 +12,7 @@ import {Profile} from "./components/userinfo/profile";
 import {AdminManagement} from "./pages/adminManagement";
 import AdminHomePage from "./pages/AdminHomePage";
 import {UserManagement} from "./components/UserManagement";
+import ShoppingCartContainer from "./components/shoppingCartContainer/shoppingCartContainer"
 //import {ShoppingCartContainer} from "./components/shoppingCart/ShoppingCartContainer"
 
 // Import the functions you need from the SDKs you need
@@ -37,7 +38,7 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app);
 const db = getFirestore();
-//const userID = "iamadmin"
+const currentUserID = "iamadmin"
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -48,6 +49,7 @@ root.render(
         <Route exact path="/" element={<HomePage db={db} />} />
         <Route path="/Userinfo" element={<Userinfo />} >
           <Route path="/Userinfo/profile" element={<Profile/>} />
+          <Route path="/Userinfo/shoppingCart" element={<ShoppingCartContainer db={db} currentUserID={currentUserID}/>} />
         </Route>
         {/* display detailed information of single item */}
         <Route path="/Management" element={<AdminManagement/>} />

@@ -13,10 +13,9 @@ export const UserManagement = () => {
             <div class="input-group mb-3">
               <input type="text" class="form-control" placeholder="search" aria-label="search-user" aria-describedby="basic-addon1" style="position:relative; top: -87px; left: 600px; max-width:35%;"/>
             </div>
-            </div>
+          </div>
         </div>
       </div>
-
     </div>
   )
 }
