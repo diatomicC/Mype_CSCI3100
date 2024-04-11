@@ -117,7 +117,7 @@ function SaleScreen({ db }) {
             </div>
           </div>
           {/* users reviews*/}
-          <div class="review-container">
+          <div>
             <CommentDisplay comments={comments} />
           </div>
         </div>

@@ -1,0 +1,51 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+.adminheader {
+  min-height: 40px;
+  height: 10vh;
+  max-height: 80px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+    
+  background-color: #ddd;
+}
+
+.logo {
+  margin-left: 5%;
+  text-decoration: none;
+}
+
+.logo-image {
+  width: 32px;
+  height: 32px;
+
+  /* debug */
+  background-color: #3333;
+}
+
+.adminheader-options {
+  margin-right: 5%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+
+.user-profile {
+  display: flex;
+  margin-left: 8px;
+  padding: 4px;
+
+  border: solid 2px #8000ff;
+  border-radius: 4px;
+}
+
+.user-profile {
+    background-color: #8000ff;
+    color: #eee;
+}

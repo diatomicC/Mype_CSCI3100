@@ -5,6 +5,7 @@ import "./index.css";
 import HomePage from "./pages/HomePage";
 import SaleScreen from "./pages/SaleScreen";
 import ProductUploadPage from "./pages/ProductUploadPage";
+import ShoppingCartContainer from "./components/shoppingCart/ShoppingCartContainer";
 import reportWebVitals from "./reportWebVitals";
 import ShoppingCartContainer from "./components/shoppingCart/ShoppingCartContainer";
 import PaymentScreen from "./pages/PaymentScreen";

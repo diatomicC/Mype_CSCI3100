@@ -1,52 +1,59 @@
-* {
-  margin: 0;
-  padding: 0;
-}
-
 .header {
-  min-height: 40px;
-  height: 10vh;
-  max-height: 80px;
-
   display: flex;
   align-items: center;
   justify-content: space-between;
-    
-  background-color: #ddd;
+  background-color: white;
+  padding: 10px 20px;
 }
 
 .logo {
-  margin-left: 5%;
+  display: flex;
+  align-items: center;
   text-decoration: none;
 }
 
 .logo-image {
-  width: 32px;
-  height: 32px;
+  height: 50px;
+  width: auto;
+}
 
-  /* debug */
-  background-color: #3333;
+.logo-text {
+  color: purple;
+  font-size: 24px;
+  font-weight: bold;
+  margin-left: 10px;
 }
 
 .header-options {
-  margin-right: 5%;
   display: flex;
   align-items: center;
-  justify-content: space-between;
 }
 
-
-.user-profile {
-  display: flex;
-  margin-left: 8px;
-  padding: 4px;
-
-  border: solid 2px #8000ff;
-  border-radius: 4px;
+.upload-product, .user-profile {
+  display: block; /* Ensures Link behaves as block for padding */
+  padding: 10px 20px;
+  background-color: purple;
+  color: white;
+  text-align: center;
+  border-radius: 5px;
+  text-decoration: none; /* Removes underline from link */
+  margin-right: 20px; /* Adds space to the right of the upload button */
 }
 
-.user-profile {
-    background-color: #8000ff;
-    color: #eee;
+.upload-product:last-child {
+  margin-right: 0; /* Removes the margin from the last button, if you swap the order */
 }
 
+.upload-product:hover, .user-profile:hover {
+  background-color: #7d3f98; /* A lighter purple on hover */
+}
+
+/* Additional styles for buttons inside the links, if needed */
+.upload-product button, .user-profile button {
+  background: none;
+  color: inherit;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  outline: inherit;
+}
