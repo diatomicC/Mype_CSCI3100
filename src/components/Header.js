@@ -1,14 +1,14 @@
 import React from 'react';
 import "../styles/header.css";
 import { Link } from 'react-router-dom';
-import LogoIcon from "../icons/icon.svg";
+// import LogoIcon from "../icons/icon.svg";
 
 function Header({ user, setCurrentUser }) {
   return (
     <div className="header">
       {/* logo */}
       <Link to="/" className="logo">
-        <img className="logo-image" src={LogoIcon} alt="icon" />
+        <img className="logo-image" src={""} alt="icon" />
         <span className="logo-text">Mype</span>
       </Link>
       <div className="header-options">
