@@ -9,14 +9,13 @@ import ProductUploadPage from "./pages/ProductUploadPage";
 import ShoppingCartContainer from "./components/shoppingCart/ShoppingCartContainer";
 import reportWebVitals from "./reportWebVitals";
 
-import {Userinfo} from "./pages/Userinfo";
-import {Profile} from "./components/userinfo/profile";
-import {AdminManagement} from "./pages/adminManagement";
+import { Userinfo } from "./pages/Userinfo";
+import { Profile } from "./components/userinfo/profile";
+import { AdminManagement } from "./pages/adminManagement";
 import AdminHomePage from "./pages/AdminHomePage";
-import {UserManagement} from "./components/UserManagement";
 import PaymentScreen from "./pages/PaymentScreen";
-import SignIn from './components/auth/SignIn';
-import SignUp from './components/auth/SignUp';
+import SignIn from "./components/auth/SignIn";
+import SignUp from "./components/auth/SignUp";
 
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
@@ -46,34 +45,34 @@ const db = getFirestore();
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
-  // <React.StrictMode>
-  <Router>
-    <Routes>
-      {/* display items match filtering condition */}
-      <Route exact path="/" element={<HomePage db={db} />} />
-      {/* display detailed information of single item */}
-      <Route path="/Product/:itemID" element={<SaleScreen db={db} />} />
-      <Route path="/ProductUpload" element={<ProductUploadPage />} />
-    <Route path="/Userinfo" element={<Userinfo />} >
-          <Route path="/Userinfo/profile" element={<Profile/>} />
-            <Route path="/Management" element={<AdminManagement/>} />
-        <Route path="/admin" element={<AdminHomePage db={db} />} >
-          <Route path="/admin/Management" element={<AdminManagement/>} />
-      <Route path='/signup' element = {<SignUp/>}></Route>
-      <Route path='/signin' element = {<SignIn/>}></Route>
-      <Route
-        path="/shopping-cart"
-        element={
-          <ShoppingCartContainer
-            currentUserId={"KNnrR1hpeBv5Mhytx0Df"}
-            db={db}
-          />
-        }
-      />
-      <Route path="/payment" element={<PaymentScreen db={db} />} />
-    </Routes>
-  </Router>
-  // </React.StrictMode>
+  <React.StrictMode>
+    <Router>
+      <Routes>
+        {/* display items match filtering condition */}
+        <Route exact path="/" element={<HomePage db={db} />} />
+        {/* display detailed information of single item */}
+        <Route path="/Product/:itemID" element={<SaleScreen db={db} />} />
+        <Route path="/ProductUpload" element={<ProductUploadPage />} />
+        <Route path="/Userinfo" element={<Userinfo />} />
+        <Route path="/Userinfo/profile" element={<Profile />} />
+        <Route path="/Management" element={<AdminManagement />} />
+        <Route path="/admin" element={<AdminHomePage db={db} />} />
+        <Route path="/admin/Management" element={<AdminManagement />} />
+        <Route path="/signup" element={<SignUp />}></Route>
+        <Route path="/signin" element={<SignIn />}></Route>
+        <Route
+          path="/shopping-cart"
+          element={
+            <ShoppingCartContainer
+              currentUserId={"KNnrR1hpeBv5Mhytx0Df"}
+              db={db}
+            />
+          }
+        />
+        <Route path="/payment" element={<PaymentScreen db={db} />} />
+      </Routes>
+    </Router>
+  </React.StrictMode>
 );
 
 // If you want to start measuring performance in your app, pass a function
