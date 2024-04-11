@@ -11,6 +11,7 @@ import {Userinfo} from "./pages/Userinfo";
 import {Profile} from "./components/userinfo/profile";
 import {AdminManagement} from "./pages/adminManagement";
 import AdminHomePage from "./pages/AdminHomePage";
+import {UserManagement} from "./components/UserManagement";
 //import {ShoppingCartContainer} from "./components/shoppingCart/ShoppingCartContainer"
 
 // Import the functions you need from the SDKs you need
