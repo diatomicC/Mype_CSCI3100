@@ -1,13 +1,19 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { Switch } from "react-router";
 import "./index.css";
 import HomePage from "./pages/HomePage";
 import SaleScreen from "./pages/SaleScreen";
 import ProductUploadPage from "./pages/ProductUploadPage";
 import ShoppingCartContainer from "./components/shoppingCart/ShoppingCartContainer";
 import reportWebVitals from "./reportWebVitals";
-import ShoppingCartContainer from "./components/shoppingCart/ShoppingCartContainer";
+
+import {Userinfo} from "./pages/Userinfo";
+import {Profile} from "./components/userinfo/profile";
+import {AdminManagement} from "./pages/adminManagement";
+import AdminHomePage from "./pages/AdminHomePage";
+import {UserManagement} from "./components/UserManagement";
 import PaymentScreen from "./pages/PaymentScreen";
 import SignIn from './components/auth/SignIn';
 import SignUp from './components/auth/SignUp';
@@ -36,6 +42,7 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app);
 const db = getFirestore();
+//const userID = "iamadmin"
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -47,9 +54,13 @@ root.render(
       {/* display detailed information of single item */}
       <Route path="/Product/:itemID" element={<SaleScreen db={db} />} />
       <Route path="/ProductUpload" element={<ProductUploadPage />} />
+    <Route path="/Userinfo" element={<Userinfo />} >
+          <Route path="/Userinfo/profile" element={<Profile/>} />
+            <Route path="/Management" element={<AdminManagement/>} />
+        <Route path="/admin" element={<AdminHomePage db={db} />} >
+          <Route path="/admin/Management" element={<AdminManagement/>} />
       <Route path='/signup' element = {<SignUp/>}></Route>
       <Route path='/signin' element = {<SignIn/>}></Route>
-
       <Route
         path="/shopping-cart"
         element={

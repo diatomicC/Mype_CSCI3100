@@ -1,7 +1,7 @@
 import React from 'react';
 import Header from "../components/Header";
 import {Profile} from "../components/userinfo/profile.js"
-
+import { Outlet } from "react-router-dom";
 
 export const Userinfo = () => {
   return(
@@ -31,7 +31,8 @@ export const Userinfo = () => {
               </li>
             </ul>
           </div>
-          <Profile/>
+          <Outlet>
+          </Outlet>
           </div>
         </div>
     </>
