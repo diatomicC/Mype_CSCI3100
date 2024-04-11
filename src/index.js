@@ -5,6 +5,7 @@ import "./index.css";
 import HomePage from "./pages/HomePage";
 import SaleScreen from "./pages/SaleScreen";
 import ProductUploadPage from "./pages/ProductUploadPage";
+import ShoppingCartContainer from "./components/shoppingCart/ShoppingCartContainer";
 import reportWebVitals from "./reportWebVitals";
 
 // Import the functions you need from the SDKs you need
@@ -41,6 +42,7 @@ root.render(
         {/* display detailed information of single item */}
         <Route path="/Product/:itemID" element={<SaleScreen db={db} />} />
         <Route path="/ProductUpload" element={<ProductUploadPage />} />
+        <Route path="/ShoppingCart" element={<ShoppingCartContainer currentUserId={"KNnrR1hpeBv5Mhytx0Df"} db={db} />}/>
       </Routes>
     </Router>
   </React.StrictMode>
