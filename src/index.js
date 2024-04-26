@@ -9,7 +9,7 @@ import ProductUploadPage from "./pages/ProductUploadPage";
 import ShoppingCartContainer from "./components/shoppingCart/ShoppingCartContainer";
 import reportWebVitals from "./reportWebVitals";
 
-import { Userinfo } from "./pages/Userinfo";
+import { Userinfo } from "./pages/userinfo";
 import { Profile } from "./components/userinfo/profile";
 import { AdminManagement } from "./pages/adminManagement";
 import AdminHomePage from "./pages/AdminHomePage";
@@ -59,7 +59,9 @@ root.render(
         <Route path="/Management" element={<AdminManagement />} />
         <Route path="/admin" element={<AdminHomePage db={db} />} />
         <Route path="/admin/Management" element={<AdminManagement />} />
+        {/* a route to signup page, allowing user to create an account */}
         <Route path="/signup" element={<SignUp />}></Route>
+        {/* a route to signin page, allowing user to login to existing account */}
         <Route path="/signin" element={<SignIn />}></Route>
         <Route
           path="/shopping-cart"
