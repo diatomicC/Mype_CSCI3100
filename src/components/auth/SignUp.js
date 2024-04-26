@@ -6,19 +6,24 @@ import "../../styles/LoginSignUp.css";
 import Header from "../Header";
 
 const SignUp = () => {
+    //variables need for registering (sign up), like email, password and username. 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [username, setUsername] = useState('');
 
+    //executed when user submits info
     const handleSubmit = async (e) => {
       e.preventDefault()
       try{
+        //createUserWithEmailAndPassword is a function provided by firebase, allowing to create a user with email and password.
         const user = await createUserWithEmailAndPassword(auth, email, password, username)
         if (user) {
+          //if registration successfully done, notice the user that it's done
           alert("Account Created")
         }
         console.log("Account Created")
       } catch (err) {
+        //if there's any error, show the errors as well.
         alert(err)
         console.log(err)
         
@@ -34,6 +39,10 @@ const SignUp = () => {
             <p>Sign up to access your projects, track your activities, and more.</p>
             <br></br>
             <div class="input info">
+              {/*
+                input bars to get users' email, username and password
+                when user press the submit button, it triggers the function above
+              */}
               <form onSubmit={handleSubmit}>
                 <input id="info" type="email" placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)} required/>
                 <br></br>
@@ -46,6 +55,7 @@ const SignUp = () => {
             </div>
             <br></br>
             <span>Have an account? </span>
+            {/*clicking on this link send the user to login page*/}
             <Link to="/signin">Login</Link>
             <br></br>
           </div>
