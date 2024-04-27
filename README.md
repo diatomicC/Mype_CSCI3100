@@ -1,4 +1,4 @@
-# Mype E-commerce Platform
+# Mype Project E-commerce Platform
 
 ## Overview
 Mype is a dynamic e-commerce marketplace designed to connect creators (sellers) with consumers. This platform supports a variety of categories including IT, Marketing, Business, Art, and Journalism, and integrates features like AI-powered recommendations and a custom currency system for transactions.
