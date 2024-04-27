@@ -1,0 +1,47 @@
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: white; /* Adjust the color as needed */
+  padding: 10px 20px;
+  margin-bottom: 3%;
+  margin: 30px;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  text-decoration: none; /* Removes underline from the link */
+}
+
+.logo-text {
+  color: purple; /* Brand color for the logo text */
+  font-size: 24px; /* Adjust size as necessary */
+  font-weight: bold; /* Makes the logo text bold */
+}
+
+.header-options {
+  display: flex;
+  align-items: center;
+}
+
+.upload-product, .user-profile {
+  padding: 8px 16px;
+  background-color: purple; /* Unified button background color */
+  color: white; /* Text color for contrast */
+  border: none;
+  border-radius: 5px; /* Rounded corners for buttons */
+  text-decoration: none; /* Ensures text in links isn't underlined */
+  cursor: pointer; /* Indicates clickable items */
+  outline: none; /* Removes the focus outline for a clean look */
+  transition: background-color 0.3s; /* Smooth transition for hover effect */
+  margin-left: 10px;
+}
+
+.upload-product:hover, .user-profile:hover {
+  background-color:rgb(61, 0, 61); /* Lighter purple on hover */
+}
+
+.upload-product:last-child, .user-profile:last-child {
+  margin-right: 0; /* Removes margin from the last button */
+}

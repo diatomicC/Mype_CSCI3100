@@ -1,0 +1,172 @@
+/* item */
+.item {
+  min-width: 95%;
+  position: relative;
+  padding-top: 8px;
+  margin: 5%;
+  align-self: center;
+  justify-self: center;
+  border: solid 1px rgb(233, 233, 233);
+  border-radius: 8px;
+}
+/* purple bar on top */
+.item::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 8px;
+  border-radius: 8px 8px 0 0;
+  background-color: purple;
+}
+
+.item-header {
+  position: relative;
+  margin: 8px;
+}
+.title{
+  font-weight: bold;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  color: purple;
+}
+
+.author {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  color: purple;
+}
+.title {
+  font-size: 120%;
+}
+
+.save-btn {
+  position: absolute;
+  top: 2px;
+  right: 2px;
+
+  border: none;
+  background-color: transparent;
+}
+.save-btn img {
+  width: 16px;
+  height: 16px;
+}
+
+.product-image {
+  margin: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.product-image img {
+  width: 100%;
+  height: 100%;
+}
+
+.item-tags {
+  margin: 8px;
+  max-height: 2.5em;
+  display: flex;
+  row-gap: 4px;
+
+  overflow: scroll;
+}
+.item-tags::-webkit-scrollbar {
+  height: 0;
+  background-color: transparent;
+}
+.item-tag {
+  min-height: 1em;
+  margin-right: 4px;
+}
+
+.short-description {
+  margin: 8px;
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.item-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.ranking {
+  margin: 8px;
+  margin-right: 0;
+  min-width: fit-content;
+  display: flex;
+  align-items: center;
+}
+.item-stars,
+.item-saved {
+  margin-right: 4px;
+  padding: 4px;
+  background-color: #3333;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+}
+.item-stars img,
+.item-saved img {
+  width: 16px;
+  height: 16px;
+  margin-right: 4px;
+}
+
+.interactives-btn {
+  margin: 8px;
+  margin-left: 0;
+  display: flex;
+  align-items: center;
+}
+
+.interactives-btn :hover {
+  background-color: rgb(176, 176, 176);
+}
+
+.share {
+  padding: 12px 12px; /* Increase padding for a larger button */
+  margin-left: 4px;
+  border: 2px solid transparent; /* Assuming you want a purple border, make it visible */
+  border-radius: 6px; /* Slightly larger border-radius for a softer edge */
+  background-color: #eee; /* Light background for the button */
+  font-size: 16px; /* Larger font size if it includes text */
+  display: flex; /* Keeps content centered and well-aligned */
+  align-items: center; /* Vertically aligns the icon/text inside */
+  cursor: pointer; /* Ensures it looks clickable */
+
+}
+
+.purchase {
+  padding: 4px; 
+  margin-left: 4px;
+  border: solid 2px transparent;
+  border-radius: 4px;
+}
+
+
+.share {
+  display: flex;
+  align-items: center;
+}
+.share img {
+  width: 16px;
+  height: 16px;
+  fill: purple;
+}
+.purchase {
+  color: #eee;
+  min-width: fit-content;
+  padding: 8px;
+  background-color: purple;
+}
+
