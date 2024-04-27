@@ -4,15 +4,19 @@ button {
 }
 
 .capsule {
-  border: solid 1px grey;
+  border: transparent;
   border-radius: 30px;
   padding: 0 10px;
   margin-right: 4px;
   height: 32px;
-
   display: flex;
   align-items: center;
 }
+
+.capsule:hover {
+  background-color: rgb(204, 204, 204); /* This will change the background color to red when hovered */
+}
+
 
 .search-area {
   margin: 8px;

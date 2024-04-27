@@ -1,8 +1,9 @@
 /* item */
 .item {
   min-width: 240px;
-  max-width: 320px;
+  max-width: 660px;
 
+  width: 90%;
   position: relative;
   padding-top: 8px;
   margin: 5%;
@@ -12,7 +13,6 @@
 
   border: solid 1px #3333;
   border-radius: 8px;
-  box-shadow: 0 4px 8px #3337;
 }
 /* purple bar on top */
 .item::before {
@@ -111,10 +111,11 @@
 .item-saved {
   margin-right: 4px;
   padding: 4px;
-  background-color: #3333;
+  background-color: rgba(195, 195, 195, 0.2);
   border-radius: 4px;
   display: flex;
   align-items: center;
+  
 }
 .item-stars img,
 .item-saved img {
