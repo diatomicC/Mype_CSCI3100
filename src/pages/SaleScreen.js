@@ -60,7 +60,7 @@ function SaleScreen() {
           <div className="image-viewer">
             <img src="" alt="product img"></img>
           </div>
-          <div className="long-description">{item?.description}</div>
+          <div className="long-description">{item?.detailedDescription}</div>
           <div>
             <h2>Leave a Comment</h2>
             <CommentForm onSubmit={addComment} />
@@ -84,7 +84,7 @@ function SaleScreen() {
           {/* author */}
           <div className="author">{item?.author}</div>
           {/* short description (same as one in home page?) */}
-          <div className="short-description">{item?.description}</div>
+          <div className="short-description">{item?.shortDescription}</div>
           {/* sales info */}
           <div className="saleData">
             <div className="upper-saleData">

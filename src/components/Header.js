@@ -2,7 +2,7 @@ import "../styles/header.css";
 import { Link, useNavigate } from "react-router-dom";
 import { auth } from "../index";
 import { onAuthStateChanged } from "firebase/auth";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 function Header() {
   const [userCred, setUserCred] = useState(null);
@@ -10,15 +10,15 @@ function Header() {
   // handle page redirection
   const nav = useNavigate();
 
-  onAuthStateChanged(auth, (cred) => {
-    setUserCred(cred);
-  });
+  useEffect(() => {
+    onAuthStateChanged(auth, (cred) => {
+      setUserCred(cred);
+    });
+  }, []);
 
   const toProductUpload = () => {
-    if (auth.user)
-      nav("/ProductUpload");
-    else 
-      alert("Please log in!");
+    if (userCred) nav("/ProductUpload");
+    else alert("Please log in!");
   };
 
   return (
@@ -29,7 +29,9 @@ function Header() {
       </Link>
       <div className="header-options">
         {/* Upload product button */}
-        <button style={{backgroundColor: "transparent", border: "none"}} onClick={() => toProductUpload()}>
+        <button
+          style={{ backgroundColor: "transparent", border: "none" }}
+          onClick={() => toProductUpload()}>
           <button className="upload-product">Upload Product</button>
         </button>
         <div className="header-options">

@@ -31,6 +31,10 @@ form {
   input[type="file"] {
     border: none;
   }
+
+  .red-star {
+    color: red;
+  }
   
   /* Button styling */
   .upload{

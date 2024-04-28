@@ -140,7 +140,7 @@ function ShoppingCartContainer({ currentUserId }) {
               </div>
               <div className="cart-row">{item.author}</div>
               <div className="cart-row">{item.title}</div>
-              <div className="cart-row">{item.description}</div>
+              <div className="cart-row">{item.shortDescription}</div>
               <div className="cart-row">${item.price}</div>
             </div>
           </div>

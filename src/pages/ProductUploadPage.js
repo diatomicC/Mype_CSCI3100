@@ -1,8 +1,8 @@
 import DisplayProjects from "../components/DisplayProjects";
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { auth, db } from "../index"; // Adjust path as necessary
-import { collection, addDoc } from "firebase/firestore";
+import { collection, addDoc, doc, getDoc } from "firebase/firestore";
 
 import { storage } from "../index";
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
@@ -14,9 +14,11 @@ import { onAuthStateChanged } from "firebase/auth";
 const ProductUploadPage = () => {
   const [user, setUser] = useState(null);
 
-  onAuthStateChanged((auth) => {
-    if (auth.user) setUser(user);
-  });
+  useEffect(() => {
+    onAuthStateChanged(auth, (cred) => {
+      setUser(cred);
+    });
+  }, []);
 
   const emptyInfo = {
     id: "",
@@ -26,15 +28,22 @@ const ProductUploadPage = () => {
     coverImage: null,
     detailedDescription: "",
     shortDescription: "",
-    descriptionFile: null,
+    projectFile: null,
     tags: [],
     ordered: 0,
     saved: 0,
     stars: 0,
   };
   const [productInfo, setProductInfo] = useState(emptyInfo);
+  
+  // Check if all required fields are filled
+  const isFormValid =
+    productInfo.title !== "" &&
+    productInfo.price !== 0 &&
+    productInfo.detailedDescription !== "" &&
+    productInfo.shortDescription !== "";
 
-  const [products, setProducts] = useState([]);
+  // const [products, setProducts] = useState([]);
 
   const uploadImage = async (file, folderName = "uploads") => {
     // Assuming 'userId' is available and relevant for your use-case
@@ -79,22 +88,30 @@ const ProductUploadPage = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    // ensure all required field are filled
+    if (!isFormValid) {
+      alert("Please fill in the required field!");
+      return;
+    }
 
     // ensure user has logged in
-    if (!auth.user) {
+    if (!user) {
       alert("not logged in yet");
       return;
     }
 
+    const snapshot = await getDoc(doc(db, "User", user.uid));
+    const username = snapshot.data().username;
+
     // Prepare the product data, perhaps already done in your existing code
     const newProductData = {
-      author: user.user.username,
+      author: username,
       title: productInfo.title,
       price: productInfo.price,
       coverImage: productInfo.coverImage,
       detailedDescription: productInfo.detailedDescription,
       shortDescription: productInfo.shortDescription,
-      descriptionFile: productInfo.descriptionFile,
+      projectFile: productInfo.projectFile,
       tags: productInfo.hashTag.split(",").map((i) => i.trim()),
       ordered: 0,
       saved: 0,
@@ -114,11 +131,11 @@ const ProductUploadPage = () => {
 
     // Upload the description file and update the URL
     if (
-      newProductData.descriptionFile &&
-      newProductData.descriptionFile instanceof File
+      newProductData.projectFile &&
+      newProductData.projectFile instanceof File
     ) {
-      newProductData.descriptionFile = await uploadImage(
-        newProductData.descriptionFile,
+      newProductData.projectFile = await uploadImage(
+        newProductData.projectFile,
         "product_descriptions"
       );
     }
@@ -136,44 +153,57 @@ const ProductUploadPage = () => {
     setProductInfo(emptyInfo);
   };
 
-  const handleDeleteProduct = (productId) => {
-    const updatedProducts = products.filter(
-      (product) => product.id !== productId
-    );
-    setProducts(updatedProducts);
-  };
+  // const handleDeleteProduct = (productId) => {
+  //   const updatedProducts = products.filter(
+  //     (product) => product.id !== productId
+  //   );
+  //   setProducts(updatedProducts);
+  // };
+
   return (
     <div>
       <Header />
       <form onSubmit={handleSubmit}>
-        <p className="input-title"> Product Title </p>
+        <p className="input-title">
+          {" "}
+          Product Title <span className="red-star">*</span>
+        </p>
         <input
           type="text"
           name="title"
           placeholder="Product Title"
           onChange={handleChange}
         />
-        <p className="input-title"> Price </p>
+        <p className="input-title">
+          {" "}
+          Price <span className="red-star">*</span>
+        </p>
         <input
           type="number"
           name="price"
           placeholder="Price"
           onChange={handleChange}
         />
-        <p className="input-title"> Cover Image </p>
+        <p className="input-title"> Cover Image (.img .png) </p>
         <input type="file" name="coverImage" onChange={handleChange} />
-        <p className="input-title"> Detailed Description </p>
+        <p className="input-title">
+          {" "}
+          Detailed Description <span className="red-star">*</span>
+        </p>
         <textarea
           name="detailedDescription"
           placeholder="Detailed Description"
           onChange={handleChange}></textarea>
-        <p className="input-title"> Short Description </p>
+        <p className="input-title">
+          {" "}
+          Short Description <span className="red-star">*</span>
+        </p>
         <textarea
           name="shortDescription"
           placeholder="Short Description"
           onChange={handleChange}></textarea>
-        <p className="input-title"> Description File </p>
-        <input type="file" name="descriptionFile" onChange={handleChange} />
+        <p className="input-title"> Description File (.zip) </p>
+        <input type="file" name="projectFile" onChange={handleChange} />
         <p className="input-title"> Hash Tag </p>
         <input
           type="text"
