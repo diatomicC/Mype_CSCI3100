@@ -7,7 +7,7 @@ import MainSearchBar from "../components/home/HomeSearchBar";
 import { db } from "../index";
 
 function HomePage() {
-  // database items
+  // all items in "Products" collection
   const [database, setDatabase] = useState([]);
   // save all the items' ID searched
   const [itemList, setItemList] = useState([]);
@@ -54,6 +54,7 @@ function HomePage() {
     if (selectedTags.length !== 0) {
       items = [];
       database.forEach((item) => {
+        // show item if it contain any one of the selected tags
         item.tags.forEach((tag) => {
           if (selectedTags.includes(tag) && !items.includes(item))
             items.push(item);
@@ -61,19 +62,21 @@ function HomePage() {
       });
     }
     // handle search keyword
+    // all keywords are searched in lower case, and no space around(trimmed), space between matters!
+    // searchable if the item name contain the exact wording
     if (keyword.length !== 0) {
       // search id
       if (keyword[0] === "@") {
         items = items.filter((item) => {
           return item.public_ID
             .toLowerCase()
-            .includes(keyword.slice(1).toLowerCase());
+            .includes(keyword.trim().slice(1).toLowerCase());
         });
       }
       // search title
       else {
         items = items.filter((item) => {
-          return item.title.toLowerCase().includes(keyword.toLowerCase());
+          return item.title.toLowerCase().includes(keyword.trim().toLowerCase());
         });
       }
     }

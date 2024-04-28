@@ -48,16 +48,19 @@
     cursor: pointer;
   }
   
-  a {
+  .signinBtn,
+  .signupBtn {
     text-decoration: none;
     color: purple;
   }
   
-  a:hover {
+  .signinBtn:hover,
+  .signupBtn:hover {
     font-weight: bold;
   }
   
-  a:visited {
+  .signinBtn:visited,
+  .signupBtn:visited {
     color: purple;
   }
   

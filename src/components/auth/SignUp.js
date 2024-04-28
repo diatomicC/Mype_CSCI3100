@@ -55,7 +55,7 @@ const SignUp = () => {
     }
 
     return (
-        <div className = "App">
+        <div className = "Body">
           <Header />
           <div className="main">
             <h1>Sign up to Mype</h1>
@@ -80,7 +80,7 @@ const SignUp = () => {
             <br></br>
             <span>Have an account? </span>
             {/*clicking on this link send the user to login page*/}
-            <Link to="/signin">Login</Link>
+            <Link className="signinBtn" to="/signin">Login</Link>
             <br></br>
           </div>
         </div>

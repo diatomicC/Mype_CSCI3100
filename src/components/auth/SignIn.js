@@ -58,7 +58,7 @@ const SignIn = () => {
             <br></br>
             <span>Do not have an account? </span>
             {/*clicking on this link send the user to sign up page*/}
-            <Link to="/signup">Create an account</Link>
+            <Link className="signupBtn" to="/signup">Create an account</Link>
           </div>
         </div>
       );

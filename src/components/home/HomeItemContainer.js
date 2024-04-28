@@ -6,10 +6,14 @@ function HomeItemContainer({ itemList }) {
     <>
       <div className="display-item-container" style={ContainerStyle}>
         {/* list of display items */}
-
-        {itemList.map((item, index) => {
-          return <HomeBlockDisplayItem {...item} key={"displayItem-" + index} />;
-        })}
+        {/* display no result text when cant search anything */}
+        {itemList.length === 0 ? (
+          <p> No search result. </p>
+        ) : (
+          itemList.map((item, index) => (
+            <HomeBlockDisplayItem {...item} key={"displayItem-" + index} />
+          ))
+        )}
       </div>
     </>
   );

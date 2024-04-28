@@ -12,18 +12,20 @@ import Header from "../components/Header";
 import { onAuthStateChanged } from "firebase/auth";
 
 const ProductUploadPage = () => {
+  // save info of current user
   const [user, setUser] = useState(null);
-
   useEffect(() => {
     onAuthStateChanged(auth, (cred) => {
       setUser(cred);
     });
   }, []);
 
+  // empty structure for product info
   const emptyInfo = {
     id: "",
     public_ID: "",
     author: "",
+    author_id: "",
     title: "",
     price: 0,
     coverImage: "",
@@ -35,6 +37,7 @@ const ProductUploadPage = () => {
     saved: 0,
     stars: 0,
   };
+  // save product info
   const [productInfo, setProductInfo] = useState(emptyInfo);
 
   // Check if all required fields are filled
@@ -44,8 +47,7 @@ const ProductUploadPage = () => {
     productInfo.detailedDescription !== "" &&
     productInfo.shortDescription !== "";
 
-  // const [products, setProducts] = useState([]);
-
+  // handle image upload
   const uploadImage = async (file, folderName = "uploads") => {
     // Assuming 'userId' is available and relevant for your use-case
     const userId = "unique_user_id"; // Replace with actual user ID logic as needed
@@ -78,6 +80,7 @@ const ProductUploadPage = () => {
     });
   };
 
+  // handle input change
   const handleChange = (e) => {
     const { name, value, files } = e.target;
     if (files) {
@@ -87,6 +90,7 @@ const ProductUploadPage = () => {
     }
   };
 
+  // handle form submit
   const handleSubmit = async (e) => {
     e.preventDefault();
     // ensure all required field are filled
@@ -95,27 +99,33 @@ const ProductUploadPage = () => {
       return;
     }
 
+    // todo 
+    // migrate this whole component to user profile
+    // this check is just temporary--------------------------
     // ensure user has logged in
     if (!user) {
       alert("not logged in yet");
       return;
     }
+    // -----------------------------------------------------
 
+    // get current user username
     var snapshot = await getDoc(doc(db, "User", user.uid));
     const username = snapshot.data().username;
+    // calculate the public id 
     snapshot = await getDoc(doc(db, "Utils", "PUBLIC_ID"));
     const newID = snapshot.data().id + 1;
     const newHEX = newID.toString(16).padStart(6, '0');
-    await updateDoc(doc(db, "Utils", "PUBLIC_ID"), {id: newID, HEX: newHEX});
 
     // Prepare the product data, perhaps already done in your existing code
     const newProductData = {
       public_ID: newHEX,
       author: username,
+      author_id: user.uid,
       title: productInfo.title,
       price: productInfo.price,
       coverImage: productInfo.coverImage,
-      detailedDescription: productInfo.detailedDescription.replace(/n/g, '<br/>'),
+      detailedDescription: productInfo.detailedDescription.replace(/\n/g, '<br/>'),
       shortDescription: productInfo.shortDescription,
       projectFile: productInfo.projectFile,
       tags: productInfo.tags.split(",").map((i) => i.trim()),
@@ -149,7 +159,11 @@ const ProductUploadPage = () => {
     try {
       // Add the new project to Firestore
       const newDocId = await addNewProject(newProductData);
+      // save new public id to database
+      await updateDoc(doc(db, "Utils", "PUBLIC_ID"), {id: newID, HEX: newHEX});
+
       console.log("Project successfully added with ID:", newDocId);
+      alert("Project successfully added!");
 
       // Update UI or state as needed after successful addition
     } catch (error) {
@@ -171,7 +185,6 @@ const ProductUploadPage = () => {
       <Header />
       <form className="product-upload-form" onSubmit={handleSubmit}>
         <p className="input-title">
-          {" "}
           Product Title <span className="red-star">*</span>
         </p>
         <input
@@ -182,7 +195,6 @@ const ProductUploadPage = () => {
           onChange={handleChange}
         />
         <p className="input-title">
-          {" "}
           Price <span className="red-star">*</span>
         </p>
         <input
@@ -196,10 +208,10 @@ const ProductUploadPage = () => {
         <input
           type="file"
           name="coverImage"
+          value={productInfo.coverImages && productInfo.coverImages[0].name}
           onChange={handleChange}
         />
         <p className="input-title">
-          {" "}
           Detailed Description <span className="red-star">*</span>
         </p>
         <textarea
@@ -208,7 +220,6 @@ const ProductUploadPage = () => {
           value={productInfo.detailedDescription}
           onChange={handleChange}></textarea>
         <p className="input-title">
-          {" "}
           Short Description <span className="red-star">*</span>
         </p>
         <textarea
@@ -220,6 +231,7 @@ const ProductUploadPage = () => {
         <input
           type="file"
           name="projectFile"
+          value={productInfo.projectFile && productInfo.projectFile[0].name}
           onChange={handleChange}
         />
         <p className="input-title"> Hash Tag </p>
@@ -234,7 +246,8 @@ const ProductUploadPage = () => {
           Upload Product
         </button>
       </form>
-      <DisplayProjects />
+      {/* debug */}
+      {/* <DisplayProjects /> */}
     </div>
   );
 };
