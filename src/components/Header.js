@@ -1,8 +1,21 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import "../styles/header.css";
 import { Link } from 'react-router-dom';
+import { getAuth, onAuthStateChanged } from 'firebase/auth';
 
-function Header({ user, setCurrentUser }) {
+function Header() {
+  const [auth, setAuth] = useState(getAuth());
+  const [currUserID, setCurrUserID] = useState("");
+
+  useEffect(() => {
+    var tempAuth = getAuth()
+    setAuth(tempAuth);
+    onAuthStateChanged(tempAuth, (user) => {
+      if (user)
+        setCurrUserID(user.uid);
+    })
+  }, [getAuth()]);
+
   return (
     <div className="header">
       {/* logo */}
@@ -19,9 +32,9 @@ function Header({ user, setCurrentUser }) {
         <div className="header-options">
           {/* login/ signup/ profile */}
           {/* link to login/ user profile page */}
-          <Link to="Userinfo">
+          <Link to= {currUserID === "" ? "/signup" : "/Userinfo"}>
             <button className="user-profile">
-              <span>{user === "" ? "Login / Sign up" : "User Profile"}</span>
+              <span>{currUserID === "" ? "Login / Sign up" : "User Profile"}</span>
             </button>
           </Link>
         </div>

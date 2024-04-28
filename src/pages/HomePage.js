@@ -6,9 +6,6 @@ import HomeItemContainer from "../components/home/HomeItemContainer";
 import MainSearchBar from "../components/home/HomeSearchBar";
 
 function HomePage({ db }) {
-  // store the user ID who has logged in, "" mean not yet logged in
-  // todo
-  // const [currentUser, setCurrentUser] = useState("");
   // database items
   const [database, setDatabase] = useState([]);
   // save all the items' ID searched
