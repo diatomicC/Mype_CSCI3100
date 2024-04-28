@@ -9,10 +9,17 @@ form {
     padding: 20px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   }
+
+  .input-title {
+    margin: 0;
+    margin-left: 4px;
+    font-weight: bold;
+  }
   
   /* Style for input fields and textareas */
   input[type="text"],
   input[type="file"],
+  input[type="number"],
   textarea {
     padding: 10px;
     margin: 10px 0;
