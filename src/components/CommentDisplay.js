@@ -31,7 +31,7 @@ const DisplayComments = ({ itemID }) => {
   return (
     <div className="projects-container">
       <h1>Comments List</h1>
-      {comments.map((comment) => (
+      {comments.length === 0 ? <p>No comments yet.</p> : comments.map((comment) => (
         <div key={comment.id} className="project-card">
           <h2>{comment.username || "Anonymous"}</h2>
           {/* Assuming comments might not have images */}
