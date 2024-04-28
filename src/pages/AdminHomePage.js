@@ -4,8 +4,9 @@ import { getDocs, collection } from "firebase/firestore";
 import AdminHeader from "../components/adminHeader";
 import HomeItemContainer from "../components/home/HomeItemContainer";
 import MainSearchBar from "../components/home/HomeSearchBar";
+import { db } from "../index";
 
-function AdminHomePage({ db }) {
+function AdminHomePage() {
   // store the user ID who has logged in, "" mean not yet logged in
   // todo
   // const [currentUser, setCurrentUser] = useState("");

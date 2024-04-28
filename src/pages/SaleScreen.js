@@ -10,8 +10,9 @@ import CommentDisplay from "../components/CommentDisplay";
 
 import "../styles/saleScreen.css";
 import Header from "../components/Header";
+import { db } from "../index";
 
-function SaleScreen({ db }) {
+function SaleScreen() {
   const { itemID } = useParams();
   const [item, setItem] = useState();
 

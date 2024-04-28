@@ -11,8 +11,9 @@ import {
 import "../../styles/shoppingcart.css";
 import $, { data } from "jquery";
 import { Link } from "react-router-dom";
+import { db } from "../../index";
 
-function ShoppingCartContainer({ currentUserId, db }) {
+function ShoppingCartContainer({ currentUserId }) {
   let [product_list, setProduct_list] = useState([]);
   let [shoppingCart, setShoppingCart] = useState([]);
   useEffect(() => {
