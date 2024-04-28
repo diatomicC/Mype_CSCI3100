@@ -7,12 +7,23 @@ import "../../styles/homeSearchBar.css";
 function MainSearchBar({ itemCount, tagList, updateItemList }) {
   // save searching key word
   const [searchKeyword, setSearchKeyword] = useState("");
-  const priceListText = ["All", "$0", "less than $10", "more than $10"];
+  const priceListText = [
+    "All",
+    "$0",
+    "less than $100",
+    "$100 - $200",
+    "$200 - $500",
+    "$500 - $1000",
+    "more than $1000",
+  ];
   const priceListValue = [
     [-1, -1],
     [0, 0],
-    [-1, 10],
-    [10, -1],
+    [-1, 100],
+    [100, 200],
+    [200, 500],
+    [500, 1000],
+    [1000, -1],
   ];
   // save price range
   const [priceRange, setPriceRang] = useState(0);
@@ -38,9 +49,10 @@ function MainSearchBar({ itemCount, tagList, updateItemList }) {
 
   // reset all selected tag
   const resetTags = () => {
+    setSearchKeyword("");
     setPriceRang(0);
     setSelectedTags([]);
-    updateItemList(searchKeyword, [], [-1, -1]);
+    updateItemList("", [], [-1, -1]);
 
     clearCheckboxDisplay();
   };
@@ -151,19 +163,26 @@ function MainSearchBar({ itemCount, tagList, updateItemList }) {
               <img src={SearchIcon} alt="" />
             </button>
             {/* search field */}
-            <input
-              className="search-field"
-              type="text"
-              value={searchKeyword}
-              placeholder="Enter keyword/ id: @xxx"
-              onChange={(e) => {
-                setSearchKeyword(e.target.value);
-              }}
-            />
+            <form
+              className="search-form"
+              onSubmit={(e) => {
+                e.preventDefault();
+                onSearchSubmit(searchKeyword);
+              }}>
+              <input
+                className="search-field"
+                type="text"
+                value={searchKeyword}
+                placeholder="Enter keyword/ id: @xxx"
+                onChange={(e) => {
+                  setSearchKeyword(e.target.value);
+                }}
+              />
+            </form>
           </div>
           {/* go to shopping cart */}
           <div className="search-bar-item">
-            <Link to="/ShoppingCart" className="saved capsule" id="saved">
+            <Link to="/shopping-cart" className="saved capsule" id="saved">
               <img src={BookmarkIcon} alt="" />
               Saved
             </Link>

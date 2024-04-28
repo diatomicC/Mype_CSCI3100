@@ -47,6 +47,10 @@ button {
   background-color: transparent;
   height: 100%;
 }
+.serach-form {
+  border: none;
+  box-shadow: none;
+}
 .search-field {
   height: 70%;
 }

@@ -1,7 +1,8 @@
 import React, { useState } from "react";
-import { createUserWithEmailAndPassword } from "firebase/auth";
-import { auth } from "../../index"
-import { Link } from "react-router-dom";
+import { doc, setDoc } from "firebase/firestore";
+import { createUserWithEmailAndPassword, signOut } from "firebase/auth";
+import { db, auth } from "../../index"
+import { Link, useNavigate } from "react-router-dom";
 import "../../styles/LoginSignUp.css";
 import Header from "../Header";
 
@@ -11,6 +12,9 @@ const SignUp = () => {
     const [password, setPassword] = useState('');
     const [username, setUsername] = useState('');
 
+    // handle page redirection
+    const nav = useNavigate();
+
     //executed when user submits info
     const handleSubmit = async (e) => {
       e.preventDefault()
@@ -18,8 +22,28 @@ const SignUp = () => {
         //createUserWithEmailAndPassword is a function provided by firebase, allowing to create a user with email and password.
         const user = await createUserWithEmailAndPassword(auth, email, password, username)
         if (user) {
+          // create user object in users collection
+          await setDoc(
+            doc(db, "User", user.user.uid),
+            {
+              uid: user.user.uid,
+              username: username,
+              email: user.user.email,
+              m_coin: 0,
+              shopping_cart: "",
+            }
+          ).catch((e) => {
+            alert(e.message)
+          })
+
+          // auto sign out
+          signOut(auth);
+
           //if registration successfully done, notice the user that it's done
           alert("Account Created")
+
+          // redirect to sign in page
+          nav("/signin")
         }
         console.log("Account Created")
       } catch (err) {
@@ -31,14 +55,14 @@ const SignUp = () => {
     }
 
     return (
-        <div classname = "App">
+        <div className = "App">
           <Header />
           <div className="main">
             <h1>Sign up to Mype</h1>
             <br></br>
             <p>Sign up to access your projects, track your activities, and more.</p>
             <br></br>
-            <div class="input info">
+            <div className="input info">
               {/*
                 input bars to get users' email, username and password
                 when user press the submit button, it triggers the function above

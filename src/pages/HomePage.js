@@ -4,11 +4,9 @@ import { getDocs, collection } from "firebase/firestore";
 import Header from "../components/Header";
 import HomeItemContainer from "../components/home/HomeItemContainer";
 import MainSearchBar from "../components/home/HomeSearchBar";
+import { db } from "../index";
 
-function HomePage({ db }) {
-  // store the user ID who has logged in, "" mean not yet logged in
-  // todo
-  // const [currentUser, setCurrentUser] = useState("");
+function HomePage() {
   // database items
   const [database, setDatabase] = useState([]);
   // save all the items' ID searched

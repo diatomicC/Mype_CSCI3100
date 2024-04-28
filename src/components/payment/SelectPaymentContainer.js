@@ -3,8 +3,9 @@ import SelectPaymentMethodBlock from "./SelectPaymentMethodBlock";
 import PaymentDetailBlock from "./PaymentDetailBlock";
 import PayButton from "./PayButton";
 import "../../styles/payment/paymentContainer.css";
+import { db } from "../../index";
 
-function SelectPaymentContainer({ props, db }) {
+function SelectPaymentContainer({ props }) {
   return (
     <>
       <div className="select-payment-container">

@@ -2,8 +2,9 @@ import Header from "../components/Header";
 import PaymentContainer from "../components/payment/PaymentContainer";
 import ShoppingCartContainer from "../components/shoppingCart/ShoppingCartContainer";
 import { Link, useLocation } from "react-router-dom";
+import { db } from "../index";
 
-function PaymentScreen({ db }) {
+function PaymentScreen() {
   const location = useLocation();
   const state = location.state;
   console.log(state);

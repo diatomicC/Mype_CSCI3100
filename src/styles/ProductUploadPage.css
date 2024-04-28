@@ -1,7 +1,7 @@
 /* ProductUploadPage.css */
 
 /* General form styling */
-form {
+.product-upload-form {
     display: flex;
     flex-direction: column;
     max-width: 600px;
@@ -9,10 +9,17 @@ form {
     padding: 20px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   }
+
+  .input-title {
+    margin: 0;
+    margin-left: 4px;
+    font-weight: bold;
+  }
   
   /* Style for input fields and textareas */
   input[type="text"],
   input[type="file"],
+  input[type="number"],
   textarea {
     padding: 10px;
     margin: 10px 0;
@@ -23,6 +30,10 @@ form {
   /* Style for file input field */
   input[type="file"] {
     border: none;
+  }
+
+  .red-star {
+    color: red;
   }
   
   /* Button styling */
@@ -36,7 +47,7 @@ form {
     margin-top: 10px;
   }
   
-  button:hover {
+  .upload:hover {
     background-color: rgb(61, 0, 61);
   }
   

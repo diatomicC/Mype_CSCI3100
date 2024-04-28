@@ -16,14 +16,11 @@ import PaymentScreen from "./pages/PaymentScreen";
 import SignIn from "./components/auth/SignIn";
 import SignUp from "./components/auth/SignUp";
 
-
-import { getStorage } from 'firebase/storage';
+import { getStorage } from "firebase/storage";
 import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
-import { getFirestore} from "firebase/firestore";
+import { getFirestore } from "firebase/firestore";
 import { getAuth } from "firebase/auth";
-
-
 
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
@@ -40,7 +37,6 @@ const firebaseConfig = {
   measurementId: "G-W662MEQ7YG",
 };
 
-
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
@@ -50,7 +46,7 @@ const storage = getStorage(app);
 export const auth = getAuth(app);
 
 // Export services after initialization
-export {storage};
+export { storage };
 export { db };
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -58,14 +54,14 @@ root.render(
     <Router>
       <Routes>
         {/* display items match filtering condition */}
-        <Route exact path="/" element={<HomePage db={db} />} />
+        <Route exact path="/" element={<HomePage />} />
         {/* display detailed information of single item */}
-        <Route path="/Product/:itemID" element={<SaleScreen db={db} />} />
+        <Route path="/Product/:itemID" element={<SaleScreen />} />
         <Route path="/ProductUpload" element={<ProductUploadPage />} />
         <Route path="/Userinfo" element={<Userinfo />} />
         <Route path="/Userinfo/profile" element={<Profile />} />
         <Route path="/Management" element={<AdminManagement />} />
-        <Route path="/admin" element={<AdminHomePage db={db} />} />
+        <Route path="/admin" element={<AdminHomePage />} />
         <Route path="/admin/Management" element={<AdminManagement />} />
         {/* a route to signup page, allowing user to create an account */}
         <Route path="/signup" element={<SignUp />}></Route>
@@ -74,13 +70,10 @@ root.render(
         <Route
           path="/shopping-cart"
           element={
-            <ShoppingCartContainer
-              currentUserId={"KNnrR1hpeBv5Mhytx0Df"}
-              db={db}
-            />
+            <ShoppingCartContainer currentUserId={"KNnrR1hpeBv5Mhytx0Df"} />
           }
         />
-        <Route path="/payment" element={<PaymentScreen db={db} />} />
+        <Route path="/payment" element={<PaymentScreen />} />
       </Routes>
     </Router>
   </React.StrictMode>

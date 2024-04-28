@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { auth } from "../../index";
 import { signInWithEmailAndPassword} from "firebase/auth";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "../../styles/LoginSignUp.css";
 import Header from "../Header";
 
@@ -10,7 +10,8 @@ const SignIn = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
 
-    console.log(auth);
+    // handle page redirection
+    const nav = useNavigate();
 
     //executed when user submits info
     const handleSubmit = async (e) => {
@@ -21,6 +22,9 @@ const SignIn = () => {
         if (user) {
           //if registration successfully done, notice the user that it's done
           alert("Login Successful")
+
+          // redirect to user profile
+          nav("/Userinfo")
         }
         console.log("Login Successful")
       } catch (err) {
@@ -31,14 +35,14 @@ const SignIn = () => {
     }
 
     return (
-        <div classname = "Body">  
+        <div className = "Body">  
         <Header />  
           <div className="main">
             <h1>Welcome to Mype</h1>
             <br></br>
             <p>Log in to access your projects, track your activities, and more.</p>
             <br></br>
-            <div class="input info">
+            <div className="input info">
               {/*
                 input bars to get users' email and password
                 when user press the submit button, it triggers the function above
@@ -52,6 +56,7 @@ const SignIn = () => {
               </form>
             </div>
             <br></br>
+            <span>Do not have an account? </span>
             {/*clicking on this link send the user to sign up page*/}
             <Link to="/signup">Create an account</Link>
           </div>

@@ -5,21 +5,21 @@ import { Link } from 'react-router-dom';
 function AdminHeader({user, setCurrentUser}) {
   return (
     <>
-      <div class="adminheader">
+      <div className="adminheader">
         {/* logo */}
-        <h to="/" class="logo">
-          <img class="logo-image" src="" alt="icon" />
-          <span class="logo-text">Mype Admin</span>
+        <h to="/" className="logo">
+          <img className="logo-image" src="" alt="icon" />
+          <span className="logo-text">Mype Admin</span>
         </h>
-        <div class="adminheader-options">
+        <div className="adminheader-options">
         <Link to="Management">
-            <button class="AdminManagement">
+            <button className="AdminManagement">
               <span>Management</span>
             </button>
           </Link>
           {/* Log-out */}
           <Link to="../../">
-            <button class="user-profile">
+            <button className="user-profile">
               <span>Log out</span>
             </button>
           </Link>

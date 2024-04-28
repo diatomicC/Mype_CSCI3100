@@ -11,8 +11,9 @@ import {
 import "../../styles/shoppingcart.css";
 import $, { data } from "jquery";
 import { Link } from "react-router-dom";
+import { db } from "../../index";
 
-function ShoppingCartContainer({ currentUserId, db }) {
+function ShoppingCartContainer({ currentUserId }) {
   let [product_list, setProduct_list] = useState([]);
   let [shoppingCart, setShoppingCart] = useState([]);
   useEffect(() => {
@@ -139,7 +140,7 @@ function ShoppingCartContainer({ currentUserId, db }) {
               </div>
               <div className="cart-row">{item.author}</div>
               <div className="cart-row">{item.title}</div>
-              <div className="cart-row">{item.description}</div>
+              <div className="cart-row">{item.shortDescription}</div>
               <div className="cart-row">${item.price}</div>
             </div>
           </div>

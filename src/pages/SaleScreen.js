@@ -10,8 +10,9 @@ import CommentDisplay from "../components/CommentDisplay";
 
 import "../styles/saleScreen.css";
 import Header from "../components/Header";
+import { db } from "../index";
 
-function SaleScreen({ db }) {
+function SaleScreen() {
   const { itemID } = useParams();
   const [item, setItem] = useState();
 
@@ -57,10 +58,14 @@ function SaleScreen({ db }) {
             <img src={BackIcon} alt="" />
           </Link>
           <div className="image-viewer">
-            <img src="" alt="product img"></img>
+            <img src={item?.coverImage} alt="product img"></img>
           </div>
-          <div className="long-description">{item?.description}</div>
-          <div>
+          <div
+            className="long-description"
+            dangerouslySetInnerHTML={{
+              __html: item?.detailedDescription,
+            }}></div>
+          <div style={{ marginTop: "20px" }}>
             <h2>Leave a Comment</h2>
             <CommentForm onSubmit={addComment} />
           </div>
@@ -83,11 +88,13 @@ function SaleScreen({ db }) {
           {/* author */}
           <div className="author">{item?.author}</div>
           {/* short description (same as one in home page?) */}
-          <div className="short-description">{item?.description}</div>
+          <div className="short-description">{item?.shortDescription}</div>
           {/* sales info */}
           <div className="saleData">
             <div className="upper-saleData">
-              <div className="purchasedCount">{item?.ordered} People ordered</div>
+              <div className="purchasedCount">
+                {item?.ordered} People ordered
+              </div>
               <div className="price">${item?.price}</div>
             </div>
             <div className="lower-saleData">
@@ -105,12 +112,12 @@ function SaleScreen({ db }) {
               <div className="interact">
                 {/* todo */}
                 {/* to shopping cart */}
-                <button className="purchase-btn" style={{ flex: "1" }}>
+                <button className="purchase-btn" style={{ flex: "1" }} onClick={() => {}}>
                   Save to Cart
                 </button>
                 {/* todo */}
                 {/* to payment directly */}
-                <button className="purchase-btn" style={{ flex: "2" }}>
+                <button className="purchase-btn" style={{ flex: "2" }} onClick={() => {}}>
                   Order Now
                 </button>
               </div>
