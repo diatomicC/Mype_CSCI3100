@@ -1,9 +1,18 @@
 import React from 'react';
 import Header from "../components/Header.js";
 import {Profile} from "../components/userinfo/profile.js"
-import { Outlet } from "react-router-dom";
+import { Outlet, useNavigate } from "react-router-dom";
+import { auth } from '../index.js';
+import { signOut } from "firebase/auth";
 
 export const Userinfo = () => {
+  // handle page redirection
+  const nav = useNavigate();
+
+  const SignOut = () => {
+    signOut(auth);
+    nav("/signin");
+  }
   return(
     <>
       <Header />
@@ -28,6 +37,9 @@ export const Userinfo = () => {
               </li>
               <li className="nav-item">
                 <a className="nav-link active" aria-current="page" href="preference">Preference</a>
+              </li>
+              <li className="nav-item">
+                <button className="nav-link active" onClick={() => SignOut()}>Sign Out</button>
               </li>
             </ul>
           </div>

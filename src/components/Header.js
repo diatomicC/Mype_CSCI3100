@@ -1,20 +1,15 @@
-import React, { useEffect, useState } from 'react';
 import "../styles/header.css";
-import { Link } from 'react-router-dom';
-import { getAuth, onAuthStateChanged } from 'firebase/auth';
+import { Link } from "react-router-dom";
+import { auth } from "../index";
+import { onAuthStateChanged } from "firebase/auth";
+import { useState } from "react";
 
 function Header() {
-  const [auth, setAuth] = useState(getAuth());
-  const [currUserID, setCurrUserID] = useState("");
+  const [userCred, setUserCred] = useState(null);
 
-  useEffect(() => {
-    var tempAuth = getAuth()
-    setAuth(tempAuth);
-    onAuthStateChanged(tempAuth, (user) => {
-      if (user)
-        setCurrUserID(user.uid);
-    })
-  }, [getAuth()]);
+  onAuthStateChanged(auth, (cred) => {
+    setUserCred(cred);
+  });
 
   return (
     <div className="header">
@@ -25,16 +20,14 @@ function Header() {
       <div className="header-options">
         {/* Upload product button */}
         <Link to="/ProductUpload">
-            <button className="upload-product">
-              Upload Product
-            </button>
-          </Link>
+          <button className="upload-product">Upload Product</button>
+        </Link>
         <div className="header-options">
           {/* login/ signup/ profile */}
           {/* link to login/ user profile page */}
-          <Link to= {currUserID === "" ? "/signup" : "/Userinfo"}>
+          <Link to={userCred ? "/Userinfo" : "/signin"}>
             <button className="user-profile">
-              <span>{currUserID === "" ? "Login / Sign up" : "User Profile"}</span>
+              <span>{userCred ? "User Profile" : "Login / Sign up"}</span>
             </button>
           </Link>
         </div>

@@ -10,8 +10,6 @@ const SignIn = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
 
-    // console.log(auth);
-
     // handle page redirection
     const nav = useNavigate();
 
@@ -26,7 +24,7 @@ const SignIn = () => {
           alert("Login Successful")
 
           // redirect to user profile
-          nav("/Userinfo/profile")
+          nav("/Userinfo")
         }
         console.log("Login Successful")
       } catch (err) {
@@ -37,7 +35,7 @@ const SignIn = () => {
     }
 
     return (
-        <div classname = "Body">  
+        <div className = "Body">  
         <Header />  
           <div className="main">
             <h1>Welcome to Mype</h1>
@@ -58,6 +56,7 @@ const SignIn = () => {
               </form>
             </div>
             <br></br>
+            <span>Do not have an account? </span>
             {/*clicking on this link send the user to sign up page*/}
             <Link to="/signup">Create an account</Link>
           </div>

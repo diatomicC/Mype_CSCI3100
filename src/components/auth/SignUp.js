@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { createUserWithEmailAndPassword } from "firebase/auth";
+import { createUserWithEmailAndPassword, signOut } from "firebase/auth";
 import { auth } from "../../index"
 import { Link, useNavigate } from "react-router-dom";
 import "../../styles/LoginSignUp.css";
@@ -24,10 +24,13 @@ const SignUp = () => {
           // todo
           // create user object in users collection
 
+          // auto sign out
+          signOut(auth);
 
           //if registration successfully done, notice the user that it's done
           alert("Account Created")
 
+          // redirect to sign in page
           nav("/signin")
         }
         console.log("Account Created")
@@ -40,7 +43,7 @@ const SignUp = () => {
     }
 
     return (
-        <div classname = "App">
+        <div className = "App">
           <Header />
           <div className="main">
             <h1>Sign up to Mype</h1>
