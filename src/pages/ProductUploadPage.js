@@ -172,7 +172,7 @@ const ProductUploadPage = () => {
           type="text"
           name="title"
           placeholder="Product Title"
-          onChange={handleChange}
+          value={productInfo.author} onChange={handleChange}
         />
         <p className="input-title">
           {" "}
@@ -182,10 +182,10 @@ const ProductUploadPage = () => {
           type="number"
           name="price"
           placeholder="Price"
-          onChange={handleChange}
+          value={productInfo.price} onChange={handleChange}
         />
         <p className="input-title"> Cover Image (.img .png) </p>
-        <input type="file" name="coverImage" onChange={handleChange} />
+        <input type="file" name="coverImage" value={productInfo.coverImage || ""} onChange={handleChange} />
         <p className="input-title">
           {" "}
           Detailed Description <span className="red-star">*</span>
@@ -193,7 +193,7 @@ const ProductUploadPage = () => {
         <textarea
           name="detailedDescription"
           placeholder="Detailed Description"
-          onChange={handleChange}></textarea>
+          value={productInfo.detailedDescription} onChange={handleChange}></textarea>
         <p className="input-title">
           {" "}
           Short Description <span className="red-star">*</span>
@@ -201,15 +201,15 @@ const ProductUploadPage = () => {
         <textarea
           name="shortDescription"
           placeholder="Short Description"
-          onChange={handleChange}></textarea>
-        <p className="input-title"> Description File (.zip) </p>
-        <input type="file" name="projectFile" onChange={handleChange} />
+          value={productInfo.shortDescription} onChange={handleChange}></textarea>
+        <p className="input-title"> Project File (.zip) </p>
+        <input type="file" name="projectFile" value={productInfo.projectFile || ""} onChange={handleChange} />
         <p className="input-title"> Hash Tag </p>
         <input
           type="text"
           name="hashTag"
           placeholder="e.g. tag1, tag2, tag3"
-          onChange={handleChange}
+          value={productInfo.tags} onChange={handleChange}
         />
         <button type="submit" className="upload">
           Upload Product
