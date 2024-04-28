@@ -25,9 +25,8 @@ function MainSearchBar({ itemCount, tagList, updateItemList }) {
     [500, 1000],
     [1000, -1],
   ];
-  // save price range
+  // save selected filters
   const [priceRange, setPriceRang] = useState(0);
-  // save selected tags
   const [selectedTags, setSelectedTags] = useState([]);
   // save state of filter enable
   const [showPrice, setShowPrice] = useState(false);
@@ -126,6 +125,7 @@ function MainSearchBar({ itemCount, tagList, updateItemList }) {
     updateItemList(keyword, selectedTags, priceListValue[priceRange]);
   };
 
+  // show options if filter enabled
   const showExtendFilter = (section) => {
     switch (section) {
       case "price":

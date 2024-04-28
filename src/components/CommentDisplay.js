@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from "react";
-import { db } from "../index"; // Ensure this is the correct path to your Firestore initialization
+import { db } from "../index";
 import { collection, getDocs, doc, onSnapshot } from "firebase/firestore";
 import "../styles/comment-display.css";
 
 const DisplayComments = ({ itemID }) => {
+  // save comments
   const [comments, setComments] = useState([]);
 
+  // fetch comment of this products
   const fetchComments = async () => {
     try {
       const itemRef = await doc(db, "Products", itemID);
@@ -20,10 +22,11 @@ const DisplayComments = ({ itemID }) => {
     }
   };
 
+  // get comment on load
   useEffect(() => {
     fetchComments();
   }, []);
-
+  // get comment whenever the document is updated
   onSnapshot(doc(db, "Products", itemID), (doc) => {
     fetchComments();
   });
@@ -31,13 +34,12 @@ const DisplayComments = ({ itemID }) => {
   return (
     <div className="projects-container">
       <h1>Comments List</h1>
+      {/* display no comment text instead of nth, when there's no comment */}
       {comments.length === 0 ? <p>No comments yet.</p> : comments.map((comment) => (
         <div key={comment.id} className="project-card">
           <h2>{comment.username || "Anonymous"}</h2>
-          {/* Assuming comments might not have images */}
           <p>Stars: {comment.stars}</p>
           <p>Comment: {comment.comment}</p>
-          {/* Additional comment details can be added here */}
         </div>
       ))}
     </div>

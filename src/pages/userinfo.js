@@ -38,6 +38,7 @@ export const Userinfo = () => {
               <li className="nav-item">
                 <a className="nav-link active" aria-current="page" href="preference">Preference</a>
               </li>
+              {/* sign out button */}
               <li className="nav-item">
                 <button className="nav-link active" onClick={() => SignOut()}>Sign Out</button>
               </li>

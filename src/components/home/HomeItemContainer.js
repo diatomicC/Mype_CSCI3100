@@ -6,7 +6,7 @@ function HomeItemContainer({ itemList }) {
     <>
       <div className="display-item-container" style={ContainerStyle}>
         {/* list of display items */}
-
+        {/* display no result text when cant search anything */}
         {itemList.length === 0 ? (
           <p> No search result. </p>
         ) : (

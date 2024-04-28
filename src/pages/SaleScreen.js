@@ -13,6 +13,7 @@ import Header from "../components/Header";
 import { db } from "../index";
 
 function SaleScreen() {
+  // read item ID from url
   const { itemID } = useParams();
   const [item, setItem] = useState();
 
@@ -24,50 +25,49 @@ function SaleScreen() {
     });
   }, []);
 
-  const [comments, setComments] = useState([]);
-  const [averageStars, setAverageStars] = useState(0);
-
-  const addComment = (newComment) => {
-    setComments([...comments, newComment]);
-  };
-
+  // todo
   //Calculate Average Stars
-  useEffect(() => {
-    if (comments.length > 0) {
-      const totalStars = comments.reduce(
-        (acc, comment) => acc + parseInt(comment.stars, 10),
-        0
-      );
-      const average = totalStars / comments.length;
-      setAverageStars(average.toFixed(1)); // Keep one decimal for the average
-    } else {
-      setAverageStars(0); // No comments means no average
-    }
-    // todo
-    // save to database
-  }, [comments]);
+  // useEffect(() => {
+  //   if (comments.length > 0) {
+  //     const totalStars = comments.reduce(
+  //       (acc, comment) => acc + parseInt(comment.stars, 10),
+  //       0
+  //     );
+  //     const average = totalStars / comments.length;
+  //     setAverageStars(average.toFixed(1)); // Keep one decimal for the average
+  //   } else {
+  //     setAverageStars(0); // No comments means no average
+  //   }
+  //   // todo
+  //   // save to database
+  // }, [comments]);
 
   return (
     <>
       <Header />
+
       {/* detailed information of single selected product */}
       <div className="detailed-info-container">
         {/* left section */}
         <div className="left-content">
+          {/* back button */}
           <Link className="back-btn" to="/">
             <img src={BackIcon} alt="" />
           </Link>
+          {/* product image */}
           <div className="image-viewer">
             <img src={item?.coverImage} alt="product img"></img>
           </div>
+          {/* detailed description */}
           <div
             className="long-description"
             dangerouslySetInnerHTML={{
               __html: item?.detailedDescription,
             }}></div>
+          {/* leave comment section */}
           <div style={{ marginTop: "20px" }}>
             <h2>Leave a Comment</h2>
-            <CommentForm onSubmit={addComment} itemID={itemID} />
+            <CommentForm itemID={itemID} />
           </div>
         </div>
 
@@ -87,7 +87,7 @@ function SaleScreen() {
           </div>
           {/* author */}
           <div className="author">{item?.author}</div>
-          {/* short description (same as one in home page?) */}
+          {/* short description */}
           <div className="short-description">{item?.shortDescription}</div>
           {/* sales info */}
           <div className="saleData">
@@ -111,17 +111,25 @@ function SaleScreen() {
               </div>
               <div className="interact">
                 {/* to shopping cart */}
-                <button className="purchase-btn" style={{ flex: "1" }} onClick={() => {
-                  // todo
-                  console.log("add to shopping cart");
-                }}>
+                <button
+                  className="purchase-btn"
+                  style={{ flex: "1" }}
+                  onClick={() => {
+                    // todo
+                    // add to shopping cart
+                    console.log("add to shopping cart");
+                  }}>
                   Save to Cart
                 </button>
                 {/* to payment directly */}
-                <button className="purchase-btn" style={{ flex: "2" }} onClick={() => {
-                  // todo
-                  console.log("go to payment page");
-                }}>
+                <button
+                  className="purchase-btn"
+                  style={{ flex: "1" }}
+                  onClick={() => {
+                    // todo
+                    // go to payment
+                    console.log("go to payment");
+                  }}>
                   Order Now
                 </button>
               </div>
@@ -129,7 +137,7 @@ function SaleScreen() {
           </div>
           {/* users reviews*/}
           <div>
-            <CommentDisplay comments={comments} itemID={itemID} />
+            <CommentDisplay itemID={itemID} />
           </div>
         </div>
       </div>

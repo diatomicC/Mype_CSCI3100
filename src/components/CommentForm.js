@@ -1,30 +1,41 @@
-import React, { useEffect, useState } from 'react';
-import { auth, db } from '../index'; // Ensure this is the correct path to your Firestore initialization
-import { collection, addDoc, getDoc, doc } from 'firebase/firestore';
-import { onAuthStateChanged } from 'firebase/auth';
+import React, { useEffect, useState } from "react";
+import { auth, db } from "../index"; // Ensure this is the correct path to your Firestore initialization
+import { collection, addDoc, getDoc, doc } from "firebase/firestore";
+import { onAuthStateChanged } from "firebase/auth";
 import "../styles/comment.css";
 
 function CommentForm({ itemID }) {
-  const [stars, setStars] = useState(5);
-  const [comment, setComment] = useState('');
-
+  // save info of current user
   const [user, setUser] = useState(null);
-
   useEffect(() => {
     onAuthStateChanged(auth, (cred) => {
       setUser(cred);
     });
   }, []);
 
+  const [stars, setStars] = useState(5);
+  const [comment, setComment] = useState("");
+
   // Check if all required fields are filled
-  const isFormValid = comment.trim() !== '' && stars > 0;
+  const isFormValid = comment.trim() !== "" && stars > 0;
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    // Prevent form submission if validation fails
     if (!isFormValid) {
-      alert('Please fill all the fields.');
-      return; // Prevent form submission if validation fails
+      alert("Please fill all the fields.");
+      return; 
     }
+    // Prevent form submission if not logged in
+    if (!user) {
+      alert("Please log in!");
+      return;
+    }
+
+    // todo
+    // only allow comment after purchasing this product
+    // check user purhcase record
 
     // get current user username
     var snapshot = await getDoc(doc(db, "User", user.uid));
@@ -33,23 +44,23 @@ function CommentForm({ itemID }) {
     const commentData = {
       username: username,
       stars: parseInt(stars, 10), // Ensure stars are stored as numbers
-      comment
+      comment,
     };
 
     try {
-      // Add a new document in the "comment" collection
-      const itemRef = await doc(db, 'Products', itemID);
+      // Add a new document in the "comment" collection (of this product)
+      const itemRef = await doc(db, "Products", itemID);
       await addDoc(collection(itemRef, "comment"), commentData);
-      console.log('Comment added:', { username, stars, comment });
-      alert('Comment successfully added!');
+      // console.log("Comment added:", { username, stars, comment });
+      alert("Comment successfully added!");
     } catch (error) {
-      console.error('Error adding comment:', error);
-      alert('Failed to add comment.');
+      console.error("Error adding comment:", error);
+      alert("Failed to add comment.");
     }
 
     // Clear form fields after submission
     setStars(5);
-    setComment('');
+    setComment("");
   };
 
   return (
@@ -72,11 +83,13 @@ function CommentForm({ itemID }) {
           <textarea
             value={comment}
             onChange={(e) => setComment(e.target.value)}
-            required
-          ></textarea>
+            required></textarea>
         </label>
       </div>
-      <button type="submit" disabled={!isFormValid}>Submit</button>
+      {/* disable button if not filled in  */}
+      <button type="submit" disabled={!isFormValid}>
+        Submit
+      </button>
     </form>
   );
 }

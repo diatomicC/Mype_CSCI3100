@@ -1,10 +1,18 @@
 import { Link } from "react-router-dom";
 import BookmarkIcon from "../../icons/bookmark.svg";
 import StarIcon from "../../icons/star.svg";
-import ShareIcon from "../../icons/shareIcon.svg";
 import "../../styles/homeBlockDisplayItem.css";
 
-function HomePage({ id, title, author, coverImage, tags, description, stars, saved }) {
+function HomePage({
+  id,
+  title,
+  author,
+  coverImage,
+  tags,
+  shortDescription,
+  stars,
+  saved,
+}) {
   const url = `/Product/${id}`;
   return (
     <>
@@ -14,30 +22,38 @@ function HomePage({ id, title, author, coverImage, tags, description, stars, sav
           <Link to={url} className="title">
             {title}
           </Link>
-          <div className="author">{author}</div>
+          <button
+            className="author"
+            onClick={() => {
+              // todo
+              // goto this author's profile
+              console.log("go to author profile");
+            }}>
+            {author}
+          </button>
           {/* quick save to shopping cart, no redirect */}
-          <button className="save-btn" onClick={() => {
-            // todo
-            console.log("quick save to shopping cart");
-          }}>
+          <button
+            className="save-btn"
+            onClick={() => {
+              // todo
+              // quick save to shopping cart
+              console.log("quick save to shopping cart");
+            }}>
             <img src={BookmarkIcon} alt="" />
           </button>
         </div>
         {/* item content */}
-        <div>
-          <div className="product-image">
-            <img src={coverImage} alt="" />
-          </div>
-          {/* display all tags of this product */}
-          <div className="item-tags">
-            <div className="item-tag">
-              {tags.map((tag) => {
-                return " #" + tag;
-              })}
-            </div>
-          </div>
-          <div className="short-description">{description}</div>
+        <div className="product-image">
+          {/* display "no image" when user didnt upload image */}
+          {!coverImage ? <p> no image </p> : <img src={coverImage} alt="" />}
         </div>
+        {/* chain all tags of this product to one string, then display */}
+        <div className="item-tag">
+          {tags.map((tag) => {
+            return " #" + tag;
+          })}
+        </div>
+        <div className="short-description">{shortDescription}</div>
         {/* interactives */}
         <div className="item-footer">
           {/* display number of likes, saved */}
@@ -51,10 +67,15 @@ function HomePage({ id, title, author, coverImage, tags, description, stars, sav
           </div>
           {/* click to share/ purchase this product */}
           <div className="interactives-btn">
-            {/* <button className="share">
-              <img src={ShareIcon} alt="" />
-            </button> */}
-            <button className="purchase">Buy now</button>
+            <button
+              className="purchase"
+              onClick={() => {
+                // todo
+                // go to payment
+                console.log("go to payment");
+              }}>
+              Buy now
+            </button>
           </div>
         </div>
       </div>

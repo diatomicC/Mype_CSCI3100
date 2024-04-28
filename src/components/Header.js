@@ -5,21 +5,15 @@ import { onAuthStateChanged } from "firebase/auth";
 import { useState, useEffect } from "react";
 
 function Header() {
-  const [userCred, setUserCred] = useState(null);
-
   // handle page redirection
   const nav = useNavigate();
-
+  // save info of current user
+  const [user, setUser] = useState(null);
   useEffect(() => {
     onAuthStateChanged(auth, (cred) => {
-      setUserCred(cred);
+      setUser(cred);
     });
   }, []);
-
-  const toProductUpload = () => {
-    if (userCred) nav("/ProductUpload");
-    else alert("Please log in!");
-  };
 
   return (
     <div className="header">
@@ -28,18 +22,21 @@ function Header() {
         <span className="logo-text">Mype</span>
       </Link>
       <div className="header-options">
+        {/* todo */}
+        {/* migrate this whole component to user profile */}
         {/* Upload product button */}
         <button
           style={{ backgroundColor: "transparent", border: "none" }}
-          onClick={() => toProductUpload()}>
-          <button className="upload-product">Upload Product</button>
+          onClick={() =>
+            user ? nav("/ProductUpload") : alert("Please log in!")
+          }>
+          <span className="upload-product">Upload Product</span>
         </button>
         <div className="header-options">
-          {/* login/ signup/ profile */}
-          {/* link to login/ user profile page */}
-          <Link to={userCred ? "/Userinfo" : "/signin"}>
+          {/* login/ signup/ profile button*/}
+          <Link to={user ? "/Userinfo" : "/signin"}>
             <button className="user-profile">
-              <span>{userCred ? "User Profile" : "Login / Sign up"}</span>
+              <span>{user ? "User Profile" : "Login / Sign up"}</span>
             </button>
           </Link>
         </div>
