@@ -4,7 +4,7 @@ import StarIcon from "../../icons/star.svg";
 import ShareIcon from "../../icons/shareIcon.svg";
 import "../../styles/homeBlockDisplayItem.css";
 
-function HomePage({ id, title, author, tags, description, stars, saved }) {
+function HomePage({ id, title, author, coverImage, tags, description, stars, saved }) {
   const url = `/Product/${id}`;
   return (
     <>
@@ -23,7 +23,7 @@ function HomePage({ id, title, author, tags, description, stars, saved }) {
         {/* item content */}
         <div>
           <div className="product-image">
-            <img src="" alt="" />
+            <img src={coverImage} alt="" />
           </div>
           {/* display all tags of this product */}
           <div className="item-tags">

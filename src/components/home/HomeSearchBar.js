@@ -163,7 +163,7 @@ function MainSearchBar({ itemCount, tagList, updateItemList }) {
           </div>
           {/* go to shopping cart */}
           <div className="search-bar-item">
-            <Link to="/ShoppingCart" className="saved capsule" id="saved">
+            <Link to="/shopping-cart" className="saved capsule" id="saved">
               <img src={BookmarkIcon} alt="" />
               Saved
             </Link>

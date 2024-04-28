@@ -2,7 +2,7 @@ import DisplayProjects from "../components/DisplayProjects";
 
 import React, { useEffect, useState } from "react";
 import { auth, db } from "../index"; // Adjust path as necessary
-import { collection, addDoc, doc, getDoc } from "firebase/firestore";
+import { collection, addDoc, doc, getDoc, updateDoc } from "firebase/firestore";
 
 import { storage } from "../index";
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
@@ -22,24 +22,25 @@ const ProductUploadPage = () => {
 
   const emptyInfo = {
     id: "",
+    public_ID: "",
     author: "",
     title: "",
     price: 0,
-    coverImage: null,
+    coverImage: "",
     detailedDescription: "",
     shortDescription: "",
-    projectFile: null,
+    projectFile: "",
     tags: [],
     ordered: 0,
     saved: 0,
     stars: 0,
   };
   const [productInfo, setProductInfo] = useState(emptyInfo);
-  
+
   // Check if all required fields are filled
   const isFormValid =
     productInfo.title !== "" &&
-    productInfo.price !== 0 &&
+    productInfo.price >= 0 &&
     productInfo.detailedDescription !== "" &&
     productInfo.shortDescription !== "";
 
@@ -100,19 +101,24 @@ const ProductUploadPage = () => {
       return;
     }
 
-    const snapshot = await getDoc(doc(db, "User", user.uid));
+    var snapshot = await getDoc(doc(db, "User", user.uid));
     const username = snapshot.data().username;
+    snapshot = await getDoc(doc(db, "Utils", "PUBLIC_ID"));
+    const newID = snapshot.data().id + 1;
+    const newHEX = newID.toString(16).padStart(6, '0');
+    await updateDoc(doc(db, "Utils", "PUBLIC_ID"), {id: newID, HEX: newHEX});
 
     // Prepare the product data, perhaps already done in your existing code
     const newProductData = {
+      public_ID: newHEX,
       author: username,
       title: productInfo.title,
       price: productInfo.price,
       coverImage: productInfo.coverImage,
-      detailedDescription: productInfo.detailedDescription,
+      detailedDescription: productInfo.detailedDescription.replace(/n/g, '<br/>'),
       shortDescription: productInfo.shortDescription,
       projectFile: productInfo.projectFile,
-      tags: productInfo.hashTag.split(",").map((i) => i.trim()),
+      tags: productInfo.tags.split(",").map((i) => i.trim()),
       ordered: 0,
       saved: 0,
       stars: 0,
@@ -172,7 +178,8 @@ const ProductUploadPage = () => {
           type="text"
           name="title"
           placeholder="Product Title"
-          value={productInfo.author} onChange={handleChange}
+          value={productInfo.title}
+          onChange={handleChange}
         />
         <p className="input-title">
           {" "}
@@ -182,10 +189,15 @@ const ProductUploadPage = () => {
           type="number"
           name="price"
           placeholder="Price"
-          value={productInfo.price} onChange={handleChange}
+          value={productInfo.price}
+          onChange={handleChange}
         />
         <p className="input-title"> Cover Image (.img .png) </p>
-        <input type="file" name="coverImage" value={productInfo.coverImage || ""} onChange={handleChange} />
+        <input
+          type="file"
+          name="coverImage"
+          onChange={handleChange}
+        />
         <p className="input-title">
           {" "}
           Detailed Description <span className="red-star">*</span>
@@ -193,7 +205,8 @@ const ProductUploadPage = () => {
         <textarea
           name="detailedDescription"
           placeholder="Detailed Description"
-          value={productInfo.detailedDescription} onChange={handleChange}></textarea>
+          value={productInfo.detailedDescription}
+          onChange={handleChange}></textarea>
         <p className="input-title">
           {" "}
           Short Description <span className="red-star">*</span>
@@ -201,15 +214,21 @@ const ProductUploadPage = () => {
         <textarea
           name="shortDescription"
           placeholder="Short Description"
-          value={productInfo.shortDescription} onChange={handleChange}></textarea>
+          value={productInfo.shortDescription}
+          onChange={handleChange}></textarea>
         <p className="input-title"> Project File (.zip) </p>
-        <input type="file" name="projectFile" value={productInfo.projectFile || ""} onChange={handleChange} />
+        <input
+          type="file"
+          name="projectFile"
+          onChange={handleChange}
+        />
         <p className="input-title"> Hash Tag </p>
         <input
           type="text"
-          name="hashTag"
+          name="tags"
           placeholder="e.g. tag1, tag2, tag3"
-          value={productInfo.tags} onChange={handleChange}
+          value={productInfo.tags}
+          onChange={handleChange}
         />
         <button type="submit" className="upload">
           Upload Product
