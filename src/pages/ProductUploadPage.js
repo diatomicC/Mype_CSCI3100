@@ -169,7 +169,7 @@ const ProductUploadPage = () => {
   return (
     <div>
       <Header />
-      <form onSubmit={handleSubmit}>
+      <form className="product-upload-form" onSubmit={handleSubmit}>
         <p className="input-title">
           {" "}
           Product Title <span className="red-star">*</span>
