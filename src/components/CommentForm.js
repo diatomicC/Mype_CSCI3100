@@ -1,15 +1,23 @@
-import React, { useState } from 'react';
-import { db } from '../index'; // Ensure this is the correct path to your Firestore initialization
-import { collection, addDoc } from 'firebase/firestore';
+import React, { useEffect, useState } from 'react';
+import { auth, db } from '../index'; // Ensure this is the correct path to your Firestore initialization
+import { collection, addDoc, getDoc, doc } from 'firebase/firestore';
+import { onAuthStateChanged } from 'firebase/auth';
 import "../styles/comment.css";
 
-function CommentForm() {
-  const [username, setUsername] = useState('');
+function CommentForm({ itemID }) {
   const [stars, setStars] = useState(5);
   const [comment, setComment] = useState('');
 
+  const [user, setUser] = useState(null);
+
+  useEffect(() => {
+    onAuthStateChanged(auth, (cred) => {
+      setUser(cred);
+    });
+  }, []);
+
   // Check if all required fields are filled
-  const isFormValid = username.trim() !== '' && comment.trim() !== '' && stars > 0;
+  const isFormValid = comment.trim() !== '' && stars > 0;
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -18,15 +26,20 @@ function CommentForm() {
       return; // Prevent form submission if validation fails
     }
 
+    // get current user username
+    var snapshot = await getDoc(doc(db, "User", user.uid));
+    const username = snapshot.data().username;
+
     const commentData = {
-      username,
+      username: username,
       stars: parseInt(stars, 10), // Ensure stars are stored as numbers
       comment
     };
 
     try {
       // Add a new document in the "comment" collection
-      await addDoc(collection(db, "comment"), commentData);
+      const itemRef = await doc(db, 'Products', itemID);
+      await addDoc(collection(itemRef, "comment"), commentData);
       console.log('Comment added:', { username, stars, comment });
       alert('Comment successfully added!');
     } catch (error) {
@@ -35,24 +48,12 @@ function CommentForm() {
     }
 
     // Clear form fields after submission
-    setUsername('');
     setStars(5);
     setComment('');
   };
 
   return (
     <form onSubmit={handleSubmit} className="comment-form">
-      <div>
-        <label>
-          Username:
-          <input
-            type="text"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
-            required
-          />
-        </label>
-      </div>
       <div>
         <label>
           Stars:

@@ -67,7 +67,7 @@ function SaleScreen() {
             }}></div>
           <div style={{ marginTop: "20px" }}>
             <h2>Leave a Comment</h2>
-            <CommentForm onSubmit={addComment} />
+            <CommentForm onSubmit={addComment} itemID={itemID} />
           </div>
         </div>
 
@@ -125,7 +125,7 @@ function SaleScreen() {
           </div>
           {/* users reviews*/}
           <div>
-            <CommentDisplay comments={comments} />
+            <CommentDisplay comments={comments} itemID={itemID} />
           </div>
         </div>
       </div>

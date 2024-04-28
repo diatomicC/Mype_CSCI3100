@@ -101,8 +101,10 @@ const ProductUploadPage = () => {
       return;
     }
 
+    // get current user username
     var snapshot = await getDoc(doc(db, "User", user.uid));
     const username = snapshot.data().username;
+    // calculate the public id 
     snapshot = await getDoc(doc(db, "Utils", "PUBLIC_ID"));
     const newID = snapshot.data().id + 1;
     const newHEX = newID.toString(16).padStart(6, '0');
