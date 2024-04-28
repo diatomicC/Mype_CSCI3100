@@ -80,7 +80,7 @@ const SignUp = () => {
             <br></br>
             <span>Have an account? </span>
             {/*clicking on this link send the user to login page*/}
-            <Link to="/signin">Login</Link>
+            <Link className="signinBtn" to="/signin">Login</Link>
             <br></br>
           </div>
         </div>
