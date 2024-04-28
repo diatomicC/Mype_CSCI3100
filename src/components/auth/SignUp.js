@@ -1,6 +1,7 @@
 import React, { useState } from "react";
+import { doc, setDoc } from "firebase/firestore";
 import { createUserWithEmailAndPassword, signOut } from "firebase/auth";
-import { auth } from "../../index"
+import { db, auth } from "../../index"
 import { Link, useNavigate } from "react-router-dom";
 import "../../styles/LoginSignUp.css";
 import Header from "../Header";
@@ -21,8 +22,19 @@ const SignUp = () => {
         //createUserWithEmailAndPassword is a function provided by firebase, allowing to create a user with email and password.
         const user = await createUserWithEmailAndPassword(auth, email, password, username)
         if (user) {
-          // todo
           // create user object in users collection
+          await setDoc(
+            doc(db, "User", user.user.uid),
+            {
+              uid: user.user.uid,
+              username: username,
+              email: user.user.email,
+              m_coin: 0,
+              shopping_cart: "",
+            }
+          ).catch((e) => {
+            alert(e.message)
+          })
 
           // auto sign out
           signOut(auth);
