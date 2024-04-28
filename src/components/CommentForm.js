@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { auth, db } from "../index"; // Ensure this is the correct path to your Firestore initialization
-import { collection, addDoc, getDoc, doc } from "firebase/firestore";
+import { collection, addDoc, getDoc, doc, getDocs, updateDoc } from "firebase/firestore";
 import { onAuthStateChanged } from "firebase/auth";
 import "../styles/comment.css";
 
@@ -19,6 +19,7 @@ function CommentForm({ itemID }) {
   // Check if all required fields are filled
   const isFormValid = comment.trim() !== "" && stars > 0;
 
+  // submit new comment
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -51,6 +52,20 @@ function CommentForm({ itemID }) {
       // Add a new document in the "comment" collection (of this product)
       const itemRef = await doc(db, "Products", itemID);
       await addDoc(collection(itemRef, "comment"), commentData);
+
+      // calculate average star, and update to database
+      const querySnapshot = await getDocs(collection(itemRef, "comment")); // Changed to 'comment'
+      var totalStars = 0;
+      querySnapshot.docs.forEach(doc => {
+        totalStars += doc.data().stars;
+      });
+      if (querySnapshot.docs.length > 0) {
+        const average = totalStars / querySnapshot.docs.length;
+        updateDoc(doc(db, "Prodcuts", itemID), {stars: average.toFixed(1)}); // Keep one decimal for the average
+      } else {
+        updateDoc(doc(db, "Prodcuts", itemID), {stars: 0}); // No comments means no average
+      }
+
       // console.log("Comment added:", { username, stars, comment });
       alert("Comment successfully added!");
     } catch (error) {

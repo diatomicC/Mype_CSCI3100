@@ -25,23 +25,6 @@ function SaleScreen() {
     });
   }, []);
 
-  // todo
-  //Calculate Average Stars
-  // useEffect(() => {
-  //   if (comments.length > 0) {
-  //     const totalStars = comments.reduce(
-  //       (acc, comment) => acc + parseInt(comment.stars, 10),
-  //       0
-  //     );
-  //     const average = totalStars / comments.length;
-  //     setAverageStars(average.toFixed(1)); // Keep one decimal for the average
-  //   } else {
-  //     setAverageStars(0); // No comments means no average
-  //   }
-  //   // todo
-  //   // save to database
-  // }, [comments]);
-
   return (
     <>
       <Header />
