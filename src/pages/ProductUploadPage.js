@@ -117,7 +117,7 @@ const ProductUploadPage = () => {
       title: productInfo.title,
       price: productInfo.price,
       coverImage: productInfo.coverImage,
-      detailedDescription: productInfo.detailedDescription.replace(/n/g, '<br/>'),
+      detailedDescription: productInfo.detailedDescription.replace(/\n/g, '<br/>'),
       shortDescription: productInfo.shortDescription,
       projectFile: productInfo.projectFile,
       tags: productInfo.tags.split(",").map((i) => i.trim()),

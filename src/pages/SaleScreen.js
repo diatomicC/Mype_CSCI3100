@@ -110,14 +110,18 @@ function SaleScreen() {
                 </div>
               </div>
               <div className="interact">
-                {/* todo */}
                 {/* to shopping cart */}
-                <button className="purchase-btn" style={{ flex: "1" }} onClick={() => {}}>
+                <button className="purchase-btn" style={{ flex: "1" }} onClick={() => {
+                  // todo
+                  console.log("add to shopping cart");
+                }}>
                   Save to Cart
                 </button>
-                {/* todo */}
                 {/* to payment directly */}
-                <button className="purchase-btn" style={{ flex: "2" }} onClick={() => {}}>
+                <button className="purchase-btn" style={{ flex: "2" }} onClick={() => {
+                  // todo
+                  console.log("go to payment page");
+                }}>
                   Order Now
                 </button>
               </div>

@@ -55,7 +55,7 @@ const SignUp = () => {
     }
 
     return (
-        <div className = "App">
+        <div className = "Body">
           <Header />
           <div className="main">
             <h1>Sign up to Mype</h1>

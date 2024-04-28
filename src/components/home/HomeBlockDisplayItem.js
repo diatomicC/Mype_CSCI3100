@@ -15,8 +15,11 @@ function HomePage({ id, title, author, coverImage, tags, description, stars, sav
             {title}
           </Link>
           <div className="author">{author}</div>
-          {/* click to quick save to shopping cart */}
-          <button className="save-btn">
+          {/* quick save to shopping cart, no redirect */}
+          <button className="save-btn" onClick={() => {
+            // todo
+            console.log("quick save to shopping cart");
+          }}>
             <img src={BookmarkIcon} alt="" />
           </button>
         </div>
@@ -28,7 +31,7 @@ function HomePage({ id, title, author, coverImage, tags, description, stars, sav
           {/* display all tags of this product */}
           <div className="item-tags">
             <div className="item-tag">
-              {tags.map((tag, index) => {
+              {tags.map((tag) => {
                 return " #" + tag;
               })}
             </div>
