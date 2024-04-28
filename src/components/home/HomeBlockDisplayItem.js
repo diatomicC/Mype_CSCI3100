@@ -48,9 +48,9 @@ function HomePage({ id, title, author, coverImage, tags, description, stars, sav
           </div>
           {/* click to share/ purchase this product */}
           <div className="interactives-btn">
-            <button className="share">
+            {/* <button className="share">
               <img src={ShareIcon} alt="" />
-            </button>
+            </button> */}
             <button className="purchase">Buy now</button>
           </div>
         </div>
