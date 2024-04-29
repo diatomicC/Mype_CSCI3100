@@ -6,6 +6,7 @@ export const Profile = (userID) => {
   return(  
     <div class="col" style={{float:"left"}}>
     <div class="row">
+         /*user can edit one's information*/
         <h style={{"font-size": "30px"}}>Profile</h>
           <button type="button" class="btn btn-primary"
           style={{"--bs-btn-padding-y": "0.2rem", "--bs-btn-padding-x": "0.75rem", "--bs-btn-font-size": "1rem", position: "relative", top: "-10px", left: "20px"}}>
@@ -13,9 +14,11 @@ export const Profile = (userID) => {
           </button>
           </div>
             <div class="col">
+         /*the icon of the user*/
             <img src="http://localhost:3000/images.png" class="img-thumbnail" alt="My_Logo" style={{float:"left", "max-width":"200px", "max-height":"auto"}}/>
             <div class="text" style={{float:"left", position:"relative", left:"30px", top:"30px", "font-size": "19px"}}>
               <ul class="list-unstyled">
+         /*the information of the user*/
                 <li>Adam</li>
                 <li>adam@gmail.com</li>
               </ul>
@@ -37,6 +40,7 @@ export const Profile = (userID) => {
               <div class="text" style={{float:"left", position:"relative", top: "-30px", left: "250px", "font-size": "18px"}}>3 items</div>
             </div>
           </div>
+         /*product hosted*/
           <div class="image">
             <img src="http://localhost:3000/course.png" style={{height:"150px", width:"auto"}} class="img-fluid" alt="..."></img>
             <img src="http://localhost:3000/course2.png" style={{height:"150px", width:"auto"}} class="img-fluid" alt="..."></img>
