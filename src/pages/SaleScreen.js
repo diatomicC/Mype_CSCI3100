@@ -18,8 +18,8 @@ function SaleScreen() {
   const [item, setItem] = useState();
 
   // fetch single data of this product
-  const docRef = doc(db, "Products", itemID);
   useEffect(() => {
+    const docRef = doc(db, "Products", itemID);
     getDoc(docRef).then((doc) => {
       setItem(doc.data());
     });

@@ -52,7 +52,6 @@ function CommentForm({ itemID }) {
       // Add a new document in the "comment" collection (of this product)
       const itemRef = await doc(db, "Products", itemID);
       await addDoc(collection(itemRef, "comment"), commentData);
-
       // calculate average star, and update to database
       const querySnapshot = await getDocs(collection(itemRef, "comment")); // Changed to 'comment'
       var totalStars = 0;
@@ -61,9 +60,9 @@ function CommentForm({ itemID }) {
       });
       if (querySnapshot.docs.length > 0) {
         const average = totalStars / querySnapshot.docs.length;
-        updateDoc(doc(db, "Prodcuts", itemID), {stars: average.toFixed(1)}); // Keep one decimal for the average
+        updateDoc(doc(db, "Products", itemID), {stars: average.toFixed(1)}); // Keep one decimal for the average
       } else {
-        updateDoc(doc(db, "Prodcuts", itemID), {stars: 0}); // No comments means no average
+        updateDoc(doc(db, "Products", itemID), {stars: 0}); // No comments means no average
       }
 
       // console.log("Comment added:", { username, stars, comment });

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { db } from "../index";
-import { collection, getDocs, doc, onSnapshot, updateDoc } from "firebase/firestore";
+import { collection, getDocs, doc } from "firebase/firestore";
 import "../styles/comment-display.css";
 
 const DisplayComments = ({ itemID }) => {
@@ -28,10 +28,6 @@ const DisplayComments = ({ itemID }) => {
   useEffect(() => {
     fetchComments();
   }, []);
-  // get comment whenever the document is updated
-  onSnapshot(doc(db, "Products", itemID), (doc) => {
-    fetchComments();
-  });
 
   return (
     <div className="projects-container">
