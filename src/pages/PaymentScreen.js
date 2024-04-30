@@ -5,9 +5,13 @@ import { Link, useLocation } from "react-router-dom";
 import { db } from "../index";
 
 function PaymentScreen() {
+  // receive passed argument into location
   const location = useLocation();
   const state = location.state;
+
+  // debug message for checking the passed argument
   console.log(state);
+
   return (
     <>
       <Header />

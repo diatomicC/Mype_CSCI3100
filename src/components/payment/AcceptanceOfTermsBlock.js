@@ -1,6 +1,7 @@
 import React from "react";
 // import { useState } from "react";
 
+// This is the block containing the section Acceptance of Terms in payment page
 function AcceptanceOfTerms() {
   //   const [TermsAndConditions, setTermsAndConditions] = useState(false);
   //   const [PrivacyPolicy, setPrivacyPolicy] = useState(false);

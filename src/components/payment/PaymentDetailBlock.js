@@ -1,6 +1,9 @@
 import React from "react";
 
+// This is the block containing the section Payment Detail in payment page
 function PaymentDetailBlock({ props }) {
+  // This is the function for calculating the total of payment
+  // As the received argument is a list of product detail
   const getAmount = () => {
     let total = 0;
     let i = 0;
