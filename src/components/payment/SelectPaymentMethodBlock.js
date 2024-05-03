@@ -1,5 +1,6 @@
 import React from "react";
 
+// This is the block containing the section Select Payment Method in payment page
 function SelectPaymentMethodBlock() {
   return (
     <>

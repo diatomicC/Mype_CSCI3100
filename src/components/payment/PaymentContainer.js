@@ -3,6 +3,7 @@ import AdditionalInfoContainer from "./AdditionalInfoContainer";
 import "../../styles/payment/paymentContainer.css";
 import { db } from "../../index";
 
+// This is the block containing the section Payment container in payment page
 function PaymentContainer({ props }) {
   console.log(props);
   return (

@@ -2,6 +2,7 @@ import React from "react";
 import Popup from "reactjs-popup";
 import "reactjs-popup/dist/index.css";
 
+// This is the block containing the section NeedHelp in payment page
 function NeedHelpBlock() {
   return (
     <>

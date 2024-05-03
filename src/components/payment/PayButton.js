@@ -7,9 +7,10 @@ import { doc } from "firebase/firestore";
 import { updateDoc } from "firebase/firestore";
 import { experimentalSetDeliveryMetricsExportedToBigQueryEnabled } from "firebase/messaging/sw";
 
+// This is the block containing the section Pay Button in payment page
 function PayButton({ props, db }) {
   let [coin, setCoin] = useState(0);
-  // let coin = 0;
+  // fetch user data from the database
   const FetchUser = async () => {
     console.log("In fetch");
     const docRef = doc(db, "User", "KNnrR1hpeBv5Mhytx0Df");
@@ -22,7 +23,10 @@ function PayButton({ props, db }) {
     }
     return "Done";
   };
+  // This is the function of processing payment
   const Paid = () => {
+    // debug message for testing
+    return true;
     console.log("Run before Fetch");
     FetchUser().then((coin) => {
       console.log(coin);
@@ -38,11 +42,14 @@ function PayButton({ props, db }) {
       return true;
     }
   };
+  // This is the function for updating the coin of user in DB
   const updateMcoinInDb = async (db, userID, new_coin) => {
     const docRef = doc(db, "User", userID);
     console.log(new_coin);
     updateDoc(docRef, { m_coin: new_coin });
   };
+  // This is the function for calculating for much is the payment
+  // As the received argument is just the list of product
   const getAmount = () => {
     let total = 0;
     let i = 0;
@@ -52,6 +59,7 @@ function PayButton({ props, db }) {
     } while (i < props.length);
     return total;
   };
+  // This is for handling the click event of the product
   const ClickEvent = () => {
     console.log("Handling clickevent");
     if (Paid()) {
@@ -60,7 +68,7 @@ function PayButton({ props, db }) {
       setPaid(false);
     }
   };
-  let [successPaid, setPaid] = useState(false);
+  let [successPaid, setPaid] = useState(true);
   return (
     <>
       {" "}

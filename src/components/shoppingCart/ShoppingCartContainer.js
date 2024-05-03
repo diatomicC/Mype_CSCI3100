@@ -13,9 +13,13 @@ import $, { data } from "jquery";
 import { Link } from "react-router-dom";
 import { db } from "../../index";
 
+// this is the container of the shopping cart
 function ShoppingCartContainer({ currentUserId }) {
+  // set the orginal product_list and shopping_cart to empty
   let [product_list, setProduct_list] = useState([]);
   let [shoppingCart, setShoppingCart] = useState([]);
+
+  // retreive data from database into the product_list and shopping_cart
   useEffect(() => {
     product_list = [];
     setProduct_list([...product_list]);
@@ -26,14 +30,17 @@ function ShoppingCartContainer({ currentUserId }) {
     console.log(shoppingCart);
   }, []);
 
+  // function for fetch user product list
   const FetchUser = async () => {
     console.log("Start fetching user");
     console.log(shoppingCart);
     const docRef = doc(db, "User", currentUserId);
     const docSnap = await getDoc(docRef);
     if (docSnap.data().length === 0) {
+      // debug message
       console.log("Not user");
     } else {
+      // debug message
       console.log("Finished fetching user");
       // return docSnap.data().shopping_cart.split(" ");
       shoppingCart = docSnap.data().shopping_cart.split(" ");
@@ -42,6 +49,7 @@ function ShoppingCartContainer({ currentUserId }) {
     }
   };
 
+  // fetch product detail of product in shopping cart from product database
   const FetchProduct = async () => {
     console.log("Start fetching product");
     setTimeout(() => {}, 5000);
@@ -59,6 +67,7 @@ function ShoppingCartContainer({ currentUserId }) {
     setProduct_list([...product_list]);
   };
 
+  // return the selected product in the shopping cart
   const GetSelected = () => {
     let selectedList = [];
     let checked = $("input:checked").toArray();
@@ -67,6 +76,9 @@ function ShoppingCartContainer({ currentUserId }) {
     });
     return selectedList;
   };
+
+  // function when remove from cart button clicked
+  // used to remove selected product in the cart
   const RemoveCart = () => {
     let tmp_selected = GetSelected();
     product_list.slice().map(function (item, index) {
@@ -85,6 +97,9 @@ function ShoppingCartContainer({ currentUserId }) {
       setProduct_list([...product_list])
     );
   };
+
+  // called when there is any change in DB (e.g. removed cart item)
+  // retrieve again the product list
   const changeCartInDB = async (updated_shopping_cart) => {
     const docRef = doc(db, "User", currentUserId);
     console.log(updated_shopping_cart);
@@ -93,6 +108,8 @@ function ShoppingCartContainer({ currentUserId }) {
   };
 
   // let [payment, setPayment] = useState([]);
+  // called when go to payment button clicked
+  // send selected products to the payment page
   const UpdatePayment = () => {
     let tmp_selected = GetSelected();
     product_list.slice().map(function (item, index) {

@@ -5,6 +5,7 @@ import PayButton from "./PayButton";
 import "../../styles/payment/paymentContainer.css";
 import { db } from "../../index";
 
+// This is the block containing the section Select Payment in payment page
 function SelectPaymentContainer({ props }) {
   return (
     <>
