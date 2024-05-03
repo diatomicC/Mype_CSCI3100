@@ -2,9 +2,15 @@ import { Link } from "react-router-dom";
 import BookmarkIcon from "../../icons/bookmark.svg";
 import StarIcon from "../../icons/star.svg";
 import "../../styles/homeBlockDisplayItem.css";
+import { useEffect, useState } from "react";
+import { doc, getDoc, updateDoc } from "firebase/firestore";
+import { onAuthStateChanged } from "firebase/auth";
+import { db, auth } from "../../index";
 
 function HomePage({
   id,
+  public_ID,
+  author_id,
   title,
   author,
   coverImage,
@@ -14,6 +20,40 @@ function HomePage({
   saved,
 }) {
   const url = `/Product/${id}`;
+
+  // save info of current user
+  const [user, setUser] = useState(null);
+  useEffect(() => {
+    onAuthStateChanged(auth, (cred) => {
+      setUser(cred);
+    });
+  }, []);
+
+  const addItemToCart = async () => {
+    // Prevent form submission if not logged in
+    if (!user) {
+      alert("Please log in!");
+      return;
+    }
+
+    // Prevent user adding own item into shopping cart
+    if (user.uid === author_id) {
+      alert("Cannot add your own product to your cart!");
+      return;
+    }
+
+    try {
+      // get current user username
+      var snapshot = await getDoc(doc(db, "User", user.uid));
+      const shopping_cart = snapshot.data().shopping_cart + " " + public_ID;
+      updateDoc(doc(db, "User", user.uid), { shopping_cart: shopping_cart });
+
+      alert("Successfully add item to your cart.");
+    } catch (e) {
+      console.log(e.message);
+    }
+  };
+
   return (
     <>
       <div className="item">
@@ -32,13 +72,7 @@ function HomePage({
             {author}
           </button>
           {/* quick save to shopping cart, no redirect */}
-          <button
-            className="save-btn"
-            onClick={() => {
-              // todo
-              // quick save to shopping cart
-              console.log("quick save to shopping cart");
-            }}>
+          <button className="save-btn" onClick={() => addItemToCart()}>
             <img src={BookmarkIcon} alt="" />
           </button>
         </div>

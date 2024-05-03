@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
-import { doc, getDoc } from "firebase/firestore";
+import { doc, getDoc, updateDoc } from "firebase/firestore";
+import { onAuthStateChanged } from "firebase/auth";
 
 import BookmarkIcon from "../icons/bookmark.svg";
 import StarIcon from "../icons/star.svg";
@@ -10,9 +11,17 @@ import CommentDisplay from "../components/CommentDisplay";
 
 import "../styles/saleScreen.css";
 import Header from "../components/Header";
-import { db } from "../index";
+import { db, auth } from "../index";
 
 function SaleScreen() {
+  // save info of current user
+  const [user, setUser] = useState(null);
+  useEffect(() => {
+    onAuthStateChanged(auth, (cred) => {
+      setUser(cred);
+    });
+  }, []);
+
   // read item ID from url
   const { itemID } = useParams();
   const [item, setItem] = useState();
@@ -24,6 +33,32 @@ function SaleScreen() {
       setItem(doc.data());
     });
   }, []);
+
+  // add current item to user shopping cart
+  const addItemToCart = async () => {
+    // Prevent form submission if not logged in
+    if (!user) {
+      alert("Please log in!");
+      return;
+    }
+
+    // Prevent user adding own item into shopping cart
+    if (user.uid === item.author_id) {
+      alert("Cannot add your own product to your cart!");
+      return;
+    }
+
+    try {
+      // get current user username
+      var snapshot = await getDoc(doc(db, "User", user.uid));
+      const shopping_cart = snapshot.data().shopping_cart + " " + item.public_ID;
+      updateDoc(doc(db, "User", user.uid), { shopping_cart: shopping_cart });
+
+      alert("Successfully add item to your cart.");
+    } catch (e) {
+      console.log(e.message);
+    }
+  };
 
   return (
     <>
@@ -97,11 +132,7 @@ function SaleScreen() {
                 <button
                   className="purchase-btn"
                   style={{ flex: "1" }}
-                  onClick={() => {
-                    // todo
-                    // add to shopping cart
-                    console.log("add to shopping cart");
-                  }}>
+                  onClick={() => addItemToCart()}>
                   Save to Cart
                 </button>
                 {/* to payment directly */}
